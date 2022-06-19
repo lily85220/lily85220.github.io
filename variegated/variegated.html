@@ -1,0 +1,1080 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="reset.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Roboto:wght@100;300;400;900&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/9dc7e45d14.js" crossorigin="anonymous"></script>
+    <title>Document</title>
+    <style>
+        html, body{
+            font-family: 'Roboto', sans-serif;
+            width: 100%;
+        }
+        a{
+            text-decoration: none;
+        }
+        .top, .nav, .discount, .shop-categories-group, .favourite-blouses, .popular-models-group, .blog-group, .subscribe, .footer .wrap, .footer .site-info{
+            width: 91%;
+            position: relative;
+            left: 0;
+            right: 0;
+            margin: 0 auto;
+        }
+        /* 上面的聯絡電話 */
+        .top{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 13px 0;
+        }
+        .contact{
+            font-size: 12px;
+        }
+        .contact span{
+            color: rgb(143, 143, 143);
+            font-weight: 300;
+        }
+        .contact a{
+            color: rgb(91, 91, 91);
+            margin-right: 5px;
+        }
+        .contact span:nth-of-type(2){
+            padding-left: 5px;
+            border-left: 1px solid rgb(143, 143, 143);
+        }
+        /* 字沒辦法改細，但可以改粗 */
+        .panel button span{
+            font-weight: 100;
+        }
+        .panel button, .panel input, .panel a{
+            border: 0;
+            background-color: #fff;
+            color: rgb(135, 134, 134);
+        }
+        .panel button{
+            padding: 3px 20px 5px;
+            margin-bottom: 0;
+            border-bottom: 2px solid #0000;
+        }
+        .panel input{
+            width: 80px;
+            margin-left: 20px;
+        }
+        .panel button:last-of-type{
+            color: rgb(91, 91, 91);
+        }
+        .shopping-cart{
+            position: relative;
+        }
+        .shopping-cart .count{
+            position: absolute;
+            top: -3px;
+            right: 7px;
+            display: block;
+            width: 17px;
+            height: 17px;
+            border-radius: 50%;
+            background-color: rgb(255, 179, 179);
+            color: #fff;
+        }
+        .panel button:hover{
+            border-bottom: 2px solid rgb(255, 179, 179);
+        }
+        .panel a:hover{
+            color: rgb(255, 179, 179);
+        }
+        /* 導覽列 */
+        .nav{
+            height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .logo{
+            width: 110px;
+        }
+        .logo img{
+            width: 100%;
+        }
+        .menu{
+            display: flex;
+            justify-content: center;
+        }
+        .menu li{
+            font-size: 12px;
+            padding: 0 20px;
+        }
+        .menu li a{
+            color: #000;
+            font-weight: 600;
+        }
+        .menu li a:hover{
+            color: rgb(255, 179, 179);
+            transition: 0.5s;
+        }
+        li.home a{
+            color: rgb(255, 179, 179);
+        }
+        .social-media{
+            display: flex;
+        }
+        .social-media li a{
+            padding: 0 10px;
+            color: rgb(143, 143, 143);
+            font-size: 14px;
+        }
+        .social-media li a:hover{
+            color: rgb(20, 20, 20);
+            transition: 0.5s;
+        }
+
+        /* 導覽列下面的圖片 */
+        .element{
+            background-color: rgb(252, 251, 254);
+            height: 690px;
+            position: relative;
+            margin-bottom: 60px;
+        }
+        .slogon{
+            display: flex;
+        }
+        .slogon .pic{
+            position: absolute;
+            right: 0;
+            width: 95.5%;
+        }
+        .slogon .pic img{
+            width: 100%;
+        }
+        .slogon .txt{
+            position: absolute;
+            top: 200px;
+            left: 135px;
+            z-index: 1;
+        }
+        .slogon .txt .tag{
+            font-size: 14px;
+            display: inline-block;
+            padding: 8px 16px;
+            background-color: #000;
+            color: #fff;
+            margin-bottom: 20px;
+        }
+        .slogon .txt h2{
+            font-size: 48px;
+            font-weight: 600;
+            line-height: 55px;
+            margin-bottom: 20px;
+        }.slogon .txt .horizontal-line{
+            font-size: 50px;
+            font-weight: 700;
+        }
+        .slogon .txt p{
+            color: rgb(135, 134, 134);
+            margin-bottom: 25px;
+        }
+        .slogon .txt a{
+            color: #000;
+            font-weight: 600;
+            font-size: 14px;
+            letter-spacing: 2px;
+        }
+        .slogon .txt a:hover{
+            color: rgb(255, 179, 179);
+            transition: 0.5s;
+        }
+        .element .discount{
+            position: absolute;
+            top: 620px;
+            z-index: 1;
+            display: flex;
+            justify-content: space-between;
+            text-align: center;
+        }
+        .discount h3{
+            font-size: 14px;
+            letter-spacing: 1px;
+        }
+        .discount p{
+            font-size: 12px;
+            color: rgb(135, 134, 134);
+        }
+        .discount div{
+            width: 348px;
+            padding: 9px 0;
+        }
+        .discount div:nth-child(1){
+            background-color: rgb(255, 229, 229);
+        }
+        .discount div:nth-child(2){
+            background-color: rgb(255, 236, 229);
+        }
+        .discount div:nth-child(3){
+            background-color: rgb(255, 245, 229);
+        }
+        
+        /* shop-categories */
+        .shop-categories{
+            position: relative;
+            height: 500px;
+            margin-bottom: 75px;
+        }
+        .shop-categories h2, .popular-models h2, .blog h2, .instagram{
+            text-align: center;
+            font-size: 22px;
+            letter-spacing: 1px;
+        }
+        .shop-categories-group{
+            position: absolute;
+            top: 70px;
+            z-index: 1;
+            display: flex;
+            justify-content: space-between;
+        }
+        .shop-categories-item{
+            width: 240px;
+        }
+        .shop-categories-item img{
+            width: 100%;
+        }
+        .shop-categories-item .txt{
+            margin: 20px 0 0 20px;
+        }
+        .shop-categories-item .txt a{
+            color: #000;
+            font-weight: 400;
+        }
+        .shop-categories-item .txt a:hover{
+            color: rgb(255, 179, 179);
+            transition: 0.5s;
+        }
+        .shop-categories-item .txt:hover{
+            color: rgb(255, 179, 179);
+            transition: 0.5s;
+        }
+        .pink{
+            position: absolute;
+            top: 160px;
+            z-index: 0;
+            background-color: rgb(255, 236, 229);
+            width: 100%;
+            height: 340px;
+        }
+        /* favourite blouses */
+        .favourite-blouses{
+            display: flex;
+        }
+        .favourite-blouses .pic img{
+            width: 500px;
+            position: relative;
+            z-index: 1;
+            top: 50px;
+        }
+        .favourite-blouses .pic .gray{
+            width: 500px;
+            height: 412px;
+            position: absolute;
+            left: 40px;
+            top: 10px;
+            background-color: rgb(246, 246, 246);
+        }
+        .favourite-blouses .txt{
+            padding: 150px 100px;
+        }
+        .favourite-blouses h2{
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+        .favourite-blouses p{
+            font-size: 14px;
+            line-height: 25px;
+            color: #aaa;
+            margin-bottom: 25px;
+        }
+        .favourite-blouses a{
+            background-color: #000;
+            color: #fff;
+            display: inline-block;
+            font-size: 12px;
+            padding: 15px 30px;
+        }
+        .favourite-blouses a:hover{
+            background-color: rgb(255, 179, 179);
+            transition: 0.5s;
+        }
+        
+        /* Accessories */
+        .accessories-list{
+            display: flex;
+            width: 100%;
+            margin-bottom: 70px;
+        }
+        .accessories-list a{
+            position: relative;
+        }
+        .accessories-list h2{
+            position: absolute;
+            top: 40px;
+            left: 20px;
+            right: 20px;
+            margin: 0 auto;
+            font-size: 24px;
+            color: #000;
+            width: 70%;
+            text-align: center;
+        }
+        /* .accessories-list a:hover{
+            border-bottom: 1px solid #000;
+        } */
+        .accessories-list p{
+            position: absolute;
+            top: 200px;
+            font-size: 12px;
+            letter-spacing: 1px;
+            color: rgb(20, 20, 20);
+            width: 100%;
+            text-align: center;
+        }
+        .accessories-list img{
+            width: 100%;
+        }
+
+        /* popular-models */
+        .popular-models-group{
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .popular-models h2{
+            margin-bottom: 40px;
+        }
+        .popular-models-item{
+            position: relative;
+            width: 22%;
+            margin: 0 auto 40px;
+        }
+        .popular-models-item .tag{
+            position: absolute;
+            top: 15px;
+            right: 0;
+            z-index: 2;
+            color: #fff;
+            background-color: rgb(254, 191, 1);
+            display: inline-block;
+            padding: 3px 7px;
+            font-size: 12px;
+        }
+        .popular-models-item img{
+            width: 100%;
+            display: inline-block;
+            vertical-align: middle;
+        }
+        .popular-models .pic{
+            position: relative;
+            margin-bottom: 10px;
+        }
+        .popular-models .pic .cover{
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #0004;
+            opacity: 0;
+        }
+        .popular-models a:hover .pic .cover{
+            opacity: 1;
+            transition: 0.2s;
+        }
+        .popular-models-item li{
+            display: inline;
+            color: #aaa;
+            font-size: 12px;
+            line-height: 20px;
+        }
+        .popular-models-item h3{
+            color: rgb(91, 91, 91);
+            line-height: 20px;
+            font-weight: 300;
+        }
+        .popular-models-item .price{
+            color: #000;
+            font-weight: 500;
+            line-height: 30px;
+            display: block;
+        }
+        .popular-models-item .score{
+            width: 70px;
+        }
+        /* dealy-deals */
+        .dealy-deals img{
+            width: 100%;
+        }
+        .dealy-deals{
+            position: relative;
+            margin-bottom: 80px;
+        }
+        .dealy-deals .txt{
+            position: absolute;
+            left: 0;
+            right: 0;
+            margin: auto;
+            top: 125px;
+            width: 500px;
+            text-align: center;
+            color: #fff;
+        }
+        .dealy-deals .txt h3{
+            margin-bottom: 30px;
+            letter-spacing: 1px;
+        }
+        .dealy-deals h2{
+            font-size: 56px;
+            line-height: 70px;
+            margin-bottom: 20px;
+        }
+        .dealy-deals .txt a{
+            color: #fff;
+            background-color: #000;
+            display: inline-block;
+            font-size: 12px;
+            padding: 15px 30px;
+        }
+        .dealy-deals .txt a:hover{
+            background-color: rgb(255, 179, 179);
+            transition: 0.5s;
+        }
+
+        /* blog */
+        .blog{
+            margin-bottom: 160px;
+        }
+        .blog h2{
+            margin-bottom: 30px;
+        }
+        .blog-group{
+            display: flex;
+            justify-content: space-between;
+        }
+        .blog-item{
+            position: relative;
+            width: 508px;
+        }
+        .blog-item .pic img{
+            width: 100%;
+        }
+        .blog-item .txt{
+            position: absolute;
+            top: 280px;
+            left: 50px;
+            background-color: rgb(246, 246, 246);
+            width: 430px;
+            padding: 18px;
+        }
+        .blog-item .txt h3{
+            font-size: 22px;
+            line-height: 30px;
+            letter-spacing: 1px;
+            color: #000;
+        }
+        .blog-item .txt p{
+            font-size: 14px;
+            line-height: 20px;
+            color: rgb(143, 143, 143);
+            margin: 10px 0;
+        }
+        .blog-item .txt span, .date, .author{
+            font-size: 13px;
+            line-height: 20px;
+            color: #ccc
+        }
+        .blog-item .txt a:hover{
+            color: rgb(255, 179, 179);
+            transition: 0.5s;
+        }
+        .blog-item .txt h3:hover{
+            color: rgb(255, 179, 179);
+            transition: 0.5s;
+        }
+        /* subscribe */
+        .subscribe{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: rgb(255, 236, 229);
+            height: 70px;
+            margin-bottom: 70px;
+        }
+        .subscribe h2{
+            font-size: 20px;
+            letter-spacing: 1px;
+            margin-left: 33px;
+        }
+        .subscribe-group{
+            margin-right: 33px;
+        }
+        .subscribe input, .subscribe button{
+            display: inline-block;
+            border: 0;
+            height: 40px;
+        }
+        .subscribe input{
+            width: 360px;
+        }
+        .subscribe button{
+            font-size: 12px;
+            color: #fff;
+            background-color: #000;
+            padding: 10px 20px;
+        }
+        .subscribe button:hover{
+            background-color: rgb(255, 179, 179);
+            transition: 0.5s;
+        }
+
+        /* instagram */
+        .instagram{
+            margin-bottom: 70px;
+        }
+
+        /* footer */
+        .footer{
+            background-color: #000;
+            padding-bottom: 20px;
+        }
+        .footer .wrap{
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 70px;
+        }
+        .footer-item h2{
+            color: #fff;
+            line-height: 40px;
+            margin-top: 40px;
+        }
+        .footer-item a{
+            color: rgb(135, 134, 134);
+            display: block;
+            font-size: 12px;
+            line-height: 30px;
+        }
+        .footer-item a:hover{
+            color: rgb(255, 179, 179);
+            transition: 0.5s;
+        }
+        .footer .site-info{
+            display: flex;
+            justify-content: space-between;
+        }
+        .sign{
+            color: rgb(135, 134, 134);
+            font-size: 12px;
+        }
+        .footer .social-media{
+            color: #fff;
+            display: flex;
+        }
+        .footer .social-media li{
+            margin: 0 10px;
+            font-size: 14px;
+        }
+        .footer .social-media li:hover{
+            color: rgb(255, 179, 179);
+            transition: 0.5s;
+        }
+        .to-top{
+            position: fixed;
+            z-index: 5;
+            bottom: 70px;
+            right: 20px;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: rgb(15, 14, 14);
+        }
+        .to-top i{
+            color: #fff;
+            font-size: 12px;
+            padding: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- 上面的聯絡電話 -->
+        <div class="top">
+            <div class="contact">
+                <span>Call us:</span>
+                <a href="#">+3(800) 2345-6789</a>
+                <span>7 Days a week from 9:00 am to 7:00 pm</span>
+            </div>
+            <div class="panel">
+                <button>
+                    <span>USD, $ </span>
+                    <i class="fa-solid fa-angle-down"></i>
+                </button>
+                <button class="shopping-cart">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                    <span class="count">0</span>
+                </button>
+                <button>
+                    <span>Login</span>
+                </button>
+                <input type="text" placeholder="Search...">
+                <a href="#">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </a>
+            </div>
+        </div>
+
+        <!-- 導覽列 -->
+        <nav class="nav">
+            <a href="#" class="logo">
+                <img src="https://ld-wp.template-help.com/monstroid1/prod-14924/wp-content/themes/variegated/assets/images/logo.png" alt="">
+            </a>
+            <ul class="menu">
+                <li class="home">
+                    <a href="#">HOME</a>
+                </li>
+                <li>
+                    <a href="#">ABOUT</a>
+                </li>
+                <li>
+                    <a href="#">
+                        <span>FEATURES</span>
+                        <i class="fa-solid fa-angle-down"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <span>BLOG</span>
+                        <i class="fa-solid fa-angle-down"></i>
+                    </a>
+                    
+                </li>
+                <li>
+                    <a href="#">
+                        <span>SHOP</span>
+                        <i class="fa-solid fa-angle-down"></i>
+                    </a>
+                    
+                </li>
+                <li>
+                    <a href="#">
+                        <span>MORE</span>
+                        <i class="fa-solid fa-angle-down"></i>
+                    </a>
+                    
+                </li>
+            </ul>
+            <ul class="social-media">
+                <li>
+                    <a href="#">
+                        <i class="fa-brands fa-facebook-f"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="fa-brands fa-instagram"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="fa-brands fa-google"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="fa-brands fa-twitter"></i>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+
+        <!-- 導覽列下面的圖片 -->
+        <div class="element">
+            <section class="slogon">
+                <div class="txt">
+                    <span class="tag">-20% SALE</span>
+                    <h2>BE A CHERRY ON PIE<br>IN ANY SITUATION</h2>
+                    <div class="horizontal-line">￣</div>
+                    <p>Experiment, mix and showcase colors, textures and styles!<br>Be yourself and impress others!</p>
+                    <a href="#"><i class="fa-solid fa-arrow-right"></i> Read More</a>
+                </div>
+                <div class="pic">
+                    <img src="https://ld-wp.template-help.com/monstroid1/prod-14924/wp-content/uploads/2018/02/slider1.jpg" alt="">
+                </div>
+            </section>
+            <div class="discount">
+                <div>
+                    <h3>FREE STANDARD DELIVERY</h3>
+                    <p>on order over $49</p>
+                </div>
+                <div>
+                    <h3>30% OFF 100’S PANTYS</h3>
+                    <p>use code: pantyup 30</p>
+                </div>
+                <div>
+                    <h3>20% STUDENT DISCOUNT PLUS</h3>
+                    <p>free next day delivey, excludes sale.</p>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- shop-categories -->
+        <div class="shop-categories">
+            <h2>SHOP CATEGORIES</h2>
+            <div class="pink"></div>
+            <div class="shop-categories-group">
+                <div class="shop-categories-item">
+                    <a href="https://ld-wp.template-help.com/monstroid1/prod-14924/product-category/blazers/">
+                        <img src="https://ld-wp.template-help.com/monstroid1/prod-14924/wp-content/uploads/2018/02/cat5-275x376.jpg" alt="">
+                    </a>
+                    <div class="txt">
+                        <span>—</span>
+                        <a href="https://ld-wp.template-help.com/monstroid1/prod-14924/product-category/blazers/">Blazers</a>
+                    </div>
+                    
+                </div>
+                <div class="shop-categories-item">
+                    <a href="https://ld-wp.template-help.com/monstroid1/prod-14924/product-category/dresses/">
+                        <img src="https://ld-wp.template-help.com/monstroid1/prod-14924/wp-content/uploads/2018/02/cat4-275x376.jpg" alt="">
+                    </a>
+                    <div class="txt">
+                        <span>—</span>
+                        <a href="https://ld-wp.template-help.com/monstroid1/prod-14924/product-category/dresses/">Dresses</a>
+                    </div>
+                    
+                </div>
+                <div class="shop-categories-item">
+                    <a href="https://ld-wp.template-help.com/monstroid1/prod-14924/product-category/jumpsuits/">
+                        <img src="https://ld-wp.template-help.com/monstroid1/prod-14924/wp-content/uploads/2018/02/cat3-275x376.jpg" alt="">
+                    </a>
+                    <div class="txt">
+                        <span>—</span>
+                        <a href="https://ld-wp.template-help.com/monstroid1/prod-14924/product-category/jumpsuits/">Jumpsuits</a>
+                    </div>
+                    
+                </div>
+                <div class="shop-categories-item">
+                    <a href="https://ld-wp.template-help.com/monstroid1/prod-14924/product-category/new-arrival/">
+                        <img src="https://ld-wp.template-help.com/monstroid1/prod-14924/wp-content/uploads/2018/02/cat2-275x376.jpg" alt="">
+                    </a>
+                    <div class="txt">
+                        <span>—</span>
+                        <a href="https://ld-wp.template-help.com/monstroid1/prod-14924/product-category/new-arrival/">New Arrival</a>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+
+        <!-- favourite blouses -->
+        <div class="favourite-blouses">
+            <div class="pic">
+                <img src="https://ld-wp.template-help.com/monstroid1/prod-14924/wp-content/uploads/2018/02/image.jpg" alt="">
+                <div class="gray"></div>
+            </div>
+            <div class="txt">
+                <h2>FAVOURITE<br>BLOUSES</h2>
+                <p>Our new favourite blouses are defined by great<br>all-over patterns and special details. Our new<br>favourite blouses are defined by great all-over<br>patterns and special details.</p>
+                <a href="https://ld-wp.template-help.com/monstroid1/prod-14924/shop/">SHOP NOW</a>
+            </div>
+        </div>
+
+        <!-- Accessories -->
+        <div class="accessories-list">
+            <a class="accessories-item" href="https://ld-wp.template-help.com/monstroid1/prod-14924/shop/?filter_brand=hm">
+                <h2>LEATHER BELT</h2>
+                <img src="https://ld-wp.template-help.com/monstroid1/prod-14924/wp-content/uploads/2018/03/banner11.png" alt="">
+                <p>OUR WHOLE RANGE OF COTTON, WOOLEN AND<br>LEATHER WRISTBANDS</p>
+            </a>
+            
+            <a class="accessories-item" href="https://ld-wp.template-help.com/monstroid1/prod-14924/shop/?filter_brand=new-look">
+                <h2>LEATHER BAGS</h2>
+                <img src="https://ld-wp.template-help.com/monstroid1/prod-14924/wp-content/uploads/2018/03/banner12.png" alt="">
+                <p>ALL OF OUR LEATHER MADE CARD HOLDERS<br>COME NOW AT A GREATLY REDUCED PRICE.</p>
+            </a>
+            
+            <a class="accessories-item" href="https://ld-wp.template-help.com/monstroid1/prod-14924/shop/?filter_brand=prada">
+                <h2>SUNGLASSES</h2>
+                <img src="https://ld-wp.template-help.com/monstroid1/prod-14924/wp-content/uploads/2018/03/banner13.png" alt="">
+                <p>BUY A BRAND NEW, HANDMADE LEATHER BELT<br>TODAY AND GET A 15% DISCOUNT!</p>
+            </a>
+        </div>
+
+        <!-- popular models -->
+        <div class="popular-models">
+            <h2>MOST RECENT POPULAR MODELS</h2>
+            <div class="popular-models-group">
+                <!-- 1 -->
+                <div class="popular-models-item">
+                    <a href="https://ld-wp.template-help.com/monstroid1/prod-14924/product/buttoned-shirt/" class="pic">
+                        <div class="pic">
+                            <img src="https://ld-wp.template-help.com/monstroid1/prod-14924/wp-content/uploads/2018/02/Buttoned-shirt_2-370x470.jpg" alt="">
+                            <div class="cover"></div>
+                        </div>
+                        <ul>
+                            <li>Blazers</li>
+                            <li>Jumpsuits</li>
+                        </ul>
+                        <h3>Buttoned shirt</h3>
+                        <span class="price">59.00$</span>
+                    </a>
+                </div>
+                <!-- 2 -->
+                <div class="popular-models-item">
+                    <a href="https://ld-wp.template-help.com/monstroid1/prod-14924/product/buttoned-shirt/" class="pic">
+                        <span class="tag">Featured</span>
+                        <div class="pic">
+                            <img src="https://ld-wp.template-help.com/monstroid1/prod-14924/wp-content/uploads/2018/02/Checked-tunic_1-370x470.jpg" alt="">
+                            <div class="cover"></div>
+                        </div>
+                        <ul>
+                            <li>Trousers-Shorts</li>
+                            <li>Blazers</li>
+                            <li>Dresses</li>
+                        </ul>
+                        <h3>Checked tunic</h3>
+                        <span class="price">69.00$</span>
+                    </a>
+                </div>
+                <!-- 3 -->
+                <div class="popular-models-item">
+                    <a href="https://ld-wp.template-help.com/monstroid1/prod-14924/product/buttoned-shirt/" class="pic">
+                        <span class="tag">Featured</span>
+                        <div class="pic">
+                            <img src="https://ld-wp.template-help.com/monstroid1/prod-14924/wp-content/uploads/2018/02/Embroidered-shirt_1-370x470.jpg" alt="">
+                            <div class="cover"></div>
+                        </div>
+                        <ul>
+                            <li>Trousers-Shorts</li>
+                            <li>Blazers</li>
+                            <li>Dresses</li>
+                            <li>Jump...</li>
+                        </ul>
+                        <h3>Embroidered shirt</h3>
+                        <span class="price">36.00$</span>
+                    </a>
+                </div>
+                <!-- 4 -->
+                <div class="popular-models-item">
+                    <a href="https://ld-wp.template-help.com/monstroid1/prod-14924/product/buttoned-shirt/" class="pic">
+                        <div class="pic">
+                            <img src="https://ld-wp.template-help.com/monstroid1/prod-14924/wp-content/uploads/2018/02/Faux-leather-jacket-with-flowing-lapels_1-370x470.jpg" alt="">
+                            <div class="cover"></div>
+                        </div>
+                        <ul>
+                            <li>Trousers-Shorts</li>
+                            <li>Blazers</li>
+                            <li>New Arrival</li>
+                        </ul>
+                        <h3>Faux leather jacket with flowing lapels</h3>
+                        <span class="price">59.00$</span>
+                        <img class="score" src="./圖片1.png" alt="">
+                    </a>
+                </div>
+                <!-- 5 -->
+                <div class="popular-models-item">
+                    <a href="https://ld-wp.template-help.com/monstroid1/prod-14924/product/buttoned-shirt/" class="pic">
+                        <span class="tag">Featured</span>
+                        <div class="pic">
+                            <img src="https://ld-wp.template-help.com/monstroid1/prod-14924/wp-content/uploads/2018/02/Lightweight-puffer-jacket_2-370x470.jpg" alt="">
+                            <div class="cover"></div>
+                        </div>
+                        <ul>
+                            <li>Trousers-Shorts</li>
+                            <li>Dresses</li>
+                            <li>Jumpsuits</li>
+                        </ul>
+                        <h3>Lightweight puffer jacket54</h3>
+                        <span class="price">54.00$</span>
+                    </a>
+                </div>
+                <!-- 6 -->
+                <div class="popular-models-item">
+                    <a href="https://ld-wp.template-help.com/monstroid1/prod-14924/product/buttoned-shirt/" class="pic">
+                        <div class="pic">
+                            <img src="https://ld-wp.template-help.com/monstroid1/prod-14924/wp-content/uploads/2018/02/Polka-dot-shirt-dress_2-370x470.jpg" alt="">
+                            <div class="cover"></div>
+                        </div>
+                        <ul>
+                            <li>Trousers-Shorts</li>
+                            <li>Dresses</li>
+                        </ul>
+                        <h3>Polka dot shirt dress</h3>
+                        <span class="price">66.00$</span>
+                        <img class="score" src="./圖片2.png" alt="">
+                    </a>
+                </div>
+                <!-- 7 -->
+                <div class="popular-models-item">
+                    <a href="https://ld-wp.template-help.com/monstroid1/prod-14924/wp-content/uploads/2018/02/Ripped-denim-jacket_2-370x470.jpg" class="pic">
+                        <div class="pic">
+                            <img src="https://ld-wp.template-help.com/monstroid1/prod-14924/wp-content/uploads/2018/02/Buttoned-shirt_2-370x470.jpg" alt="">
+                            <div class="cover"></div>
+                        </div>
+                        <ul>
+                            <li>Trousers-Shorts</li>
+                            <li>Dresses</li>
+                            <li>Jumpsuits</li>
+                        </ul>
+                        <h3>Ripped denim jacket</h3>
+                        <span class="price">35.00$</span>
+                    </a>
+                </div>
+                <!-- 8 -->
+                <div class="popular-models-item">
+                    <a href="https://ld-wp.template-help.com/monstroid1/prod-14924/product/buttoned-shirt/" class="pic">
+                        <span class="tag">Featured</span>
+                        <div class="pic">
+                            <img src="https://ld-wp.template-help.com/monstroid1/prod-14924/wp-content/uploads/2018/02/Suede-effect-dress_1-370x470.jpg" alt="">
+                            <div class="cover"></div>
+                        </div>
+                        <ul>
+                            <li>Trousers-Shorts</li>
+                            <li>Dresses</li>
+                            <li>Jumpsuits</li>
+                        </ul>
+                        <h3>Suede effect dress</h3>
+                        <span class="price">89.00$</span>
+                        <img class="score" src="./圖片3.png" alt="">
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- dealy deals -->
+        <div class="dealy-deals">
+            <div class="txt">
+                <h3>DEALY DEALS</h3>
+                <h2>MODERN CASUAL<br>ESSENTIALS</h2>
+                <a href="">SHOP NOW</a>
+            </div>
+            <img src="./daily.jpg" alt="">
+            
+        </div>
+
+        <!-- LATEST FROM BLOG -->
+        <div class="blog">
+            <h2>LATEST FROM BLOG</h2>
+            <div class="blog-group">
+                <div class="blog-item">
+                    <div class="pic">
+                        <img src="https://ld-wp.template-help.com/monstroid1/prod-14924/wp-content/uploads/2018/02/image11-565x382.jpg" alt="">
+                    </div>
+                    <div class="txt">
+                        <a href="#">
+                            <h3>WHEN IN DOUBT, WEAR ROSE PUMPS</h3>
+                        </a>
+                        <p>It’s always a good idea to invest in a good pair of nude pumps. It’s a timeless wardrobe staple just…</p>
+                        <span>
+                            <a class="date" href="https://ld-wp.template-help.com/monstroid1/prod-14924/author/admin/">22 February, 2018</a>
+                        </span>
+                        <span>
+                            - post by 
+                            <a class="author" href="https://ld-wp.template-help.com/monstroid1/prod-14924/author/admin/">admin</a>
+                        </span>
+                    </div>
+                </div>
+                <div class="blog-item">
+                    <div class="pic">
+                        <img src="https://ld-wp.template-help.com/monstroid1/prod-14924/wp-content/uploads/2018/02/image12-565x382.jpg" alt="">
+                    </div>
+                    <div class="txt">
+                        <a href="#">
+                            <h3>HEM YOUR PANTS FOR A SHOE HEIGHT</h3>
+                        </a>
+                        <p>A mistake many people make is wearing pants (or dresses) that are too long or too short for their shoes.…</p>
+                        <span>
+                            <a class="date" href="https://ld-wp.template-help.com/monstroid1/prod-14924/author/admin/">22 February, 2018</a>
+                        </span>
+                        <span>
+                            - post by 
+                            <a class="author" href="https://ld-wp.template-help.com/monstroid1/prod-14924/author/admin/">admin</a>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- subscribe -->
+        <section class="subscribe">
+            <h2>GET THE LATEST NEWS DELIVERED DAILY!</h2>
+            <div class="subscribe-group">
+                <input type="text" placeholder="Enter please your email!">
+                <button>SUBSCRIBE</button>
+            </div>
+            
+        </section>
+
+        <!-- @INSTAGRAM -->
+        <div class="instagram">
+            <h2>@INSTAGRAM</h2>
+        </div>
+
+        <!-- footer -->
+        <section class="footer">
+            <div class="wrap">
+                <div class="footer-item">
+                    <h2>CATEGORIES</h2>
+                    <a href="#">Help & Contact Us</a>
+                    <a href="#">Returns & Refunds</a>
+                    <a href="#">Online Stores</a>
+                    <a href="#">Terms & Conditions</a>
+                </div>
+                <div class="footer-item">
+                    <h2>OUR STORE</h2>
+                    <a href="#">About</a>
+                    <a href="#">Blog</a>
+                    <a href="#">Shop</a>
+                    <a href="#">Contacts</a>
+                </div>
+                <div class="footer-item">
+                    <h2>PROTFILE</h2>
+                    <a href="#">Checkout</a>
+                    <a href="#">My account</a>
+                    <a href="#">Order tracking</a>
+                    <a href="#">Help & support</a>
+                </div>
+                <div class="footer-item">
+                    <h2>ABOUT US</h2>
+                    <a href="#">Variegated is the place where everyone can</a>
+                    <a href="#">is able to find some clothing called to</a>
+                    <a href="#">highlight one’s individuality! We are waiting</a>
+                    <a href="#">right for you!</a>
+                </div>
+            </div>
+            
+            <div class="site-info">
+                <div class="sign">© 2022 Variegated. All Rights Reserved.</div>
+                <ul class="social-media">
+                    <li>
+                        <i class="fa-brands fa-facebook-f"></i>
+                    </li>
+                    <li>
+                        <i class="fa-brands fa-instagram"></i>
+                    </li>
+                    <li>
+                        <i class="fa-brands fa-google"></i>
+                    </li>
+                    <li>
+                        <i class="fa-brands fa-twitter"></i>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- to top -->
+        <div class="to-top">
+            <i class="fa-solid fa-angle-up"></i>
+        </div>
+    </div>
+</body>
+</html>
