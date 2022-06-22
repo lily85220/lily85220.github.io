@@ -4,16 +4,65 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./reset.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Roboto:wght@100;300;400;900&display=swap" rel="stylesheet">
     <title>Document</title>
+    <style>
+        html, body{
+            font-family: 'Roboto', sans-serif;
+        }
+        .group{
+            width: 100%;
+            margin: auto;
+        }
+        .info{
+            width: 250px;
+            margin-left: 10px;
+        }
+        img{
+            display: block;
+            width: 100px;
+            margin: 20px;
+        }
+    </style>
 </head>
 <body>
-    <img class="pic" src="" alt="">
-    <div class="info"></div>
-    <div class="other"></div>
+    <div class="group">
+        <img class="pic" src="" alt="">
+        <div class="info"></div>
+        <div class="other"></div>
+    </div>
     <script>
-        document.querySelector(".pic").src = 
-        document.querySelector(".pic").setAttribute("src", "") 
-
+        const profile = {
+            name: "Pingle",
+            Email: "pingle.gmail.com",
+            school: "家樂氏",
+            hobbit: "produce potato"
+        }
+        const flavor = [
+            "https://cs-b.ecimg.tw/items/DBAK3ZA9006H8DY/000001_1620110706.jpg",
+            "https://img.my-best.tw/press_component/item_part_images/04d2ea899509c6eccc61f23ddc03f75a.jpg?ixlib=rails-4.2.0&q=70&lossless=0&w=640&h=640&fit=clip",
+            "https://i3.momoshop.com.tw/1651229739/goodsimg/0009/635/060/9635060_R_m.webp"
+        ]
+        // document.querySelector(".pic").src = "https://lily85220.github.io/JavaScript/Pringles.svg.png"
+        document.querySelector(".pic").setAttribute("src", "https://lily85220.github.io/JavaScript/Pringles.svg.png") 
+        document.querySelector(".info").innerHTML += 
+        `<ul>
+            <li>姓名：${profile.name}</li>
+            <li>Email：${profile.Email}</li>
+            <li>學校：${profile.school}</li>
+            <li>興趣：${profile.hobbit}</li>
+        </ul>`
+        //創節點
+        //新節點塞東西
+        //放到父層裡面
+        flavor.forEach((item)=>{
+            let img = document.createElement("img")
+            img.src = item
+            document.querySelector(".other").appendChild(img)
+        })
     </script>
 </body>
 </html>
