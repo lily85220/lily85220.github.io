@@ -1,0 +1,256 @@
+html, body{
+    font-family: 'Roboto', sans-serif;
+}
+input{
+    position: absolute;
+}
+a{
+    text-decoration: none;
+    color: #000;
+}
+.main-header{
+    background-color: #ccc;
+    display: flex;
+    justify-content: space-between;
+    .menu-header{
+        display: flex;
+        .menu-btn{
+            width: 190px;
+            height: 55px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #000;
+            
+            .menu{
+                color: #fff;
+                margin-left: 5px;
+            }
+            .menu-hb{
+                width: 26px;
+                height: 16px;
+                position: relative;
+                margin-right: 5px;
+            }
+            .menu-hb span:nth-last-child(1){
+                position: absolute;
+                height: 2px;
+                width: 80%;
+                background-color: #fff;
+            }
+            .menu-hb span:nth-last-child(2){
+                position: absolute;
+                top: 7px;
+                height: 2px;
+                width: 50%;
+                background-color: #fff;
+            }
+            .menu-hb span:nth-last-child(3){
+                position: absolute;
+                top: 14px;
+                height: 2px;
+                width: 80%;
+                background-color: #fff;
+            }
+        }
+        .login-btn{
+            display: flex;
+            width: 190px;
+            height: 55px;
+            justify-content: center;
+            align-items: center;
+            background-color: #fff;
+            color: #000;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            i{
+                margin-right: 5px;
+                font-size: 25px;
+            }
+            .login{
+                margin-left: 5px;
+            }
+        }
+    }
+}
+.main-header .main-nav{
+    background-color: #fff;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    .close{
+        background-color: rgb(81, 132, 50);
+        color: #fff;
+        height: 50px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .close i{
+        padding-right: 10px;
+    }
+    .close span{
+        padding-left: 10px;
+    }
+}
+.main-header .main-nav .lv1{
+    padding: 30px;
+    flex-grow: 1;
+    .nav-item{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        padding: 20px 0;
+        position: relative;
+        > a{
+            display: inline-block;
+            width: 93%;
+            font-size: 16px;
+            text-transform: uppercase;
+        }
+        // .tag{
+        //     position: absolute;
+        //     left: 250px;
+        //     top: 0;
+        //     font-size: 14px;
+        // }
+        // .tag span{
+        //     background-color: rgb(72, 200, 253);
+        //     color: #fff;
+        //     padding: 1px 8px;
+        // }
+        .inside-tag{
+            position: relative;
+        }
+        .red-tag{
+            background-color: #f00;
+            color: #fff;
+            padding: 1px 8px;
+            position: absolute;
+            font-size: 13px;
+            font-weight: 550;
+            right: -20px;
+            top: -50px;
+        }
+        .red-tag .inside-triangle{
+            border-color:#f00 transparent transparent transparent;
+            border-style: solid solid solid solid;
+            border-width: 6px 6px 0px 0px;
+            height: 0px;
+            width: 0px;
+            position: absolute;
+            top: -17px;
+            left: 5px;
+
+        }
+        .blue-tag{
+            background-color: rgb(72, 200, 253);
+            color: #fff;
+            padding: 1px 8px;
+            position: absolute;
+            font-size: 13px;
+            font-weight: 550;
+            right: -20px;
+            top: -50px;
+        }
+        .blue-tag .inside-triangle{
+            border-color:rgb(72, 200, 253) transparent transparent transparent;
+            border-style: solid solid solid solid;
+            border-width: 6px 6px 0px 0px;
+            height: 0px;
+            width: 0px;
+            position: absolute;
+            top: -17px;
+            left: 5px;
+        }
+        .triangle{
+            border-color: rgb(72, 200, 253) transparent transparent transparent;
+            border-style: solid solid solid solid;
+            border-width: 7px 7px 0px 0px;
+            height: 0px;
+            width: 0px;
+            margin-left: 6px;
+        }
+        .icon{
+            flex-grow: 1;
+            font-size: 16px;
+        }
+        label i{
+            transform: rotate(0deg);
+            transition: transform 1s;
+        }
+    }
+}
+
+.lv2{
+    display: none;
+    width: 100%;
+    a{
+        display: inline-block;
+    }
+    > a{
+        margin-top: 30px;
+        letter-spacing: 2px;
+        font-size: 14px;
+    }
+    > a + span::after{
+        content: '';
+        display: block;
+        background-color: rgb(81, 132, 50);
+        width: 55px;
+        height: 0.5px;
+        margin-top: 20px;
+    }
+    li :first-child{
+        margin-top: 30px;
+        font-size: 14px;
+        color: #666;
+    }
+    > a:hover, &.home li :first-child:hover{
+        color: rgb(81, 132, 50)
+    }
+}
+#home-switch:checked ~ .main-header .main-nav .lv1 .nav-item .lv2.home{
+    display: block;
+}
+#home-switch:checked ~ .main-header .main-nav .lv1 .nav-item .home-arrow i{
+    transform: rotate(180deg);
+    transition: 1s, transform 1s;
+    color: rgb(81, 132, 50);
+}
+#home-switch:checked ~ .main-header .main-nav .lv1 .nav-item .lv2.home img{
+    display: none;
+}
+#shop-switch:checked ~ .main-header .main-nav .lv1 .nav-item .lv2.shop{
+    display: block;
+}
+#shop-switch:checked ~ .main-header .main-nav .lv1 .nav-item .shop-arrow i{
+    transform: rotate(180deg);
+    transition: 1s, transform 1s;
+    color: rgb(81, 132, 50);
+}
+#featured-switch:checked ~ .main-header .main-nav .lv1 .nav-item .lv2.featured{
+    display: block;
+}
+#featured-switch:checked ~ .main-header .main-nav .lv1 .nav-item .featured-arrow i{
+    transform: rotate(180deg);
+    transition: 1s, transform 1s;
+    color: rgb(81, 132, 50);
+}
+#pages-switch:checked ~ .main-header .main-nav .lv1 .nav-item .lv2.pages{
+    display: block;
+}
+#pages-switch:checked ~ .main-header .main-nav .lv1 .nav-item .pages-arrow i{
+    transform: rotate(180deg);
+    transition: 1s, transform 1s;
+    color: rgb(81, 132, 50);
+}
+#element-switch:checked ~ .main-header .main-nav .lv1 .nav-item .lv2.element{
+    display: block;
+}
+#element-switch:checked ~ .main-header .main-nav .lv1 .nav-item .element-arrow i{
+    transform: rotate(180deg);
+    transition: 1s, transform 1s;
+    color: rgb(81, 132, 50);
+}
+
