@@ -31,93 +31,14 @@
             position: absolute;
             top: 10px;
         }
-
-        /* main-header */
-        .main-header {
+        .main-header{
             position: sticky;
             top: 0;
             z-index: 2;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 10px;
-            margin: auto;
             background-color: #fff;
+            box-shadow: 0 0 5px 0 rgba(9, 9, 9, 0.1);
         }
-
-        .logo {
-            width: 135px;
-        }
-
-        .logo img {
-            width: 100%;
-        }
-
-        .hb span:nth-child(1)::after {
-            content: '';
-            display: block;
-            width: 30px;
-            height: 2px;
-            background-color: rgb(81, 132, 50);
-        }
-
-        .hb span:nth-child(2)::after {
-            content: '';
-            display: block;
-            width: 18px;
-            height: 2px;
-            background-color: rgb(81, 132, 50);
-            margin-top: 7px;
-        }
-
-        .hb span:nth-child(3)::after {
-            content: '';
-            display: block;
-            width: 14px;
-            height: 3px;
-            background-color: rgb(81, 132, 50);
-            margin-top: 7px;
-        }
-
-        .search-login-cart a {
-            display: inline-block;
-        }
-
-        .search-login-cart i {
-            font-size: 20px;
-            color: rgb(81, 132, 50);
-        }
-
-        .fa-basket-shopping {
-            margin-left: 15px;
-        }
-
-        .search-login-cart a:nth-of-type(2) {
-            display: none;
-        }
-
-        .cover-label,
-        .cover-play {
-            display: block;
-            position: fixed;
-            z-index: -1;
-            width: 100%;
-            height: 100%;
-            background-color: #000;
-            opacity: 0;
-        }
-
-        #menu-switch:checked~.main-header .main-nav {
-            left: 0;
-            opacity: 1;
-        }
-
-        #menu-switch:checked~.cover-label {
-            opacity: 0.8;
-            z-index: 2;
-        }
-
-
+        
         /* info-group */
 
         .info {
@@ -388,14 +309,34 @@
 
         .video-group .txt a {
             display: block;
-            width: 200px;
-            height: 60px;
+            width: 160px;
+            height: 50px;
             border: 1px solid #000;
             text-align: center;
-            line-height: 60px;
+            line-height: 50px;
             letter-spacing: 3px;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
         }
-
+        .video-group .txt a::before{
+            content: '';
+            position: absolute;
+            top: -50px;
+            display: block;
+            width: 160px;
+            height: 50px;
+            background-color: rgb(81, 132, 50);
+            z-index: -1;
+        }
+        .video-group .txt a:hover::before{
+            top: 0;
+            transition: 0.3s;
+        }
+        .video-group .txt a:hover{
+            color: #fff;
+            border: 1px solid rgb(81, 132, 50)
+        }
         .video-group .video {
             padding-left: 10px;
             padding-right: 10px;
@@ -608,13 +549,13 @@
             letter-spacing: 1px;
         }
 
-        @media screen and (max-width: 767px) {
+        @media screen and (max-width: 991px) {
 
             /* main-header */
+            .inner-pic{
+                display: none;
+            }
             .main-header {
-                position: sticky;
-                top: 0;
-                z-index: 2;
                 display: flex;
                 justify-content: space-between;
                 align-items: center;
@@ -801,7 +742,7 @@
                 color: #666;
             }
 
-            .tag {
+            .main-nav .tag {
                 position: absolute;
                 right: 20px;
                 top: -18px;
@@ -991,67 +932,6 @@
                 position: relative;
             }
 
-            .info .txt {
-                position: relative;
-                z-index: 1;
-                margin: auto;
-                margin-left: 50px;
-                padding: 180px 0 120px;
-            }
-
-            .info .txt h2 {
-                font-size: 35px;
-                font-weight: 500;
-                line-height: 50px;
-                margin-bottom: 10px;
-            }
-
-            .info .txt p {
-                font-size: 20px;
-                font-weight: 300;
-                margin-bottom: 40px;
-            }
-
-            .info .txt a {
-                letter-spacing: 4px;
-                font-size: 12px;
-                background-color: #000;
-                color: #fff;
-                padding: 20px 50px;
-            }
-
-            .info .txt a:hover {
-                background-color: rgb(45, 187, 240);
-                transition: 0.5s;
-            }
-
-            .info .pic {
-                width: 480px;
-                position: absolute;
-                top: 20px;
-                right: 0;
-            }
-
-            .info .pic img {
-                width: 100%;
-            }
-
-            .info-group {
-                position: relative;
-                margin: auto;
-                margin-bottom: 50px;
-            }
-
-            .info-group .bgimg {
-                position: absolute;
-                z-index: -1;
-                top: 0;
-            }
-
-            .info-group .bgimg img {
-                width: 100%;
-                height: 450px;
-            }
 
             /* benefits */
             .benefits {
@@ -1225,7 +1105,7 @@
                 margin-bottom: 20px;
             }
 
-            .video-group .txt a {
+            /* .video-group .txt a {
                 display: block;
                 width: 200px;
                 height: 60px;
@@ -1233,7 +1113,7 @@
                 text-align: center;
                 line-height: 60px;
                 letter-spacing: 3px;
-            }
+            } */
 
             .video-group .video {
                 padding-left: 10px;
@@ -1358,135 +1238,107 @@
                 left: 0;
                 background-color: #0000;
             }
-
             .shop-ig .pic li:hover a::after {
                 background-color: #0005;
                 transition: 1s;
             }
-
             .shop-ig .pic li a img {
                 width: 100%;
                 vertical-align: bottom;
             }
-
-
         }
 
-        @media screen and (min-width:768px) {
-
-
-
-            .menu-header {
-                display: flex;
+        @media screen and (min-width:992px) {   
+            .menu-header{
+                display: none;
             }
-
-            /* main-nav */
-            .main-nav {
-                position: fixed;
-                top: 0;
-                left: -380px;
-                z-index: 400;
-                width: 380px;
-                height: 100vh;
-                flex-direction: column;
+            .main-nav label > i{
+                display: none;
+            }
+            .close{
+                display: none;
+            }
+            .lv1 .nav-item:nth-child(1) .lv2-gruop{
+                width: 900px;
+            }
+            .lv1 .nav-item:nth-child(2) .lv2-gruop{
+                width: 480px;
+            }
+            .lv1 .nav-item:nth-child(3) .lv2-gruop{
+                flex-wrap: wrap;
+                width: 960px;
+            }
+            .inner-pic{
+                width: 200px;
+            }
+            .inner-pic img{
+                width: 100%;
+            }
+            .lv1 .nav-item:nth-child(4) .lv2-gruop{
+                width: 240px;
+            }
+            .lv1 .nav-item:nth-child(5) .lv2-gruop{
+                width: 480px;
+            }
+            .lv2-gruop{
+                position: absolute;
+                top: 45px;
+                left: -10px;
+                z-index: -1;
+                padding: 20px;
+                box-shadow: 0 0 15px 1px rgba(9, 9, 9, 0.2);
                 display: flex;
+                display: none;
+                background-color: #fff;
                 opacity: 0;
                 transition: 0.5s;
-                background-color: #fff;
             }
-
-            .menu-header .menu-btn {
-                width: 190px;
-                height: 55px;
+            .main-header{
                 display: flex;
-                justify-content: center;
+                padding: 28px 15px;
                 align-items: center;
-                background-color: #000;
             }
-
-            .menu-header .menu-btn .menu {
-                color: #fff;
-                margin-left: 5px;
-            }
-
-            .menu-header .menu-btn .menu-hb {
-                width: 26px;
-                height: 16px;
-                position: relative;
-                margin-right: 5px;
-            }
-
-            .menu-header .menu-btn .menu-hb span:nth-last-child(1) {
-                position: absolute;
-                height: 2px;
-                width: 80%;
-                background-color: #fff;
-            }
-
-            .main-header .menu-header .menu-btn .menu-hb span:nth-last-child(2) {
-                position: absolute;
-                top: 7px;
-                height: 2px;
-                width: 50%;
-                background-color: #fff;
-            }
-
-            .main-header .menu-header .menu-btn .menu-hb span:nth-last-child(3) {
-                position: absolute;
-                top: 14px;
-                height: 2px;
-                width: 80%;
-                background-color: #fff;
-            }
-
-            .menu-header .login-btn {
-                display: flex;
-                width: 190px;
-                height: 55px;
-                justify-content: center;
-                align-items: center;
-                background-color: #fff;
-                color: #000;
-                box-sizing: border-box;
-                border: 1px solid #ccc;
-            }
-
-            .menu-header .login-btn i {
-                margin-right: 5px;
-                font-size: 25px;
-            }
-
-            .menu-header .login-btn .login {
-                margin-left: 5px;
-            }
-
-            .lv1 {
-                box-sizing: border-box;
-                padding: 10px 30px 0;
+            .logo{
                 flex-grow: 1;
+                text-align: center;
             }
-
-            .nav-item {
+            .logo img{
+                width: 32%;
+                vertical-align: bottom;
+            }
+            .lv1{
                 display: flex;
-                flex-wrap: wrap;
-                justify-content: space-between;
-                align-items: center;
+                flex-grow: 2;
+            }
+            .search-login-cart{
+                flex-grow: 2;
+                display: flex;
+                justify-content: flex-end;
+            }
+            .search-login-cart a{
+                color: #000;
+                font-size: 24px;
+                margin: 0 8px;
+            }
+            .nav-item{
                 position: relative;
+                padding: 16px;
             }
-
-            .nav-item>a:first-of-type {
-                width: 280px;
-                padding: 20px 0;
-                font-size: 16px;
-                text-transform: uppercase;
-                color: #666;
+            .nav-item:hover a ~ .lv2-gruop{
+                display: flex;
+                z-index: 2;
+                top: 40px;
+                left: -15px;
+                opacity: 1;
+                transition: 1;
             }
-
-            .tag {
+            .nav-item a:hover{    
+                color: rgb(81, 132, 50);
+            }
+            .main-nav .tag {
                 position: absolute;
-                right: 20px;
-                top: -18px;
-
+                left: 45px;
+                top: -5px;
             }
 
             .tag span {
@@ -1494,7 +1346,7 @@
                 font-size: 14px;
                 background-color: rgb(72, 200, 253);
                 color: #fff;
-                padding: 2px 8px;
+                padding: 1px 8px;
             }
 
             .triangle {
@@ -1505,19 +1357,61 @@
                 width: 0px;
                 margin-left: 6px;
             }
-
-            .nav-item label i {
-                transform: rotate(0deg);
-                transition: transform 1s;
+            .lv2.home{
+                display: flex;
+                flex-wrap: wrap;
+                width: auto;
             }
-
-            /* 地雷區 */
-            li>a {
+            .lv2.home li{
+                display: flex;
+                flex-direction: column-reverse;
+            }
+            .lv2.home li a:nth-child(1){
+                color: rgb(81, 132, 50);
+                margin-bottom: 20px;
+                font-size: 14px;
+                letter-spacing: 2px;
+            }
+            .lv2.home li a:nth-child(2){
+                width: 271px;
+                margin-right: 20px;
+                margin-bottom: 15px;
+            }
+            .lv2.home li a:nth-child(2):hover{
+                box-shadow: 0 0 15px 1px rgba(9, 9, 9, 0.2);
+                transition: 0.3s;
+            }
+            .lv2.home li img{
+                width: 100%;
+            }
+            .lv2{
+                width: 240px;
+            }
+            
+            .lv2 > a{
+                color: rgb(81, 132, 50);
+                font-size: 12px;
+                position: relative;
+            }
+            .lv2 > a::after{
+                content: '';
+                display: block;
+                width: 50px;
+                height: 1px;
+                background-color: rgb(81, 132, 50);
+                margin: 15px 0;
+            }
+            .shop-ig .pic li:nth-of-type(4) {
+                display: block;
+            }
+            .lv2 li a{
                 display: inline-block;
-                padding: 15px 0;
-                color: #666;
+                padding: 12px 0;
+                font-size: 13px;
             }
-
+            .lv2 li a:hover{
+                color: rgb(81, 132, 50);
+            }
             .inside-tag {
                 position: relative;
             }
@@ -1526,11 +1420,11 @@
                 background-color: #f00;
                 color: #fff;
                 display: inline-block;
-                padding: 2px 8px;
+                padding: 1px 8px;
                 font-size: 13px;
                 position: absolute;
                 right: -26px;
-                top: -5px;
+                top: -8px;
             }
 
             .red-tag .inside-triangle {
@@ -1546,11 +1440,11 @@
                 background-color: rgb(72, 200, 253);
                 color: #fff;
                 display: inline-block;
-                padding: 2px 8px;
+                padding: 1px 8px;
                 font-size: 13px;
                 position: absolute;
                 right: -26px;
-                top: -5px;
+                top: -8px;
             }
 
             .blue-tag .inside-triangle {
@@ -1562,113 +1456,61 @@
                 position: absolute;
             }
 
-            /*  */
-            .lv2 {
-                display: none;
+            /* info */
+            .info .txt{
+                margin-left: 150px;
+                padding: 200px 0;
+            }
+            .info .txt h2{
+                font-size: 60px;
+                line-height: 80px;
+            }
+            .info .pic{
+                width: 600px;
+            }
+            .info-group .bgimg{
                 width: 100%;
             }
-
-            .lv2>a {
-                margin-top: 16px;
-                display: inline-block;
+            .info-group .bgimg img{
+                height: 600px;
             }
-
-            .lv2>a,
-            .home li :first-child {
-                letter-spacing: 3px;
-                color: #444;
-                font-size: 15px;
-            }
-
-            .lv2>a:hover,
-            .home li :first-child:hover {
-                color: rgb(81, 132, 50);
-            }
-
-            .lv2>a+span::after {
-                content: '';
-                display: block;
-                background-color: rgb(81, 132, 50);
-                height: 1px;
-                width: 55px;
-                margin-top: 10px;
-                margin-bottom: 10px;
-            }
-
-            .main-nav .close {
-                background-color: rgb(81, 132, 50);
-                color: #fff;
-                height: 50px;
+            .benefits-group{
                 display: flex;
-                justify-content: center;
-                align-items: center;
+                width: 100%
             }
-
-            .main-nav .close i {
-                padding-right: 10px;
+            .benefits-group .txt{
+                width: 0;
+                flex-grow: 1;
             }
-
-            .main-nav .close span {
-                padding-left: 10px;
+            .reduce{
+                text-align: end;
             }
-
-            #home-switch:checked~.main-header .main-nav .lv1 .nav-item .lv2.home {
-                display: block;
+            .benefits-group .pic{
+                width: 0;
+                flex-grow: 1;
             }
-
-            #home-switch:checked~.main-header .main-nav .lv1 .nav-item .home-arrow i {
-                transform: rotate(180deg);
-                transition: 1s, transform 1s;
-                color: rgb(81, 132, 50);
+            .benefits-group .pic img{
+                width: 80%;
             }
-
-            #home-switch:checked~.main-header .main-nav .lv1 .nav-item .lv2.home img {
-                display: none;
+            /* vedio */
+            .video-group{
+                display: flex;
+                padding: 20px;
             }
-
-            #shop-switch:checked~.main-header .main-nav .lv1 .nav-item .lv2.shop {
-                display: block;
+            .video-group .txt{
+                width: 0;
+                flex-grow: 1;
+                box-sizing: border-box;
+                /* padding-left: 50px; */
             }
-
-            #shop-switch:checked~.main-header .main-nav .lv1 .nav-item .shop-arrow i {
-                transform: rotate(180deg);
-                transition: 1s, transform 1s;
-                color: rgb(81, 132, 50);
+            .play-video{
+                width: 0;
+                flex-grow: 1;
             }
-
-            #featured-switch:checked~.main-header .main-nav .lv1 .nav-item .lv2.featured {
-                display: block;
+            .video-group .video{
+                padding: 0;
             }
-
-            #featured-switch:checked~.main-header .main-nav .lv1 .nav-item .featured-arrow i {
-                transform: rotate(180deg);
-                transition: 1s, transform 1s;
-                color: rgb(81, 132, 50);
-            }
-
-            #pages-switch:checked~.main-header .main-nav .lv1 .nav-item .lv2.pages {
-                display: block;
-            }
-
-            #pages-switch:checked~.main-header .main-nav .lv1 .nav-item .pages-arrow i {
-                transform: rotate(180deg);
-                transition: 1s, transform 1s;
-                color: rgb(81, 132, 50);
-            }
-
-            #element-switch:checked~.main-header .main-nav .lv1 .nav-item .lv2.element {
-                display: block;
-            }
-
-            #element-switch:checked~.main-header .main-nav .lv1 .nav-item .element-arrow i {
-                transform: rotate(180deg);
-                transition: 1s, transform 1s;
-                color: rgb(81, 132, 50);
-            }
-
-
-            .logo+.menu li:nth-child(2)::before,
-            .logo+.menu li:nth-child(3)::before {
+            .logo+.menu li:nth-child(2)::before, .logo+.menu li:nth-child(3)::before {
                 content: '';
                 display: inline-block;
                 height: 1px;
@@ -1676,15 +1518,8 @@
                 background: #aaa;
                 vertical-align: middle;
             }
-
-            .shop-ig .pic li:nth-of-type(4) {
-                display: none;
-            }
-        }
-
-        @media screen and (min-width:992px) {
-            .shop-ig .pic li:nth-of-type(4) {
-                display: block;
+            footer .logo{
+                width: 40%;
             }
         }
     </style>
@@ -1729,65 +1564,70 @@
                     <label for="home-switch" class="home-arrow">
                         <i class="fa-solid fa-angle-right"></i>
                     </label>
-                    <ul class="lv2 home">
-                        <li>
-                            <a href="#">Home1</a>
-                            <a href="#"><img src="https://fakeimg.pl/300x200/200"></a>
-                        </li>
-                        <li>
-                            <a href="#">Home2</a>
-                            <a href="#"><img src="https://fakeimg.pl/300x200/200"></a>
+                    <div class="lv2-gruop">
 
-                        </li>
-                        <li>
-                            <a href="#">Home3</a>
-                            <a href="#"><img src="https://fakeimg.pl/300x200/200"></a>
-
-                        </li>
-                        <li>
-                            <a href="#">Home4</a>
-                            <a href="#"><img src="https://fakeimg.pl/300x200/200"></a>
-
-                        </li>
-                        <li>
-                            <a href="#">Home5</a>
-                            <a href="#"><img src="https://fakeimg.pl/300x200/200"></a>
-                        </li>
-                    </ul>
+                        <ul class="lv2 home">
+                            <li>
+                                <a href="#">Home1</a>
+                                <a href="#"><img src="https://cdn.shopify.com/s/files/1/0356/8343/4555/files/1.jpg?v=1585564604"></a>
+                            </li>
+                            <li>
+                                <a href="#">Home2</a>
+                                <a href="#"><img src="https://cdn.shopify.com/s/files/1/0356/8343/4555/files/1.jpg?v=1585564604"></a>
+    
+                            </li>
+                            <li>
+                                <a href="#">Home3</a>
+                                <a href="#"><img src="https://cdn.shopify.com/s/files/1/0356/8343/4555/files/1.jpg?v=1585564604"></a>
+    
+                            </li>
+                            <li>
+                                <a href="#">Home4</a>
+                                <a href="#"><img src="https://cdn.shopify.com/s/files/1/0356/8343/4555/files/1.jpg?v=1585564604"></a>
+    
+                            </li>
+                            <li>
+                                <a href="#">Home5</a>
+                                <a href="#"><img src="https://cdn.shopify.com/s/files/1/0356/8343/4555/files/1.jpg?v=1585564604"></a>
+                            </li>
+                        </ul>
+                    </div>
                 </li>
                 <li class="nav-item">
                     <a href="#">Shop</a>
                     <label for="shop-switch" class="shop-arrow">
                         <i class="fa-solid fa-angle-right"></i>
                     </label>
-                    <ul class="lv2 shop">
-                        <a href="#">SHOP FILTER</a>
-                        <span></span>
-                        <li><a href="#">Filter Push Left</a></li>
-                        <li><a href="#">Filter Colappse</a></li>
-                    </ul>
-                    <ul class="lv2 shop">
-                        <a href="#">SHOP LAYOUT</a>
-                        <span></span>
-                        <li>
-                            <a href="https://www.youtube.com/" class="inside-tag">Full width<span class="red-tag">NEW
-                                    <div class="inside-triangle"></div>
-                                </span>
-                            </a>
-                        </li>
-                        <li><a href="#">Sidebar Left</a></li>
-                        <li><a href="#">Sidebar Right</a></li>
-                        <li>
-                            <a href="#" class="inside-tag">Infinity Scroll<span class="red-tag">NEW
-                                    <div class="inside-triangle"></div>
-                                </span>
-                            </a>
-                        </li>
-                        <li><a href="#">Product List</a></li>
-                    </ul>
+                    <div class="lv2-gruop">
+                        <ul class="lv2 shop">
+                            <a href="#">SHOP FILTER</a>
+                            <span></span>
+                            <li><a href="#">Filter Push Left</a></li>
+                            <li><a href="#">Filter Colappse</a></li>
+                        </ul>
+                        <ul class="lv2 shop">
+                            <a href="#">SHOP LAYOUT</a>
+                            <span></span>
+                            <li>
+                                <a href="https://www.youtube.com/" class="inside-tag">Full width<span class="red-tag">NEW
+                                        <div class="inside-triangle"></div>
+                                    </span>
+                                </a>
+                            </li>
+                            <li><a href="#">Sidebar Left</a></li>
+                            <li><a href="#">Sidebar Right</a></li>
+                            <li>
+                                <a href="#" class="inside-tag">Infinity Scroll<span class="red-tag">NEW
+                                        <div class="inside-triangle"></div>
+                                    </span>
+                                </a>
+                            </li>
+                            <li><a href="#">Product List</a></li>
+                        </ul>
+                    </div>
                 </li>
                 <li class="nav-item">
-                    <a href="#">Featured</a>
+                    <a href="#" class="omg">Featured</a>
                     <a href="#" class="tag">
                         <span>NEW</span>
                         <div class="triangle"></div>
@@ -1795,96 +1635,104 @@
                     <label for="featured-switch" class="featured-arrow">
                         <i class="fa-solid fa-angle-right"></i>
                     </label>
+                    <div class="lv2-gruop">
 
-                    <ul class="lv2 featured">
-                        <a href="#">BLOG LAYOUTS</a>
-                        <span></span>
-                        <li>
-                            <a href="#" class="inside-tag">Blog Standar No Sidebar
-                                <span class="red-tag">NEW
-                                    <div class="inside-triangle"></div>
-                                </span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" class="inside-tag">Blog Standar Sidebar Left
-                                <span class="blue-tag">hot
-                                    <div class="inside-triangle"></div>
-                                </span>
-                            </a>
-                        </li>
-                        <li><a href="#">Blog Standar Sidebar Right</a></li>
-                        <li>
-                            <a href="#" class="inside-tag">Blog Grid No Sidebar
-                                <span class="red-tag">NEW
-                                    <div class="inside-triangle"></div>
-                                </span>
-                            </a>
-                        </li>
-                        <li><a href="#">Blog Grid Sidebar</a></li>
-                    </ul>
-
-                    <ul class="lv2 featured">
-                        <a href="#">PRODUCT LAYOUT</a>
-                        <span></span>
-                        <li>
-                            <a href="#" class="inside-tag">Product Large Images
-                                <span class="blue-tag">HOT
-                                    <div class="inside-triangle"></div>
-                                </span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" class="inside-tag">Product Extended
-                                <span class="red-tag">NEW
-                                    <div class="inside-triangle"></div>
-                                </span>
-                            </a>
-                        </li>
-                        <li><a href="#">Product Gallery</a></li>
-                        <li><a href="#">Product Sticky</a></li>
-                        <li><a href="#">Product Sidebar</a></li>
-                    </ul>
-                    <ul class="lv2 featured">
-                        <a href="#">PRODUCT TYPES</a>
-                        <span></span>
-                        <li>
-                            <a href="#" class="inside-tag">Variable
-                                <span class="red-tag">HOT
-                                    <div class="inside-triangle"></div>
-                                </span>
-                            </a>
-                        </li>
-                        <li><a href="#">Video</a></li>
-                        <li><a href="#">360 Degree</a></li>
-                        <li><a href="#">Affiliate</a></li>
-                        <li>
-                            <a href="#" class="inside-tag">Simple
-                                <span class="blue-tag">HOT
-                                    <div class="inside-triangle"></div>
-                                </span>
-                            </a>
-                        </li>
-                        <li><a href="#">Out Of Stock</a></li>
-                    </ul>
-                    <ul class="lv2 featured">
-                        <a href="#">SINGLE POST</a>
-                        <span></span>
-                        <li><a href="#">Single Post No Sidebar</a></li>
-                        <li><a href="#">Single Post Sidebar Right</a></li>
-                        <li><a href="#">Single Post Sidebar Left</a></li>
-                    </ul>
+                        <ul class="lv2 featured">
+                            <a href="#">BLOG LAYOUTS</a>
+                            <span></span>
+                            <li>
+                                <a href="#" class="inside-tag">Blog Standar No Sidebar
+                                    <span class="red-tag">NEW
+                                        <div class="inside-triangle"></div>
+                                    </span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="inside-tag">Blog Standar Sidebar Left
+                                    <span class="blue-tag">HOT
+                                        <div class="inside-triangle"></div>
+                                    </span>
+                                </a>
+                            </li>
+                            <li><a href="#">Blog Standar Sidebar Right</a></li>
+                            <li>
+                                <a href="#" class="inside-tag">Blog Grid No Sidebar
+                                    <span class="red-tag">NEW
+                                        <div class="inside-triangle"></div>
+                                    </span>
+                                </a>
+                            </li>
+                            <li><a href="#">Blog Grid Sidebar</a></li>
+                        </ul>
+    
+                        <ul class="lv2 featured">
+                            <a href="#">PRODUCT LAYOUT</a>
+                            <span></span>
+                            <li>
+                                <a href="#" class="inside-tag">Product Large Images
+                                    <span class="blue-tag">HOT
+                                        <div class="inside-triangle"></div>
+                                    </span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="inside-tag">Product Extended
+                                    <span class="red-tag">NEW
+                                        <div class="inside-triangle"></div>
+                                    </span>
+                                </a>
+                            </li>
+                            <li><a href="#">Product Gallery</a></li>
+                            <li><a href="#">Product Sticky</a></li>
+                            <li><a href="#">Product Sidebar</a></li>
+                        </ul>
+                        <ul class="lv2 featured">
+                            <a href="#">PRODUCT TYPES</a>
+                            <span></span>
+                            <li>
+                                <a href="#" class="inside-tag">Variable
+                                    <span class="red-tag">HOT
+                                        <div class="inside-triangle"></div>
+                                    </span>
+                                </a>
+                            </li>
+                            <li><a href="#">Video</a></li>
+                            <li><a href="#">360 Degree</a></li>
+                            <li><a href="#">Affiliate</a></li>
+                            <li>
+                                <a href="#" class="inside-tag">Simple
+                                    <span class="blue-tag">HOT
+                                        <div class="inside-triangle"></div>
+                                    </span>
+                                </a>
+                            </li>
+                            <li><a href="#">Out Of Stock</a></li>
+                        </ul>
+                        <div class="inner-pic">
+                            <a href="#"><img src="https://cdn.shopify.com/s/files/1/0356/8343/4555/files/banner-menu.jpg?v=1585292268" alt=""></a>
+                        </div>
+                        <ul class="lv2 featured">
+                            <a href="#">SINGLE POST</a>
+                            <span></span>
+                            <li><a href="#">Single Post No Sidebar</a></li>
+                            <li><a href="#">Single Post Sidebar Right</a></li>
+                            <li><a href="#">Single Post Sidebar Left</a></li>
+                        </ul>
+                    </div>
                 </li>
                 <li class="nav-item">
                     <a href="#">Pages</a>
                     <label for="pages-switch" class="pages-arrow">
                         <i class="fa-solid fa-angle-right"></i>
                     </label>
-                    <ul class="lv2 pages">
-                        <li><a href="#">About Us</a></li>
-                        <li><a href="#">Contact Us</a></li>
-                        <li><a href="#">Wishlist</a></li>
-                    </ul>
+                    <div class="lv2-gruop">
+
+                        <ul class="lv2 pages">
+                            <li><a href="#">About Us</a></li>
+                            <li><a href="#">Contact Us</a></li>
+                            <li><a href="#">Wishlist</a></li>
+                        </ul>
+                    </div>
                 </li>
                 <li class="nav-item">
                     <a href="#">Element</a>
@@ -1895,23 +1743,26 @@
                     <label for="element-switch" class="element-arrow">
                         <i class="fa-solid fa-angle-right"></i>
                     </label>
-                    <ul class="lv2 element">
-                        <a href="#">MAIN STYLE</a>
-                        <span></span>
-                        <li><a href="#">No Sidebar</a></li>
-                        <li><a href="#">Default – Menu right</a></li>
-                        <li><a href="#">Minimal</a></li>
-                        <li><a href="#">Classic</a></li>
-                        <li><a href="#">Mordern</a></li>
-                    </ul>
-                    <ul class="lv2 element">
-                        <a href="#">POST FOMAT</a>
-                        <span></span>
-                        <li><a href="#">Elementor</a></li>
-                        <li><a href="#">Logo on menu</a></li>
-                        <li><a href="#">Default – Menu right</a></li>
-                        <li><a href="#">Logo in menu</a></li>
-                    </ul>
+                    <div class="lv2-gruop">
+
+                        <ul class="lv2 element">
+                            <a href="#">MAIN STYLE</a>
+                            <span></span>
+                            <li><a href="#">No Sidebar</a></li>
+                            <li><a href="#">Default – Menu right</a></li>
+                            <li><a href="#">Minimal</a></li>
+                            <li><a href="#">Classic</a></li>
+                            <li><a href="#">Mordern</a></li>
+                        </ul>
+                        <ul class="lv2 element">
+                            <a href="#">POST FOMAT</a>
+                            <span></span>
+                            <li><a href="#">Elementor</a></li>
+                            <li><a href="#">Logo on menu</a></li>
+                            <li><a href="#">Default – Menu right</a></li>
+                            <li><a href="#">Logo in menu</a></li>
+                        </ul>
+                    </div>
                 </li>
             </ul>
             <label for="menu-switch">
@@ -1962,7 +1813,7 @@
                         four people. At the same time they also absorb C02, ammonia, S02, .. in the world!</em></p>
             </div>
             <div class="benefits-group">
-                <ul class="txt">
+                <ul class="txt reduce">
                     <li>
                         <h3>Reducing environmental pollution</h3>
                         <p>Trees have always been considered as "lungs" of the earth.</p>
