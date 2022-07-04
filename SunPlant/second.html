@@ -7,6 +7,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
         href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Roboto:wght@100;300;400;900&display=swap"
         rel="stylesheet">
@@ -18,7 +21,7 @@
     <!-- text-transform: uppercase; -->
     <style>
         body {
-            font-family: "Roboto", sans-serif;
+            font-family: 'Poppins', sans-serif;
         }
 
         a {
@@ -614,8 +617,6 @@
             .search-login-cart a:nth-of-type(2) {
                 display: none;
             }
-
-            .cover-label,
             .cover-play {
                 display: block;
                 position: fixed;
@@ -625,17 +626,26 @@
                 background-color: #000;
                 opacity: 0;
             }
-
-            #menu-switch:checked~.main-header .main-nav {
+            .box{
+                position: relative;
+            }
+            .cover-label{
+                /* display: none; */
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-color: #0005;
+            }
+            #menu-switch:checked~
+            .main-header .main-nav {
                 left: 0;
                 opacity: 1;
             }
-
             #menu-switch:checked~.cover-label {
-                opacity: 0.8;
-                z-index: 2;
+                display: block;
             }
-
             .menu-header {
                 display: flex;
             }
@@ -645,7 +655,6 @@
                 position: fixed;
                 top: 0;
                 left: -380px;
-                z-index: 400;
                 width: 380px;
                 height: 100vh;
                 flex-direction: column;
@@ -724,6 +733,7 @@
                 box-sizing: border-box;
                 padding: 10px 30px 0;
                 flex-grow: 1;
+                overflow-y: auto;
             }
 
             .nav-item {
@@ -1249,9 +1259,9 @@
         }
 
         @media screen and (min-width:992px) {   
-            .menu-header{
-                display: none;
-            }
+                .menu-header{
+                    display: none;
+                }
             .main-nav label > i{
                 display: none;
             }
@@ -1533,245 +1543,245 @@
     <input type="checkbox" name="" id="pages-switch">
     <input type="checkbox" name="" id="element-switch">
     <input type="checkbox" name="" id="play-video">
-    <label for="menu-switch" class="cover-label">
-    </label>
-    <label for="play-video" class="cover-play">
-    </label>
+    <label for="play-video" class="cover-play"></label>
     <header class="main-header">
         <label for="menu-switch" class="hb">
             <span></span>
             <span></span>
             <span></span>
         </label>
-        <nav class="main-nav">
-            <div class="menu-header">
-                <a href="#" class="menu-btn">
-                    <div class="menu-hb">
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                    </div>
-                    <span class="menu">MENU</span>
-                </a>
-                <a href="#" class="login-btn">
-                    <i class="fa-solid fa-circle-user"></i>
-                    <span class="login">LOGIN</span>
-                </a>
-            </div>
-            <ul class="lv1">
-                <li class="nav-item">
-                    <a href="#">Home</a>
-                    <label for="home-switch" class="home-arrow">
-                        <i class="fa-solid fa-angle-right"></i>
-                    </label>
-                    <div class="lv2-gruop">
-
-                        <ul class="lv2 home">
-                            <li>
-                                <a href="#">Home1</a>
-                                <a href="#"><img src="https://cdn.shopify.com/s/files/1/0356/8343/4555/files/1.jpg?v=1585564604"></a>
-                            </li>
-                            <li>
-                                <a href="#">Home2</a>
-                                <a href="#"><img src="https://cdn.shopify.com/s/files/1/0356/8343/4555/files/1.jpg?v=1585564604"></a>
-    
-                            </li>
-                            <li>
-                                <a href="#">Home3</a>
-                                <a href="#"><img src="https://cdn.shopify.com/s/files/1/0356/8343/4555/files/1.jpg?v=1585564604"></a>
-    
-                            </li>
-                            <li>
-                                <a href="#">Home4</a>
-                                <a href="#"><img src="https://cdn.shopify.com/s/files/1/0356/8343/4555/files/1.jpg?v=1585564604"></a>
-    
-                            </li>
-                            <li>
-                                <a href="#">Home5</a>
-                                <a href="#"><img src="https://cdn.shopify.com/s/files/1/0356/8343/4555/files/1.jpg?v=1585564604"></a>
-                            </li>
-                        </ul>
-                    </div>
-                </li>
-                <li class="nav-item">
-                    <a href="#">Shop</a>
-                    <label for="shop-switch" class="shop-arrow">
-                        <i class="fa-solid fa-angle-right"></i>
-                    </label>
-                    <div class="lv2-gruop">
-                        <ul class="lv2 shop">
-                            <a href="#">SHOP FILTER</a>
+        <div class="box">
+            <label for="menu-switch" class="cover-label"></label>
+            <nav class="main-nav">
+                <div class="menu-header">
+                    <a href="#" class="menu-btn">
+                        <div class="menu-hb">
                             <span></span>
-                            <li><a href="#">Filter Push Left</a></li>
-                            <li><a href="#">Filter Colappse</a></li>
-                        </ul>
-                        <ul class="lv2 shop">
-                            <a href="#">SHOP LAYOUT</a>
                             <span></span>
-                            <li>
-                                <a href="https://www.youtube.com/" class="inside-tag">Full width<span class="red-tag">NEW
-                                        <div class="inside-triangle"></div>
-                                    </span>
-                                </a>
-                            </li>
-                            <li><a href="#">Sidebar Left</a></li>
-                            <li><a href="#">Sidebar Right</a></li>
-                            <li>
-                                <a href="#" class="inside-tag">Infinity Scroll<span class="red-tag">NEW
-                                        <div class="inside-triangle"></div>
-                                    </span>
-                                </a>
-                            </li>
-                            <li><a href="#">Product List</a></li>
-                        </ul>
-                    </div>
-                </li>
-                <li class="nav-item">
-                    <a href="#" class="omg">Featured</a>
-                    <a href="#" class="tag">
-                        <span>NEW</span>
-                        <div class="triangle"></div>
-                    </a>
-                    <label for="featured-switch" class="featured-arrow">
-                        <i class="fa-solid fa-angle-right"></i>
-                    </label>
-                    <div class="lv2-gruop">
-
-                        <ul class="lv2 featured">
-                            <a href="#">BLOG LAYOUTS</a>
                             <span></span>
-                            <li>
-                                <a href="#" class="inside-tag">Blog Standar No Sidebar
-                                    <span class="red-tag">NEW
-                                        <div class="inside-triangle"></div>
-                                    </span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" class="inside-tag">Blog Standar Sidebar Left
-                                    <span class="blue-tag">HOT
-                                        <div class="inside-triangle"></div>
-                                    </span>
-                                </a>
-                            </li>
-                            <li><a href="#">Blog Standar Sidebar Right</a></li>
-                            <li>
-                                <a href="#" class="inside-tag">Blog Grid No Sidebar
-                                    <span class="red-tag">NEW
-                                        <div class="inside-triangle"></div>
-                                    </span>
-                                </a>
-                            </li>
-                            <li><a href="#">Blog Grid Sidebar</a></li>
-                        </ul>
-    
-                        <ul class="lv2 featured">
-                            <a href="#">PRODUCT LAYOUT</a>
-                            <span></span>
-                            <li>
-                                <a href="#" class="inside-tag">Product Large Images
-                                    <span class="blue-tag">HOT
-                                        <div class="inside-triangle"></div>
-                                    </span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" class="inside-tag">Product Extended
-                                    <span class="red-tag">NEW
-                                        <div class="inside-triangle"></div>
-                                    </span>
-                                </a>
-                            </li>
-                            <li><a href="#">Product Gallery</a></li>
-                            <li><a href="#">Product Sticky</a></li>
-                            <li><a href="#">Product Sidebar</a></li>
-                        </ul>
-                        <ul class="lv2 featured">
-                            <a href="#">PRODUCT TYPES</a>
-                            <span></span>
-                            <li>
-                                <a href="#" class="inside-tag">Variable
-                                    <span class="red-tag">HOT
-                                        <div class="inside-triangle"></div>
-                                    </span>
-                                </a>
-                            </li>
-                            <li><a href="#">Video</a></li>
-                            <li><a href="#">360 Degree</a></li>
-                            <li><a href="#">Affiliate</a></li>
-                            <li>
-                                <a href="#" class="inside-tag">Simple
-                                    <span class="blue-tag">HOT
-                                        <div class="inside-triangle"></div>
-                                    </span>
-                                </a>
-                            </li>
-                            <li><a href="#">Out Of Stock</a></li>
-                        </ul>
-                        <div class="inner-pic">
-                            <a href="#"><img src="https://cdn.shopify.com/s/files/1/0356/8343/4555/files/banner-menu.jpg?v=1585292268" alt=""></a>
                         </div>
-                        <ul class="lv2 featured">
-                            <a href="#">SINGLE POST</a>
-                            <span></span>
-                            <li><a href="#">Single Post No Sidebar</a></li>
-                            <li><a href="#">Single Post Sidebar Right</a></li>
-                            <li><a href="#">Single Post Sidebar Left</a></li>
-                        </ul>
-                    </div>
-                </li>
-                <li class="nav-item">
-                    <a href="#">Pages</a>
-                    <label for="pages-switch" class="pages-arrow">
-                        <i class="fa-solid fa-angle-right"></i>
-                    </label>
-                    <div class="lv2-gruop">
-
-                        <ul class="lv2 pages">
-                            <li><a href="#">About Us</a></li>
-                            <li><a href="#">Contact Us</a></li>
-                            <li><a href="#">Wishlist</a></li>
-                        </ul>
-                    </div>
-                </li>
-                <li class="nav-item">
-                    <a href="#">Element</a>
-                    <a href="#" class="tag">
-                        <span>NEW</span>
-                        <div class="triangle"></div>
+                        <span class="menu">MENU</span>
                     </a>
-                    <label for="element-switch" class="element-arrow">
-                        <i class="fa-solid fa-angle-right"></i>
-                    </label>
-                    <div class="lv2-gruop">
-
-                        <ul class="lv2 element">
-                            <a href="#">MAIN STYLE</a>
-                            <span></span>
-                            <li><a href="#">No Sidebar</a></li>
-                            <li><a href="#">Default – Menu right</a></li>
-                            <li><a href="#">Minimal</a></li>
-                            <li><a href="#">Classic</a></li>
-                            <li><a href="#">Mordern</a></li>
-                        </ul>
-                        <ul class="lv2 element">
-                            <a href="#">POST FOMAT</a>
-                            <span></span>
-                            <li><a href="#">Elementor</a></li>
-                            <li><a href="#">Logo on menu</a></li>
-                            <li><a href="#">Default – Menu right</a></li>
-                            <li><a href="#">Logo in menu</a></li>
-                        </ul>
-                    </div>
-                </li>
-            </ul>
-            <label for="menu-switch">
-                <div class="close">
-                    <i class="fa-solid fa-xmark"></i>
-                    <span>CLOSE</span>
+                    <a href="#" class="login-btn">
+                        <i class="fa-solid fa-circle-user"></i>
+                        <span class="login">LOGIN</span>
+                    </a>
                 </div>
-            </label>
-        </nav>
+                <ul class="lv1">
+                    <li class="nav-item">
+                        <a href="#">Home</a>
+                        <label for="home-switch" class="home-arrow">
+                            <i class="fa-solid fa-angle-right"></i>
+                        </label>
+                        <div class="lv2-gruop">
+
+                            <ul class="lv2 home">
+                                <li>
+                                    <a href="#">Home1</a>
+                                    <a href="#"><img src="https://cdn.shopify.com/s/files/1/0356/8343/4555/files/1.jpg?v=1585564604"></a>
+                                </li>
+                                <li>
+                                    <a href="#">Home2</a>
+                                    <a href="#"><img src="https://cdn.shopify.com/s/files/1/0356/8343/4555/files/1.jpg?v=1585564604"></a>
+        
+                                </li>
+                                <li>
+                                    <a href="#">Home3</a>
+                                    <a href="#"><img src="https://cdn.shopify.com/s/files/1/0356/8343/4555/files/1.jpg?v=1585564604"></a>
+        
+                                </li>
+                                <li>
+                                    <a href="#">Home4</a>
+                                    <a href="#"><img src="https://cdn.shopify.com/s/files/1/0356/8343/4555/files/1.jpg?v=1585564604"></a>
+        
+                                </li>
+                                <li>
+                                    <a href="#">Home5</a>
+                                    <a href="#"><img src="https://cdn.shopify.com/s/files/1/0356/8343/4555/files/1.jpg?v=1585564604"></a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#">Shop</a>
+                        <label for="shop-switch" class="shop-arrow">
+                            <i class="fa-solid fa-angle-right"></i>
+                        </label>
+                        <div class="lv2-gruop">
+                            <ul class="lv2 shop">
+                                <a href="#">SHOP FILTER</a>
+                                <span></span>
+                                <li><a href="#">Filter Push Left</a></li>
+                                <li><a href="#">Filter Colappse</a></li>
+                            </ul>
+                            <ul class="lv2 shop">
+                                <a href="#">SHOP LAYOUT</a>
+                                <span></span>
+                                <li>
+                                    <a href="https://www.youtube.com/" class="inside-tag">Full width<span class="red-tag">NEW
+                                            <div class="inside-triangle"></div>
+                                        </span>
+                                    </a>
+                                </li>
+                                <li><a href="#">Sidebar Left</a></li>
+                                <li><a href="#">Sidebar Right</a></li>
+                                <li>
+                                    <a href="#" class="inside-tag">Infinity Scroll<span class="red-tag">NEW
+                                            <div class="inside-triangle"></div>
+                                        </span>
+                                    </a>
+                                </li>
+                                <li><a href="#">Product List</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="omg">Featured</a>
+                        <a href="#" class="tag">
+                            <span>NEW</span>
+                            <div class="triangle"></div>
+                        </a>
+                        <label for="featured-switch" class="featured-arrow">
+                            <i class="fa-solid fa-angle-right"></i>
+                        </label>
+                        <div class="lv2-gruop">
+
+                            <ul class="lv2 featured">
+                                <a href="#">BLOG LAYOUTS</a>
+                                <span></span>
+                                <li>
+                                    <a href="#" class="inside-tag">Blog Standar No Sidebar
+                                        <span class="red-tag">NEW
+                                            <div class="inside-triangle"></div>
+                                        </span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="inside-tag">Blog Standar Sidebar Left
+                                        <span class="blue-tag">HOT
+                                            <div class="inside-triangle"></div>
+                                        </span>
+                                    </a>
+                                </li>
+                                <li><a href="#">Blog Standar Sidebar Right</a></li>
+                                <li>
+                                    <a href="#" class="inside-tag">Blog Grid No Sidebar
+                                        <span class="red-tag">NEW
+                                            <div class="inside-triangle"></div>
+                                        </span>
+                                    </a>
+                                </li>
+                                <li><a href="#">Blog Grid Sidebar</a></li>
+                            </ul>
+        
+                            <ul class="lv2 featured">
+                                <a href="#">PRODUCT LAYOUT</a>
+                                <span></span>
+                                <li>
+                                    <a href="#" class="inside-tag">Product Large Images
+                                        <span class="blue-tag">HOT
+                                            <div class="inside-triangle"></div>
+                                        </span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="inside-tag">Product Extended
+                                        <span class="red-tag">NEW
+                                            <div class="inside-triangle"></div>
+                                        </span>
+                                    </a>
+                                </li>
+                                <li><a href="#">Product Gallery</a></li>
+                                <li><a href="#">Product Sticky</a></li>
+                                <li><a href="#">Product Sidebar</a></li>
+                            </ul>
+                            <ul class="lv2 featured">
+                                <a href="#">PRODUCT TYPES</a>
+                                <span></span>
+                                <li>
+                                    <a href="#" class="inside-tag">Variable
+                                        <span class="red-tag">HOT
+                                            <div class="inside-triangle"></div>
+                                        </span>
+                                    </a>
+                                </li>
+                                <li><a href="#">Video</a></li>
+                                <li><a href="#">360 Degree</a></li>
+                                <li><a href="#">Affiliate</a></li>
+                                <li>
+                                    <a href="#" class="inside-tag">Simple
+                                        <span class="blue-tag">HOT
+                                            <div class="inside-triangle"></div>
+                                        </span>
+                                    </a>
+                                </li>
+                                <li><a href="#">Out Of Stock</a></li>
+                            </ul>
+                            <div class="inner-pic">
+                                <a href="#"><img src="https://cdn.shopify.com/s/files/1/0356/8343/4555/files/banner-menu.jpg?v=1585292268" alt=""></a>
+                            </div>
+                            <ul class="lv2 featured">
+                                <a href="#">SINGLE POST</a>
+                                <span></span>
+                                <li><a href="#">Single Post No Sidebar</a></li>
+                                <li><a href="#">Single Post Sidebar Right</a></li>
+                                <li><a href="#">Single Post Sidebar Left</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#">Pages</a>
+                        <label for="pages-switch" class="pages-arrow">
+                            <i class="fa-solid fa-angle-right"></i>
+                        </label>
+                        <div class="lv2-gruop">
+
+                            <ul class="lv2 pages">
+                                <li><a href="#">About Us</a></li>
+                                <li><a href="#">Contact Us</a></li>
+                                <li><a href="#">Wishlist</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#">Element</a>
+                        <a href="#" class="tag">
+                            <span>NEW</span>
+                            <div class="triangle"></div>
+                        </a>
+                        <label for="element-switch" class="element-arrow">
+                            <i class="fa-solid fa-angle-right"></i>
+                        </label>
+                        <div class="lv2-gruop">
+
+                            <ul class="lv2 element">
+                                <a href="#">MAIN STYLE</a>
+                                <span></span>
+                                <li><a href="#">No Sidebar</a></li>
+                                <li><a href="#">Default – Menu right</a></li>
+                                <li><a href="#">Minimal</a></li>
+                                <li><a href="#">Classic</a></li>
+                                <li><a href="#">Mordern</a></li>
+                            </ul>
+                            <ul class="lv2 element">
+                                <a href="#">POST FOMAT</a>
+                                <span></span>
+                                <li><a href="#">Elementor</a></li>
+                                <li><a href="#">Logo on menu</a></li>
+                                <li><a href="#">Default – Menu right</a></li>
+                                <li><a href="#">Logo in menu</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+                <label for="menu-switch">
+                    <div class="close">
+                        <i class="fa-solid fa-xmark"></i>
+                        <span>CLOSE</span>
+                    </div>
+                </label>
+            </nav>
+        </div>
         <a href="#" class="logo">
             <img src="https://cdn.shopify.com/s/files/1/0356/8343/4555/files/logo.png?v=1585540695">
         </a>
