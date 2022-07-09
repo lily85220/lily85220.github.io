@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Roboto:wght@100;300;400;900&display=swap" rel="stylesheet">
+    <title>Document</title>
+    <style>
+        .container{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .range{
+            border: 2px solid #999;
+            width: 500px;
+            height: 50px;
+            margin: 20px;
+        }
+        .range p{
+            text-align: center;
+            font-size: 50px;
+            font-family: 'roboto';
+        }
+        .makeAns, .number-box{
+            width: 180px;
+            margin: 20px;
+        }
+        .number-box{
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .number-box button{
+            width: 50px;
+            margin: 5px;
+        }
+        input{
+            width: 300px;
+            height: 30px;
+        }
+        button{
+            height: 30px;
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="range">
+            <p></p>
+        </div>
+        <button class="makeAns">開始遊戲</button> 
+        <input type="text">
+        <div class="number-box"></div>
+    </div>
+    
+
+    <script>
+        //動態建立數字鍵
+        let numbox = document.querySelector(".number-box")
+        let numbtnContent = [1,2,3,4,5,6,7,8,9,"X",0,"V"]
+        
+        numbtnContent.forEach(x => {
+            let numbtn = document.createElement("button")
+            numbtn.innerText = x
+            numbox.append(numbtn)
+        })
+        
+        let numbtns = document.querySelectorAll(".number-box>button")
+        let answer,guess
+        let input = document.querySelector("input")
+        let p = document.querySelector(".range>p")
+        let  min, max
+        
+        //開始遊戲
+        initialize()
+        let start = document.querySelector(".makeAns")
+        start.addEventListener("click", function(){
+            answer = Math.floor(Math.random()*99) + 1
+            input.disabled = false
+            numbtns.forEach((btn) => {
+                if(btn.innerText === "X"){
+                    btn.addEventListener("click", clear)
+                }else if(btn.innerText === "V"){
+                    btn.addEventListener("click", check)
+                }else{
+                    btn.addEventListener("click", addNum)
+                }
+            })
+        })
+        
+        
+        //遊戲初始畫面 0~100 對話框不能輸入數字
+        function initialize(){
+            min = 0, max = 100
+            p.innerText = `${min} ~ ${max}`
+            input.disabled = true
+        }
+
+        //按下去要出現數字方法
+        function addNum(event){
+            input.value += event.target.innerText
+        }
+
+        //清除數字方法
+        function clear(){
+            input.value = ""
+        }
+        
+        //檢查答案方法
+        function check(){
+            guess = parseInt(input.value,10)
+            if(input.value[0] == 0 ||　isNaN(input.value)){
+                alert("格式錯誤，請重新輸入")
+                clear()
+                return
+            }
+            if(guess <= min || guess >= max){
+                alert("超出範圍，請重新輸入")
+            }
+            else if(guess === answer){
+                alert("猜中了")
+                initialize()
+            }else{
+                if(guess > answer){
+                    max = guess
+                }else if(guess < answer){
+                    min = guess
+                }
+                p.innerText = `${min} ~ ${max}`
+            }
+            clear()
+        }
+    </script>
+</body>
+</html>

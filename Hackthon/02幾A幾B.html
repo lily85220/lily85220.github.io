@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Roboto:wght@100;300;400;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css">
+    <title>Document</title>
+    <style>
+        .container{
+            width: 80%;
+            max-width: 900px;
+        }
+        .btn-group{
+            width: 100%;
+        }
+        .item, .btn-group, .input-group{
+            height: 60px;
+        }
+        .item{
+            font-size: 30px;
+            align-items: center;
+        }
+        .notice{
+            height: 40px;
+            font-weight: 700;
+            padding: 0 10px;
+            line-height: 40px;
+            color: #fff;
+        }
+        input.value{
+            font-size: 30px;
+        }
+        .item{
+            display: flex;
+        }
+        .section-display{
+            min-height: 40px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="btn-group my-3" role="group" aria-label="Basic outlined example">
+            <button type="button" class="start btn btn-outline-secondary">開始</button>
+            <button type="button" class="reset btn btn-outline-secondary" disabled>放棄重來</button>
+            <button type="button" class="peek btn btn-outline-secondary" disabled>看答案</button>
+        </div>
+        <div class="section-display border border-secondary rounded">
+            
+        </div>
+        <div class="input-group my-3">
+            <span class="input-group-text" id="inputGroup-sizing-default">猜答案</span>
+            <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" disabled>
+            <button type="button" class="guessBtn btn btn-outline-secondary">猜！</button>
+        </div>
+    </div>
+    <script>
+        //開始遊戲
+        let answer
+        let input = document.querySelector("input")
+        let display, items, guessBtn, result , item ,notice , showGuess ,strguess, start, reset, peek
+        let guess = []
+        input.disabled = true
+        display = document.querySelector(".section-display")
+        start = document.querySelector(".start")
+        reset = document.querySelector(".reset")
+        peek = document.querySelector(".peek")
+        guessBtn = document.querySelector(".guessBtn")
+        
+        //掛上事件
+        start.addEventListener("click", startGame)
+        reset.addEventListener("click", function(){
+            showAns()
+            initialize()
+        })
+        peek.addEventListener("click", showAns)
+        guessBtn.addEventListener("click", checkAns)
+        
+        //開始遊戲
+        function startGame(){
+            input.disabled = false
+            reset.disabled = false
+            peek.disabled = false
+            start.disabled = true
+            produceAns()
+        }
+        //刪除猜測紀錄並重設遊戲
+        function initialize(){
+            //刪掉所有section-display的小孩
+            items = display.children
+            Array.from(items).forEach(x => x.remove())
+            clear()
+            input.disabled = true
+            reset.disabled = true
+            peek.disabled = true
+            start.disabled = false
+        }
+        
+        //產生答案
+        function produceAns(){
+            answer = []
+            while(answer.length !== 4){
+                let num = Math.floor(Math.random()*10)
+                if(answer.indexOf(num) < 0) answer.push(num)
+            }
+        }
+
+        //開始遊戲
+
+        //檢查答案
+        function checkAns(){
+            //輸入重複的數字、不是輸入數字、沒有輸入四個字
+            strguess = input.value
+            let a = 0
+            let b = 0
+            for(let i in strguess){
+                if(isNaN(parseInt(strguess[i],10))){
+                    alert("格式錯誤，請重新輸入")
+                    clear()
+                    return
+                }
+                if(guess.indexOf(parseInt(strguess[i],10)) < 0){
+                    guess.push(parseInt(strguess[i],10))
+                }
+            }
+            if(guess.length !== 4)
+            {
+                alert("格式錯誤，請重新輸入")
+                clear()
+                return
+            }
+            for(let i = 0; i < 4; i++){
+                if(answer.indexOf(guess[i]) === i){
+                    a++
+                }else if(answer.indexOf(guess[i]) >= 0){
+                    b++
+                }
+            }
+            result = `${a}A${b}B`
+            showResult(result, strguess ,a)
+        }
+
+        //顯示結果
+        function showResult(div, span, a){
+            item = document.createElement("div")
+            notice = document.createElement("div")
+            showGuess = document.createElement("span")
+            
+            item.classList.add("item", "border-bottom")
+            showGuess.classList.add("showguess", "mx-2")
+            notice.innerText = div
+            showGuess.innerText = span
+            item.append(notice)
+            item.append(showGuess)
+            display.append(item)
+            if(a === 4){
+                notice.classList.add("notice", "bg-success", "rounded", "mx-2")
+                return
+            }else{
+                notice.classList.add("notice", "bg-danger", "rounded", "mx-2")
+                clear()
+            }
+
+        }
+
+        //清除答案
+        function clear(){
+            input.value = ""
+            guess = []
+        }
+        
+        let ansStr
+        //顯示答案
+        function showAns(){
+        
+            alert(answer.join(''))
+        }
+    </script>
+    <script src="	https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
