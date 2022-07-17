@@ -30,7 +30,15 @@
             outline: none !important;
             box-shadow: none !important;
         }
-
+        .nav{
+            height: 45px;
+        }
+        .info{
+            height: 50px;
+        }
+        .nav li a{
+            font-size: 12px;
+        }
         .color-btn,.fit-btn {
             border: 1px solid #dee2e6;
             position: relative;
@@ -53,6 +61,12 @@
             z-index: 1;
             backdrop-filter: blur(100px);
         }
+        .apple-info{
+            line-height: 50px;
+        }
+        .color-area span{
+            font-size: 12px;
+        }
     </style>
 </head>
 <body>
@@ -64,9 +78,9 @@
         </ul>
     </section>
     <section class="info">
-        <div class="apple-info container d-flex justify-content-between align-items-center py-2">
-            <h2 class="product-top-type m-0 fs-3 fw-bold py-2"></h2>
-            <strong class="product-top-price m-o fs-4"></strong>
+        <div class="apple-info container d-flex justify-content-between align-items-center">
+            <h2 class="product-top-type m-0 fs-5 fw-bold"></h2>
+            <strong class="product-top-price m-o fs-6"></strong>
         </div>
     </section>
     <section class="container py-3">
@@ -80,7 +94,7 @@
                 <h2 class="product-name fs-1 fw-bold mb-4"></h2>
                 <div class="format">
                     <div class="format-item py-3">
-                        <h2 class="format-title-color fs-5 fw-bold mb-3"></h2>
+                        <h2 class="format-title-color fs-6 fw-bold mb-3"></h2>
                         <div class="format-body-color">
                             <div class="row color-area">
                                 <!-- <div class="col-6 mb-3">
@@ -128,10 +142,10 @@
                 price: 32900,
                 mainImg: "https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/iphone-13-pro-family-select?wid=940&amp;hei=1112&amp;fmt=jpeg&amp;qlt=90&amp;.v=1645811022162",
                 colorList: [
-                    {name: "松嶺青色", color: "#572856", img: "https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/iphone-13-pro-green-select?wid=940&hei=1112&fmt=png-alpha&.v=1644969385505"},
+                    {name: "松嶺青色", color: "#6E7F6C", img: "https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/iphone-13-pro-green-select?wid=940&hei=1112&fmt=png-alpha&.v=1644969385505"},
                     {name: "銀色", color: "#F2F3EE", img: "https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/iphone-13-pro-silver-select?wid=940&hei=1112&fmt=png-alpha&.v=1645552345849"},
                     {name: "金色", color: "#FAEAD3", img: "https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/iphone-13-pro-gold-select?wid=940&hei=1112&fmt=png-alpha&.v=1645552345862"},
-                    {name: "石墨色", color: "#636251", img: "https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/iphone-13-pro-graphite-select?wid=940&hei=1112&fmt=png-alpha&.v=1645552346276"},
+                    {name: "石墨色", color: "#484743", img: "https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/iphone-13-pro-graphite-select?wid=940&hei=1112&fmt=png-alpha&.v=1645552346276"},
                     {name: "天空藍", color: "#ACC4DB", img: "https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/iphone-13-pro-blue-select?wid=940&hei=1112&fmt=png-alpha&.v=1645552346275"},
                 ],
                 spec:[
@@ -224,7 +238,7 @@
             products.forEach((x, index) => {
                 const li = document.createElement("li")
                 const a = document.createElement("a")
-                a.classList.add("product", "btn", "btn-dark", "py-3")
+                a.classList.add("product", "btn", "btn-dark", "py-1")
                 a.innerText = x
                 a.herf = `#${x}`
                 a.addEventListener("click", () => {
@@ -270,7 +284,7 @@
                 const div = document.createElement("div")
                 div.classList.add("py-4", "d-flex", "flex-column", "justify-content-center", "align-items-center")
                 const i = document.createElement("i")
-                i.classList.add("fas", "fa-circle", "fs-1", "mb-1")
+                i.classList.add("fas", "fa-circle", "fs-2", "mb-1")
                 const span = document.createElement("span")
                 i.style.color = item.color
                 span.innerText = item.name
@@ -286,7 +300,7 @@
                 const specDiv = document.createElement("div")
                 specDiv.classList.add("format-item", "py-3", "border-bottom")
                 const h2 = document.createElement("h2")
-                h2.classList.add("format-title-spec", "fs-5", "fw-bold", "my-3")
+                h2.classList.add("format-title-spec", "fs-6", "fw-bold", "my-3")
                 const bodyDiv = document.createElement("div")
                 bodyDiv.classList.add("format-body-spec")
                 const rowDiv = document.createElement("div")
@@ -312,7 +326,7 @@
                     const div = document.createElement("div")
                     div.classList.add("py-4", "d-flex", "flex-column", "justify-content-center", "align-items-center")
                     const p = document.createElement("p")
-                    p.classList.add("spec-val", "fs-3", "fw-bold")
+                    p.classList.add("spec-val", "fs-5", "fw-bold")
                     const span = document.createElement("span")
                     span.classList.add("fit")
                     p.innerText = detail.name
