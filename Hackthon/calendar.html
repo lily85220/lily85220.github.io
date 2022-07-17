@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- reset -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+    
+    <!-- bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+    <!-- fontawsome -->
+    <script src="https://kit.fontawesome.com/9dc7e45d14.js" crossorigin="anonymous"></script>
+
+    <!-- googlefont -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Edu+SA+Beginner:wght@400;500;600;700&family=Noto+Sans+TC:wght@100;300;400;500;700&display=swap" rel="stylesheet">
+    <title>風和 日曆</title>
+    <style>
+        body{
+            font-family: 'Edu SA Beginner', 'Noto Sans TC', sans-serif;
+            background-color: #EBE8E2;
+        }
+        .content{
+            min-width: 992px;
+            max-width: 90%;
+            /* border: 1px solid #0fa; */
+            margin: auto;
+            padding-left: 10px;
+        }
+        .col{
+            width: 150px;
+        }
+        .week{
+            /* border: 1px solid #0aa; */
+            height: 40px;
+            text-align: center;
+            font-size: 20px;
+            letter-spacing: 1px;
+            line-height: 40px;
+            color: #937C32;
+            font-weight: 700;
+        }
+        .date-box{
+            height: 130px;
+            margin: 3px;
+        }
+        .bg{
+            background-color: #FBFBFB;
+        }
+        .bg:hover{
+            cursor: pointer;
+            box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+        }
+        .date{
+            font-size: 20px;
+            width: 25px;
+            height: 25px;
+            margin-left: 6px;
+            margin-top: 6px;
+            background-color: #d5cfc5;
+            text-align: center;
+            line-height: 25px;
+            border-radius: 50%;
+        }
+        .year-bee{
+            position: relative;
+            display: flex;
+        }
+        .bee{
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            right: -100px;
+        }
+        .month{
+            font-size: 100px;
+        }
+        .note-area{
+            background-color: #FBFBFB;
+            width: 80%;
+            height: 300px;
+            margin: 30px 10px 10px;
+            padding: 10px;
+            position: relative;
+        }
+        .note-title{
+            text-align: center;
+            font-size: 24px;
+        }
+        .note-content{
+            font-size: 22px;
+        }
+        .fa-plus{
+            position: absolute;
+            bottom: 5px;
+            right: 5px;
+            font-size: 18px;
+            background-color: #937C32;
+            border-radius: 50%;
+            color: #fff;
+            padding: 5px;
+        }
+        .add-title{
+            border: 2px solid #DFBFB2;
+            margin: 3px;
+        }
+        label{
+            margin: 3px;
+        }
+        input[type=text]:focus {
+            outline: none;
+            box-shadow: 1px 1px 5px 1px #DFBFB2;
+        }
+        .modal-footer .btn{
+            background-color: #E3D0CC;
+            color: #7D6252;
+        }
+        .btn.other{
+            background-color: #CD9D9B;
+            color: #7D6252;
+        }
+        .todo-item{
+            border-radius: 5px;
+            font-size: 20px;
+        }
+        .todo-item:hover{
+            cursor: pointer;
+            box-shadow: 1px 1px 5px 1px #ccc;
+        }
+    </style>
+</head>
+<body>
+    <div class="content d-flex mt-2">
+        <section class="section-box">
+            <div class="week-row d-flex">
+                <div class="week col">Sunday</div>
+                <div class="week col">Monday</div>
+                <div class="week col">Tuesday</div>
+                <div class="week col">Wednesday</div>
+                <div class="week col">Thursday</div>
+                <div class="week col">Friday</div>
+                <div class="week col">Saturday</div>
+            </div>
+            <div class="date-container">
+                <!-- <div class="date-row d-flex">
+                    <div class="date-box col">
+                        <p class="date">1</p>
+                        <span class="todo-item d-inline-block px-2" style="background-color: #FAFA0a">吃早餐</span>
+                    </div>
+                    <div class="date-box col"></div>
+                    <div class="date-box col"></div>
+                    <div class="date-box col"></div>
+                    <div class="date-box col"></div>
+                    <div class="date-box col"></div>
+                    <div class="date-box col"></div>
+                </div>
+                <div class="date-row d-flex">
+                    <div class="date-box col"></div>
+                    <div class="date-box col"></div>
+                    <div class="date-box col"></div>
+                    <div class="date-box col"></div>
+                    <div class="date-box col"></div>
+                    <div class="date-box col"></div>
+                    <div class="date-box col"></div>
+                </div>
+                <div class="date-row d-flex">
+                    <div class="date-box col"></div>
+                    <div class="date-box col"></div>
+                    <div class="date-box col"></div>
+                    <div class="date-box col"></div>
+                    <div class="date-box col"></div>
+                    <div class="date-box col"></div>
+                    <div class="date-box col"></div>
+                </div>
+                <div class="date-row d-flex">
+                    <div class="date-box col"></div>
+                    <div class="date-box col"></div>
+                    <div class="date-box col"></div>
+                    <div class="date-box col"></div>
+                    <div class="date-box col"></div>
+                    <div class="date-box col"></div>
+                    <div class="date-box col"></div>
+                </div>
+                <div class="date-row d-flex">
+                    <div class="date-box col"></div>
+                    <div class="date-box col"></div>
+                    <div class="date-box col"></div>
+                    <div class="date-box col"></div>
+                    <div class="date-box col"></div>
+                    <div class="date-box col"></div>
+                    <div class="date-box col"></div>
+                </div>
+                <div class="date-row d-flex">
+                    <div class="date-box col"></div>
+                    <div class="date-box col"></div>
+                    <div class="date-box col"></div>
+                    <div class="date-box col"></div>
+                    <div class="date-box col"></div>
+                    <div class="date-box col"></div>
+                    <div class="date-box col"></div>
+                </div> -->
+            </div>
+            
+            
+        </section>
+        <section class="section-note d-flex flex-column align-items-center justify-content-center flex-grow-1">
+            <div class="year-bee">
+                <h2 class="year">2022</h2>
+                <img class="bee" src="./圖片2.jp.png" alt="">
+            </div>
+            <p class="month">July</p>
+            <div class="change-month">
+                <i class="btn fa-solid fa-angle-left" data-bs-toggle="tooltip" data-bs-placement="bottom" title="上個月"></i>
+                <i class="btn fa-solid fa-angle-right" data-bs-toggle="tooltip" data-bs-placement="bottom" title="下個月"></i>
+            </div>
+            <!-- <div class="note-area">
+                <p class="note-title">Notes</p>
+                <div class="note-content">sdfvghhmghndfsvsdvdhtyjt thrtbdfvawergersbdb dstgethdhdshsdtgf</div>
+                <i class="btn fa-solid fa-plus"></i>
+            </div> -->
+        </section>
+        <div class="modal fade add-schedule" id="scheduleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="scheduleModalLabel"></h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body d-flex flex-column">
+                    <input type="text" placeholder="新增標題" class="add-title">
+                    <label>
+                        時間：
+                        <input class="modal-time" type="time">
+                    </label>
+                    <label>
+                        標記顏色：
+                        <input class="modal-color" type="color">
+                    </label>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn modal-footer-btn" data-bs-dismiss="modal">儲存</button>
+                </div>
+              </div>
+            </div>
+        </div>
+        <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">變更行程</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    是否刪除行程
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn other yes" data-bs-dismiss="modal">是</button>
+                  <button type="button" class="btn no" data-bs-dismiss="modal">否</button>
+                </div>
+              </div>
+            </div>
+        </div>
+        <!-- <div class="modal fade revise-schedule" id="revisescheduleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="scheduleModalLabel">變更行程</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body d-flex flex-column">
+                    <input type="text" placeholder="新增標題" class="add-title">
+                    <label>
+                        時間：
+                        <input class="modal-time" type="time">
+                    </label>
+                    <label>
+                        標記顏色：
+                        <input class="modal-color" type="color">
+                    </label>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">刪除行程</button>
+                  <button type="button" class="btn modal-footer-btn" data-bs-dismiss="modal">儲存變更</button>
+                </div>
+              </div>
+            </div>
+        </div> -->
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+    
+    <script>
+        const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+        const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+    </script>
+    <script>
+        
+        const monthList = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+        const dateContainer = document.querySelector('.date-container')
+        createContainer()
+        let dateBoxs
+        const year = document.querySelector('.year')
+        const month = document.querySelector('.month')
+        const noteContent = document.querySelector('.note-content')
+        const now = new Date()
+        let nowYear = now.getUTCFullYear()
+        const nowMonth = now.getMonth()
+        const modalBtn = document.querySelector('.modal-footer-btn')
+        const addTitle = document.querySelector('.add-title')
+        const modalTime = document.querySelector('.modal-time')
+        const modalColor = document.querySelector('.modal-color')
+        const yesBtn = document.querySelector('.yes')
+        const changeMonth = document.querySelector('.change-month')
+        window.onload = function(){
+            showDateBox(nowMonth)
+            showTodoItem()
+            dateContainer.addEventListener('click', function(event){
+                if(event.target.classList.contains('date')){
+                    modalBtn.onclick = collectAndShowInfo.bind(event, event.target.parentNode)
+                }else if(event.target.classList.contains('bg')){
+                    modalBtn.onclick = collectAndShowInfo.bind(event, event.target)
+                }else if(event.target.classList.contains('todo-item')){
+                    yesBtn.onclick = deleteSch.bind(event, event.target)
+                }
+            })
+            changeMonth.addEventListener('click', function(){
+                if(event.target.classList.contains('fa-angle-left')){
+                    changeLeft()
+                }else if(event.target.classList.contains('fa-angle-right')){
+                    changeRight()
+                }
+            })
+        }
+
+        function createContainer(){
+            for(let i = 0; i < 6;i++){
+                let dateRow = document.createElement('div')
+                let dateBox
+                dateRow.classList.add('date-row', 'd-flex')
+                for(j = 0; j < 7; j++){
+                    dateBox = document.createElement('div')
+                    dateBox.classList.add('date-box', 'col')
+                    dateRow.appendChild(dateBox)
+                }
+                dateContainer.appendChild(dateRow)
+            }
+        }
+
+        function showDateBox(sMonth){
+            //知道開頭是禮拜幾
+            //知道幾天
+            //從第[開頭]的dateboxs開始幾天個p
+            dateBoxs = document.querySelectorAll('.date-box')
+            year.innerText = nowYear
+            month.innerText = monthList[sMonth]
+            let start = new Date(nowYear, sMonth, 1).getDay()
+            let getNextMonth = new Date(nowYear, sMonth + 1, 0)
+            let days = getNextMonth.getDate()
+            for(let i = start; i < start + days; i++){
+                dateBoxs[i].classList.add('bg')
+            }
+            document.querySelectorAll('.bg').forEach((box, index) => {
+                let p = document.createElement('p')
+                p.classList.add('date')
+                p.innerText = index + 1
+                box.setAttribute('id', `${nowYear}-${sMonth + 1}-${index + 1}`)
+                box.setAttribute('data-bs-toggle', 'modal')
+                box.setAttribute('data-bs-target', '#scheduleModal')
+                box.onclick = changeModalContent
+                box.appendChild(p)
+            })
+        }
+
+        function changeModalContent(){
+            let title = document.querySelector('.modal-title')
+            title.innerText = this.id + " 行程"
+        }
+
+        //存localstorage
+        function collectAndShowInfo(target){
+            let addTitle = document.querySelector('.add-title')
+            let modalTime = document.querySelector('.modal-time')
+            let modalColor = document.querySelector('.modal-color')
+            let info
+            console.log(localStorage.getItem(target.id))
+            if(addTitle.value.length === 0){
+                return
+            }
+            let span = document.createElement('span')
+            span.classList.add('todo-item', 'd-block', 'px-2')
+            if(!localStorage.getItem(target.id)){
+                info = {
+                    id: target.id,
+                    todoList:[
+                        {
+                            time: modalTime.value,
+                            todo: addTitle.value,
+                            color: modalColor.value
+                        }
+                    ] 
+                }
+                localStorage.setItem(target.id, JSON.stringify(info))
+            }else{
+                info = JSON.parse(localStorage.getItem(target.id))
+                let todo = {
+                    time: modalTime.value,
+                    todo: addTitle.value,
+                    color: modalColor.value
+                }
+                info.todoList.push(todo)
+                localStorage.setItem(target.id, JSON.stringify(info))
+            }
+            
+            span.setAttribute('style', `color: ${modalColor.value}`)
+            span.setAttribute('data-bs-toggle', 'modal')
+            span.setAttribute('data-bs-target', '#deleteModal')
+            span.innerText = modalTime.value + addTitle.value
+            target.appendChild(span)
+            addTitle.value = ''
+            modalTime.value = '--:--'
+        }
+
+        //取localstorage，重新整理依舊會出現畫面
+        function showTodoItem(){
+            for (let i = 0; i < localStorage.length; i++) {
+                let item = JSON.parse(localStorage.getItem(localStorage.key(i)))
+                if(document.getElementById(item.id)){
+                    let box = document.getElementById(item.id)
+                    console.log(item.id)
+                    item.todoList.forEach(todo => {
+                        let span = document.createElement('span')
+                        span.classList.add('todo-item', 'd-block', 'px-2')
+                        span.setAttribute('style', `color: ${todo.color}`)
+                        span.setAttribute('data-bs-toggle', 'modal')
+                        span.setAttribute('data-bs-target', '#deleteModal')
+                        span.innerText = todo.time + todo.todo
+                        box.appendChild(span)
+                    })
+                }
+            }
+        }
+
+        //刪除行程
+        function deleteSch(span){
+            let item = JSON.parse(localStorage.getItem(span.parentNode.id))
+            if(item.todoList.length > 1){
+                item.todoList = item.todoList.filter(todo => {
+                    return todo.time + todo.todo != span.innerText
+                })
+                // let deleteTarget = item.todoList.filter(todo => todo.time + todo.todo === span.innerText)
+                localStorage.setItem(item.id, JSON.stringify(item))
+            }else{
+                localStorage.removeItem(item.id,)
+            }
+            span.remove()
+        }
+
+        function getNowMonth(){
+            return monthList.indexOf(month.innerText)
+        }
+        //更改月份
+        //複層設監聽器 清空HTML 抓到現在的年月 月份+1 或 -1當成參數傳入
+        function changeLeft(){
+            dateContainer.innerHTML = ''
+            createContainer()
+            let newMonth = getNowMonth()
+            if(newMonth === 0) {
+                newMonth = 12
+                nowYear -= 1
+            }
+            showDateBox(newMonth - 1)
+            showTodoItem()
+        }
+        function changeRight(){
+            dateContainer.innerHTML = ''
+            createContainer()
+            let newMonth = getNowMonth()
+            if(newMonth === 11) {
+                newMonth = -1
+                nowYear += 1
+            }
+            showDateBox(newMonth + 1)
+            showTodoItem()
+        }
+    </script>
+</body>
+</html>

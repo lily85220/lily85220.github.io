@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+    <!-- fontawesome -->
+    <script src="https://kit.fontawesome.com/9dc7e45d14.js" crossorigin="anonymous"></script>
+    <title>Apple</title>
+    <style>
+        body{
+            font-family: 'Open Sans', sans-serif;
+        }
+        /* 清除bootstrap focus */
+        .btn:focus,
+        .btn:active:focus,
+        .btn.active:focus,
+        .btn.focus,
+        .btn:active.focus,
+        .btn.active.focus,
+        button:focus {
+            outline: none !important;
+            box-shadow: none !important;
+        }
+
+        .color-btn,.fit-btn {
+            border: 1px solid #dee2e6;
+            position: relative;
+        }
+
+        [selected="true"]::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            border: 2px solid #0071e3;
+            border-radius: 0.25rem;
+        }
+        .info{
+            position: sticky;
+            top: 1px;
+            background-color: #fff9;
+            z-index: 1;
+            backdrop-filter: blur(100px);
+        }
+    </style>
+</head>
+<body>
+    <section class="nav d-flex justify-content-center align-items-center bg-dark">
+        <ul class="nav-bar d-flex list-unstyled m-0">
+            <!-- <li><a class="product btn btn-dark py-3" href="#">{{iphone1}}</a></li>
+            <li><a class="product btn btn-dark py-3" href="#">{{iphone1}}</a></li>
+            <li><a class="product btn btn-dark py-3" href="#">{{iphone1}}</a></li> -->
+        </ul>
+    </section>
+    <section class="info">
+        <div class="apple-info container d-flex justify-content-between align-items-center py-2">
+            <h2 class="product-top-type m-0 fs-3 fw-bold py-2"></h2>
+            <strong class="product-top-price m-o fs-4"></strong>
+        </div>
+    </section>
+    <section class="container py-3">
+        <div class="row">
+            <div class="col-12 col-md-6">
+                <div class="img-box px-4 py-5">
+                    <img class="product-img w-100" src="">
+                </div>
+            </div>
+            <div class="col-12 col-md-6 px-5 py-5">
+                <h2 class="product-name fs-1 fw-bold mb-4"></h2>
+                <div class="format">
+                    <div class="format-item py-3">
+                        <h2 class="format-title-color fs-5 fw-bold mb-3"></h2>
+                        <div class="format-body-color">
+                            <div class="row color-area">
+                                <!-- <div class="col-6 mb-3">
+                                    <button class="btn color-btn w-100 border">                                        <div class="py-4 d-flex flex-column justify-content-center align-items-center">
+                                            <i class="fas fa-circle fs-1 mb-1"></i>                                  <span class="color-name">{{黑色}}</span>
+                                        </div>
+                                    </button>
+                                </div>
+                                <div class="col-6 mb-3">
+                                    <button class="btn color-btn w-100 border">                                                          <div class="py-4 d-flex flex-column justify-content-center align-items-center">
+                                            <i class="fas fa-circle fs-1 mb-1"></i>                                                <span class="color-name">{{黑色}}</span>
+                                        </div>                                        
+                                    </button>
+                                </div> -->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="spec-group"></div>
+                    <!-- <div class="format-item py-3 border-bottom">
+                        <h2 class="format-title-spec fs-5 fw-bold mb-3">{{選擇儲存容量}}</h2>
+                        <div class="format-body-spec">
+                            <div class="row spec-area">
+                                <div class="col-6 mb-3">
+                                    <button class="btn spec-btn w-100 border">                                        
+                                        <div class="py-4 d-flex flex-column justify-content-center align-items-center">
+                                            <p class="spec-val">{{128GB}}</p>                                      <span class="fit">{{$36400}}</span>
+                                        </div>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div> -->
+                </div>
+            </div>
+        </div>
+    </section>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
+    <script>
+        //宣告
+        const productList = [
+            {
+                name: "iPhone 13 Pro",
+                price: 32900,
+                mainImg: "https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/iphone-13-pro-family-select?wid=940&amp;hei=1112&amp;fmt=jpeg&amp;qlt=90&amp;.v=1645811022162",
+                colorList: [
+                    {name: "松嶺青色", color: "#572856", img: "https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/iphone-13-pro-green-select?wid=940&hei=1112&fmt=png-alpha&.v=1644969385505"},
+                    {name: "銀色", color: "#F2F3EE", img: "https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/iphone-13-pro-silver-select?wid=940&hei=1112&fmt=png-alpha&.v=1645552345849"},
+                    {name: "金色", color: "#FAEAD3", img: "https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/iphone-13-pro-gold-select?wid=940&hei=1112&fmt=png-alpha&.v=1645552345862"},
+                    {name: "石墨色", color: "#636251", img: "https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/iphone-13-pro-graphite-select?wid=940&hei=1112&fmt=png-alpha&.v=1645552346276"},
+                    {name: "天空藍", color: "#ACC4DB", img: "https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/iphone-13-pro-blue-select?wid=940&hei=1112&fmt=png-alpha&.v=1645552346275"},
+                ],
+                spec:[
+                    {
+                        name: "儲存容量",
+                        specDetails:[
+                            {name: "128GB", fit:0},
+                            {name: "256GB", fit:3500},
+                            {name: "512GB", fit:10500},
+                            {name: "1TB", fit:17500},
+                        ]
+                    }
+                ]
+            },
+            {
+                name: "iPhone 12",
+                price: 22900,
+                mainImg: "https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/iphone-12-select-2021?wid=940&amp;hei=1112&amp;fmt=jpeg&amp;qlt=90&amp;.v=1617130318000",
+                colorList: [
+                    
+                    {name: "綠色", color: "#DAF0D9", img: "https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/iphone-12-green-select-2020?wid=940&hei=1112&fmt=png-alpha&.v=1604343704000"},
+                    {name: "紫色", color: "#6756BE", img: "https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/iphone-12-purple-select-2021?wid=940&hei=1112&fmt=png-alpha&.v=1617130317000"},
+                    {name: "藍色", color: "#184C71", img: "https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/iphone-12-blue-select-2020?wid=940&hei=1112&fmt=png-alpha&.v=1604343704000"},
+                    {name: "白色", color: "#F7F3F0", img: "https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/iphone-12-white-select-2020?wid=940&hei=1112&fmt=png-alpha&.v=1604343705000"},
+                    {name: "黑色", color: "#3B3841", img: "https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/iphone-12-black-select-2020?wid=940&hei=1112&fmt=png-alpha&.v=1604343702000"},
+                    {name: "(PRODUCT)RED", color: "#fF0702", img: "https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/iphone-12-red-select-2020?wid=940&hei=1112&fmt=png-alpha&.v=1604343703000"},
+                ],
+                spec:[
+                    {
+                        name: "儲存容量",
+                        specDetails:[
+                            {name: "64GB", fit:0},
+                            {name: "128GB", fit:1600},
+                            {name: "256GB", fit:5100}
+                        ]
+                    }
+                ]
+            },
+            {
+                name: "iPad Air",
+                price: 17900,
+                mainImg: "https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/ipad-air-select-202203?wid=3530&hei=4000&fmt=jpeg&qlt=90&.v=1645665079887",
+                colorList: [
+                    
+                    {name: "太空灰色", color: "#777579", img: "https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/ipad-air-select-wifi-spacegray-202203?wid=940&hei=1112&fmt=png-alpha&.v=1645066742664"},
+                    {name: "粉紅色", color: "#E7D2CF", img: "https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/ipad-air-select-wifi-pink-202203?wid=940&hei=1112&fmt=png-alpha&.v=1645066399526"},
+                    {name: "紫色", color: "#BFBDD3", img: "https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/ipad-air-select-wifi-purple-202203?wid=940&hei=1112&fmt=png-alpha&.v=1645066730601"},
+                    {name: "藍色", color: "#90B4C2", img: "https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/ipad-air-select-wifi-blue-202203?wid=940&hei=1112&fmt=png-alpha&.v=1645065732688"},
+                    {name: "星光色", color: "#FAF7F2", img: "https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/ipad-air-select-wifi-starlight-202203?wid=940&hei=1112&fmt=png-alpha&.v=1645895139236"}
+                ],
+                spec:[
+                    {
+                        name: "儲存容量",
+                        specDetails:[
+                            {name: "64GB", fit:0},
+                            {name: "256GB", fit:5000}
+                        ]
+                    },
+                    {
+                        name: "連線能力",
+                        specDetails:[
+                            {name: "Wi-Fi", fit:0},
+                            {name: "Wi-Fi + 行動網路", fit:5000}
+                        ]
+                    }
+                ]
+            }
+        ]
+
+        //DOM
+        const navBar = document.querySelector(".nav-bar")
+        const productTopType = document.querySelector(".product-top-type")
+        const productTopPrice = document.querySelector(".product-top-price")
+        const productName = document.querySelector(".product-name")
+        const productImg = document.querySelector(".product-img")
+        const formatTitleColor = document.querySelector(".format-title-color")
+        const colorArea = document.querySelector(".color-area")
+        const format = document.querySelector(".format")
+        const info = document.querySelector(".info")
+        const specGroup = document.querySelector('.spec-group')
+        
+        //window.onload
+        window.onload = function(){
+            showNav()
+            selectProduct(productList[0])
+        }
+        //nav產品列表
+        const products = productList.map((x) => x.name)
+        function showNav(){
+            products.forEach((x, index) => {
+                const li = document.createElement("li")
+                const a = document.createElement("a")
+                a.classList.add("product", "btn", "btn-dark", "py-3")
+                a.innerText = x
+                a.herf = `#${x}`
+                a.addEventListener("click", () => {
+                    // colorArea.remove()
+                    // document.querySelector(".container").reload()
+                    // colorDiv.querySelectorAll("button").forEach(btn => btn.remove())
+                    // colorDiv.remove()
+                    // location.reload()
+                    // setTimeout(selectProduct(productList[index]),500)
+                    colorArea.innerHTML = ''
+                    specGroup.innerHTML = ''
+                    selectProduct(productList[index])
+                    
+                })
+                li.appendChild(a)
+                navBar.appendChild(li)
+            })
+        }
+        
+        //選擇產品 讓畫面出現該產品
+        function selectProduct(product){
+            info.classList.add("border-bottom")
+            productTopType.innerText = product.name
+            productTopPrice.innerText = `NT$${product.price}起`
+            productImg.src = product.mainImg
+            productName.innerText = `購買${product.name}`
+            formatTitleColor.innerText = "選擇外觀。"
+            //color
+            product.colorList.forEach(item => {
+                const formatItem = document.querySelector(".format-item")
+                formatItem.classList.add("border-bottom")
+                const colorDiv = document.createElement("div")
+                colorDiv.classList.add("col-6", "mb-3")
+                const btn = document.createElement("button")
+                btn.classList.add("btn", "color-btn", "w-100", "border")
+                btn.addEventListener("click", function(){
+                    colorArea.querySelectorAll(".btn").forEach((b) => {
+                        b.setAttribute('selected', 'false')
+                    })
+                    btn.setAttribute('selected', 'true')
+                    productImg.src = item.img
+                })
+                const div = document.createElement("div")
+                div.classList.add("py-4", "d-flex", "flex-column", "justify-content-center", "align-items-center")
+                const i = document.createElement("i")
+                i.classList.add("fas", "fa-circle", "fs-1", "mb-1")
+                const span = document.createElement("span")
+                i.style.color = item.color
+                span.innerText = item.name
+                div.appendChild(i)
+                div.appendChild(span)
+                btn.appendChild(div)
+                colorDiv.appendChild(btn)
+                colorArea.appendChild(colorDiv)
+            })
+
+            //spec
+            product.spec.forEach((item) => {
+                const specDiv = document.createElement("div")
+                specDiv.classList.add("format-item", "py-3", "border-bottom")
+                const h2 = document.createElement("h2")
+                h2.classList.add("format-title-spec", "fs-5", "fw-bold", "my-3")
+                const bodyDiv = document.createElement("div")
+                bodyDiv.classList.add("format-body-spec")
+                const rowDiv = document.createElement("div")
+                rowDiv.classList.add("row", "spec-area")
+                
+                h2.innerText = `選擇${item.name}。`
+
+                item.specDetails.forEach((detail) => {
+                    const colDiv = document.createElement("div")
+                    colDiv.classList.add("col-6", "mb-3")
+                    const btn = document.createElement("button")
+                    btn.classList.add("btn", "fit-btn", "w-100", "border")
+                    btn.setAttribute('fit', detail.fit)
+                    btn.setAttribute('selected', 'false')
+                    btn.onclick = function(){
+                        rowDiv.querySelectorAll(".btn").forEach((b) => {
+                            b.setAttribute('selected', 'false')
+                            b.querySelector("span").innerText = `NT$${parseInt(product.price) + parseInt(b.getAttribute("fit"))}起`
+                        })
+                        btn.setAttribute('selected', 'true')
+                        showPrice(product)
+                    }
+                    const div = document.createElement("div")
+                    div.classList.add("py-4", "d-flex", "flex-column", "justify-content-center", "align-items-center")
+                    const p = document.createElement("p")
+                    p.classList.add("spec-val", "fs-3", "fw-bold")
+                    const span = document.createElement("span")
+                    span.classList.add("fit")
+                    p.innerText = detail.name
+                    span.innerText = `NT$${product.price + detail.fit}起`
+                    div.appendChild(p)
+                    div.appendChild(span)
+                    btn.appendChild(div)
+                    colDiv.appendChild(btn)
+                    rowDiv.appendChild(colDiv)
+                })
+                bodyDiv.appendChild(rowDiv)
+                specDiv.appendChild(h2)
+                specDiv.appendChild(bodyDiv)
+                specGroup.appendChild(specDiv)
+            })
+            //function
+            function showPrice(product){
+                let totalPrice = product.price
+                let fits =  document.querySelectorAll("[selected='true']")
+                // let totalPrice = product.price
+                fits.forEach((fit) => {
+                    if(fit.getAttribute("fit") !== null){
+                        totalPrice += parseInt(fit.getAttribute("fit"))
+                    }
+                })
+                productTopPrice.innerText = `NT$${totalPrice}`
+            }
+        }
+    </script>
+</body>
+</html>
