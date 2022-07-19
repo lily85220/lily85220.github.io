@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- reset -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+
+    <!-- bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous" />
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+    crossorigin="anonymous"></script>
+
+    <!-- fontawsome -->
+    <script src="https://kit.fontawesome.com/9dc7e45d14.js" crossorigin="anonymous"></script>
+
+    <!-- googlefont -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Roboto:wght@100;300;400;900&display=swap" rel="stylesheet">
+    <title>League of Legends</title>
+    <style>
+        .card-container{
+            margin: auto;
+            width: 90%;
+            max-width: 1200px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+        .card{
+            border: 1px solid #444;
+        }
+        .card:hover{
+            box-shadow: 2px 2px 1px 1px rgba(0, 0, 0, 0.2);
+        }
+        .card:hover .card-body{
+            background-color: #ECE7E1;
+        }
+        .card-body{
+            background-color: rgb(244, 242, 236);
+        }
+        .card-body p{
+            height: 100px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+        }
+        .more-btn{
+            background-color: #333;
+            color: #D2B48C;
+        }
+        .more-btn:hover{
+            background-color: #D2B48C;
+            color: #333; 
+        }
+        .card-img-top{
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <!-- <button>fetch讀取資料</button> -->
+    <!-- <button data-toggle="modal" data-target="#heroModal">XHR讀取資料</button> -->
+    <div class="card-container">
+        
+    </div>
+    <template id="hero-card">
+        <div class="card my-1" style="width: 16rem;">
+            <div class="img-box">
+                <img src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Ahri_0.jpg" class="card-img-top w-100" alt="...">
+            </div>
+            
+            <div class="card-body">
+                <h5 class="card-title">英雄名稱</h5>
+                <p class="card-text">簡介</p>
+                <div class="btn-group d-flex justify-content-start">
+                    <button class="btn more-btn detail me-2" data-bs-toggle="modal" data-bs-target="#heroModal">詳細</button>
+                    <button class="btn more-btn vedio ms-2" data-bs-toggle="modal" data-bs-target="#vedioModal">影片</button>
+                </div>
+            </div>
+        </div>
+    </template>
+    
+    
+    <div class="modal fade" id="heroModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <img class="w-100" src="" alt="">
+              <ul class="mt-4 ps-1">
+                
+              </ul>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="vedioModal" data-bs-backdrop="static" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+              <button type="button" class="btn-close vedio-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <iframe id="vedioSource" class="w-100" width="640" height="360" src="https://www.youtube.com/embed/hjPS3j5XNss" title="All That Will Ever Be | Bel'Veth Cinematic - League of Legends" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary vedio-close" data-bs-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        let championsObject
+        let nameArray = []
+        // const detail = document.querySelector('.detail')
+        const cardContainer = document.querySelector('.card-container')
+        const heroCard = document.querySelector('#hero-card')
+        const vedioSource = document.querySelector('#vedioSource')
+        let vedioClose = document.querySelectorAll('.vedio-close')
+        let url = 'https://ddragon.leagueoflegends.com/cdn/10.22.1/data/zh_TW/champion.json'
+        window.onload = function(){
+            fetchData()
+            vedioClose.forEach(btn=>{
+                btn.onclick = () =>{
+                    deleteVedio()
+                }
+            })
+            
+        }
+        function fetchData(){
+            fetch(url)
+            .then(res => res.json())
+            .then(result => {
+                championsObject = result.data
+                nameArray = Object.keys(championsObject)
+                nameArray.forEach((name, index) => {
+                    let imgurl = `https://ddragon.leagueoflegends.com/cdn/img/champion/splash/${name}_0.jpg`
+                    let title = `${name} - ${championsObject[name].name}`
+                    let description = championsObject[name].blurb
+                    setCard(name, imgurl, title, description)
+                    
+                })
+                console.log(championsObject)
+            })
+            .catch()
+        }
+        function setCard(name, imgurl, title, description){
+            let cloneCard = heroCard.content.cloneNode(true)
+            cloneCard.querySelector('img').src = imgurl
+            cloneCard.querySelector('h5').innerText = title
+            cloneCard.querySelector('p').innerText = description
+            let detailBtn = cloneCard.querySelector('.detail')
+            detailBtn.onclick = () => {
+                setModal(imgurl, title, name)
+            }
+            let vedioBtn = cloneCard.querySelector('.vedio')
+            vedioBtn.onclick = () => {
+                setVedioModal(title)
+            }
+            cardContainer.appendChild(cloneCard)
+        }
+
+        function setModal(imgurl, title, name){
+            let heroModal = document.querySelector('#heroModal')
+            let ul = heroModal.querySelector('ul')
+            ul.innerHTML = ''
+            let statses = championsObject[name].stats
+            let stats = [`HP : ${statses.hp}`, `Move Speed : ${statses.movespeed}`, `Armor : ${statses.armor}`, `Spell Block : ${statses.spellblock}`, `AttackRange : ${statses.attackrange}`]
+            heroModal.querySelector('img').src = imgurl
+            heroModal.querySelector('h5').innerText = title
+            stats.forEach(x => {
+                let li = document.createElement('li')
+                li.innerText = x
+                ul.appendChild(li)
+            })
+        }
+
+        function setVedioModal(title){
+            let vedioModal = document.querySelector('#vedioModal')
+            vedioModal.querySelector('h5').innerText = title
+            displayVedio()
+        }
+
+        function deleteVedio(){
+            vedioSource.src = ''
+        }
+        
+        function displayVedio(){
+            vedioSource.src = 'https://www.youtube.com/embed/hjPS3j5XNss'
+        }
+
+
+        //要在哪裡設定BTN
+        //windowㄤ露裝監聽器
+        //事件發生後設定魔豆
+    </script>
+</body>
+</html>

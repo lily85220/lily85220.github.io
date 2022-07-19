@@ -130,6 +130,9 @@
             cursor: pointer;
             box-shadow: 1px 1px 5px 1px #ccc;
         }
+        .today{
+            box-shadow: 0px 0px 2px 1px #F77E66;
+        }
     </style>
 </head>
 <body>
@@ -305,8 +308,10 @@
         const month = document.querySelector('.month')
         const noteContent = document.querySelector('.note-content')
         const now = new Date()
-        let nowYear = now.getUTCFullYear()
+        let nowYear = now.getFullYear()
+        let today
         const nowMonth = now.getMonth()
+        const todayId = `${now.getFullYear()}-${now.getMonth() + 1}-${now.getDate()}`
         const modalBtn = document.querySelector('.modal-footer-btn')
         const addTitle = document.querySelector('.add-title')
         const modalTime = document.querySelector('.modal-time')
@@ -369,6 +374,7 @@
                 box.setAttribute('data-bs-toggle', 'modal')
                 box.setAttribute('data-bs-target', '#scheduleModal')
                 box.setAttribute('style', 'overflow-y:auto;')
+                if(box.id == todayId) box.classList.add('today')
                 box.onclick = changeModalContent
                 box.appendChild(p)
             })
