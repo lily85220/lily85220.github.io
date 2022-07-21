@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- reset -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css"
+    integrity="sha512-hoalWLoI8r4UszCkZ5kL8vayOGVae1oxXe/2A4AO6J9+580uKHDO3JdHb7NzwwzK5xr/Fs0W40kiNHxM9vyTtQ=="
+    crossorigin=""/>
+     <!-- Make sure you put this AFTER Leaflet's CSS -->
+    <script src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js"
+    integrity="sha512-BB3hKbKWOc9Ez/TAwyWxNXeoV9c1v6FIeYiBieIWkpLjauysF18NzgR1MBNBXf8/KABdlkX68nAhlwcDFLGPCQ=="
+    crossorigin=""></script>
+
+    <!-- bootstrap -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css">
+
+    <!-- fontawsome -->
+    <script src="https://kit.fontawesome.com/9dc7e45d14.js" crossorigin="anonymous"></script>
+
+    <!-- googlefont -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Edu+SA+Beginner:wght@400;500;600;700&family=Noto+Sans+TC:wght@100;300;400;500;700&display=swap" rel="stylesheet">
+
+    <title>超速不超塑</title>
+
+    <style>
+        .container{
+            width: 500px;
+        }
+        #map { 
+            height: 500px; 
+            width: 100%;
+        }
+        .accordion-button{
+            border: 2px solid #FACB03;
+        }
+        .accordion-button:focus{
+            background-color: #FFF6E6;
+            border: 2px solid #F58E64;
+            color: #734140;
+            box-shadow: none;
+        }
+        .accordion-button:focus,
+        .accordion-button:active:focus,
+        .accordion-button.active:focus,
+        .accordion-button.focus,
+        .accordion-button:active.focus,
+        .accordion-button.active.focus{
+            background-color: #FFF6E6 !important;
+        }
+        .area-btn{
+            border: 2px solid #F5D389;
+
+        }
+        .area-btn:hover{
+            border: 2px solid #0000;
+            box-shadow: 0px 0px 3px 1px rgba(250, 203, 3, 0.8);
+        }
+        .area-btn:focus{
+            border: 2px solid #BF7B75;
+            
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid m-1">
+        <div class="row">
+
+            <div class="col-md-4">
+                <div class="accordion" id="accordionFlushExample">
+                    <div class="accordion-item m-1">
+                        <h2 class="accordion-header" id="flush-headingOne">
+                            <button class="accordion-button collapsed county-btn" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                            縣/市
+                            </button>
+                        </h2>
+                        <div id="flush-collapseOne" class="accordion-collapse collapse p-1" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                            <div class="row county-row">
+                                <!-- <div class="col-4 my-2 county-col">
+                                    <button class="btn area-btn w-100">新北市</button>
+                                </div> -->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item m-1">
+                        <h2 class="accordion-header" id="flush-headingTwo">
+                            <button class="accordion-button collapsed region-btn" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+                            行政區/方向
+                            </button>
+                        </h2>
+                        <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
+                            <div class="row region-row">
+                                <!-- <div class="col-4 my-2 region-col">
+                                    <button class="btn area-btn w-100">新莊區</button>
+                                </div> -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div id="map"></div>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js" integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.min.js" integrity="sha384-ODmDIVzN+pFdexxHEHFBQH3/9/vQ9uori45z4JjnFsRydbmQbmL5t1tQ0culUzyK" crossorigin="anonymous"></script>
+    <script>
+        const countyBtn = document.querySelector('.county-btn')
+        const countyRow = document.querySelector('.county-row')
+        const regionBtn = document.querySelector('.region-btn')
+        const regionRow = document.querySelector('.region-row')
+        let markers = []
+        let markerGroup
+        // 初始化地圖
+        let map = L.map('map', {
+            center: [23.471022106632176, 120.95745476052154],
+            zoom: 9
+        })
+
+        // 設定圖資來源
+        let layerUrl = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
+        var layer = new L.TileLayer(layerUrl, {
+            minZoom: 6,
+            maxZoom: 19
+        })
+        // 把圖資加到地圖上
+        map.addLayer(layer)
+
+        //全域變數宣告
+        let areaData = []
+        let areaGroupNewData
+        let regionName
+        window.onload = function(){
+            fetch('https://raw.githubusercontent.com/lily85220/FileStorage/main/%E6%B8%AC%E9%80%9F%E7%85%A7%E7%9B%B8%E6%A9%9F')
+            .then(res => res.json())
+            .then(res => {
+                res.result.records.filter((item, index) => index > 0).forEach(item => {
+                    if(item.RegionName.includes(item.CityName)){
+                        item.RegionName = item.RegionName.replace(item.CityName,'')
+                    }
+                    areaData.push(item)
+                })
+                areaGroupNewData = areaData.groupBy('CityName')
+                firstAcc()
+            })
+        }
+
+        //重複縣市名字V、空的鄉鎮名稱
+        // 初始化第一個手風琴
+        function firstAcc(){
+            Object.keys(areaGroupNewData).forEach(county => {
+                let div = document.createElement('div')
+                div.classList.add('col-4', 'my-2', 'county-col')
+                let btn = document.createElement('button')
+                btn.classList.add('btn', 'area-btn', 'w-100')
+                btn.innerText = county
+                btn.onclick = function(){
+                    if(this.innerText.includes('國道') || this.innerText.includes('已線')){
+                        let areaObj = areaGroupNewData[this.innerText].groupBy('direct')
+                        secondAcc(areaObj)
+                        
+                    }else{
+                        areaGroupNewData[this.innerText].forEach(data => data.RegionName == '' ? data.RegionName ='未分類' : data.RegionName =data.RegionName)
+                        let areaObj = areaGroupNewData[this.innerText].groupBy('RegionName')
+                        
+                        secondAcc(areaObj)
+                    }
+                    countyBtn.innerText = this.innerText
+                    regionBtn.innerText = '行政區/方向'
+                    regionBtn.click()
+                }
+                div.appendChild(btn)
+                countyRow.appendChild(div)
+            })
+        }
+
+        //第二個手風琴
+        function secondAcc(areaObj){
+            regionRow.innerHTML = ''
+            Object.keys(areaObj).forEach(region => {
+                let div = document.createElement('div')
+                div.classList.add('col-4', 'my-2', 'county-col')
+                let btn = document.createElement('button')
+                btn.classList.add('btn', 'area-btn', 'w-100')
+                btn.innerText = region
+                btn.onclick = function(){
+                    regionBtn.innerText = region
+                    regionBtn.click()
+                    setMarker(areaObj[region])
+                }
+                div.appendChild(btn)
+                regionRow.appendChild(div)
+            })
+            let div = document.createElement('div')
+            div.classList.add('col-4', 'my-2', 'county-col')
+            let btn = document.createElement('button')
+            btn.classList.add('btn', 'area-btn', 'w-100')
+            btn.innerText = '查看全部'
+            btn.onclick = function(){
+                regionBtn.innerText = btn.innerText
+                setMarker(Object.values(areaObj).reduce((prev, curr) => prev.concat(curr)))
+            }
+            div.appendChild(btn)
+            regionRow.appendChild(div)
+        }
+
+        function clearMarker(){
+            if(markerGroup){
+                map.removeLayer(markerGroup)
+                markers = []
+            }
+        }
+        //setMarker
+        function setMarker(siteArray){
+            clearMarker()
+            
+            siteArray.forEach(x => {
+                let marker = new L.marker([x.Latitude, x.Longitude])
+                markers.push(marker)
+                // popUp 顯示資訊
+                marker.bindPopup(`
+                    <h6>${x.CityName} ${x.RegionName}</h6>
+                    <p>地址: ${x.Address}</p>
+                    <p>方向: ${x.direct}</p>
+                    <p>速限: ${x.limit} 公里</p>
+                `)
+                map.setView([x.Latitude, x.Longitude], 12)
+            })
+            markerGroup = L.layerGroup(markers)
+            // map.addLayer(markerGroup)
+            markerGroup.addTo(map)
+        }
+
+        //array groupby方法註冊
+        Array.prototype.groupBy = function (prop) {
+            return this.reduce(function (groups, item) {
+                const val = item[prop]
+                groups[val] = groups[val] || []
+                groups[val].push(item)
+                return groups
+            }, {})
+        }
+    </script>
+</body>
+</html>
