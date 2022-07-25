@@ -102,6 +102,26 @@
                         </div>
                     </div>
                 </div>
+                <div class="info-detail">
+                    <!-- <p class="table-name text-center fs-4">金門縣 金沙鎮 測速照相資訊</p>
+                    <table class="table table-hover table-bordered">
+                        <thead>
+                            <tr>
+                                <th>地址</th>
+                                <th>方向</th>
+                                <th>速限</th>
+                            </tr>                        
+                        </thead>
+                        <tbody class="table-warning">
+                            <tr>
+                                <td>國道一號南向152.9公里</td>
+                                <td>往南</td>
+                                <td>100公里</td>
+                            </tr>
+                        </tbody>
+                    </table> -->
+                </div>
+                
             </div>
             <div class="col-md-8">
                 <div id="map"></div>
@@ -117,6 +137,14 @@
         const countyRow = document.querySelector('.county-row')
         const regionBtn = document.querySelector('.region-btn')
         const regionRow = document.querySelector('.region-row')
+        const infoDetail = document.querySelector('.info-detail')
+        const redIcon = L.icon({
+            iconUrl: './圖片1.png',
+            iconSize: [35, 40],
+            iconAnchor:[15, 35],
+            popupAnchor: [-3, -10]
+        })
+
         let markers = []
         let markerGroup
         // 初始化地圖
@@ -175,6 +203,7 @@
                     }
                     countyBtn.innerText = this.innerText
                     regionBtn.innerText = '行政區/方向'
+                    infoDetail.innerHTML = ''
                     regionBtn.click()
                 }
                 div.appendChild(btn)
@@ -195,6 +224,7 @@
                     regionBtn.innerText = region
                     regionBtn.click()
                     setMarker(areaObj[region])
+                    showTable(areaObj[region])
                 }
                 div.appendChild(btn)
                 regionRow.appendChild(div)
@@ -207,6 +237,7 @@
             btn.onclick = function(){
                 regionBtn.innerText = btn.innerText
                 setMarker(Object.values(areaObj).reduce((prev, curr) => prev.concat(curr)))
+                showTable(Object.values(areaObj).reduce((prev, curr) => prev.concat(curr)))
             }
             div.appendChild(btn)
             regionRow.appendChild(div)
@@ -223,7 +254,12 @@
             clearMarker()
             
             siteArray.forEach(x => {
-                let marker = new L.marker([x.Latitude, x.Longitude])
+                let marker
+                if(x.limit >= 70){
+                    marker = new L.marker([x.Latitude, x.Longitude],{icon: redIcon})
+                }else{
+                    marker = new L.marker([x.Latitude, x.Longitude])
+                }
                 markers.push(marker)
                 // popUp 顯示資訊
                 marker.bindPopup(`
@@ -239,6 +275,41 @@
             markerGroup.addTo(map)
         }
 
+        function showTable(siteArray){
+            const headTitle = ['地址','方向','速限']
+            const bodyInfo = siteArray.map(site => ({Address: site.Address,direct: site.direct, limit: site.limit}))
+            let p = document.createElement('p')
+            p.classList.add('table-name', 'text-center', 'fs-4')
+            p.innerText = `${countyBtn.innerText} ${regionBtn.innerText}測速照相資訊`
+            let table = document.createElement('table')
+            table.classList.add('table', 'table-hover', 'table-bordered')
+            //thead
+            let thead = document.createElement('thead')
+            let theadTr = document.createElement('tr')
+            headTitle.forEach(title => {
+                let th = document.createElement('th')
+                th.innerText = title
+                theadTr.appendChild(th)
+            })
+
+            //tbody
+            let tbody = document.createElement('tbody')
+            tbody.classList.add('table-warning')
+            bodyInfo.forEach(x => {
+                let tbodyTr = document.createElement('tr')
+                Object.values(x).forEach(info => {
+                    let td = document.createElement('td')
+                    td.innerText = info
+                    tbodyTr.appendChild(td)
+                })
+                tbody.appendChild(tbodyTr)
+            })
+            thead.appendChild(theadTr)
+            table.appendChild(thead)
+            table.appendChild(tbody)
+            infoDetail.appendChild(p)
+            infoDetail.appendChild(table)
+        }
         //array groupby方法註冊
         Array.prototype.groupBy = function (prop) {
             return this.reduce(function (groups, item) {
