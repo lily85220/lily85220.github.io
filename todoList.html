@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- reset -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+    <!-- bootstrap -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css">
+    <!-- fontawsome -->
+    <script src="https://kit.fontawesome.com/9dc7e45d14.js" crossorigin="anonymous"></script>
+
+    <!-- googlefont -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Edu+SA+Beginner:wght@400;500;600;700&family=Noto+Sans+TC:wght@100;300;400;500;700&display=swap" rel="stylesheet">
+
+    <title>TodoList</title>
+    <style>
+        .box{
+            max-width: 600px;
+            margin: auto;
+        }
+        .show-item:focus,
+        .show-item:focus-visible{
+            outline: none;
+            box-shadow: none;
+            border: 1px solid #ced4da;
+        }
+        .strikethrough{
+            text-decoration: line-through;
+        }
+    </style>
+</head>
+<body>
+    <div class="box px-3">
+        <div class="input-group my-3 input-area-group">
+            <input type="text" class="form-control input-area" placeholder="輸入代辦事項" aria-label="輸入代辦事項" aria-describedby="button-addon2">
+            <button class="btn btn-outline-secondary input-btn" type="button" id="button-addon2">新增</button>
+        </div>
+        <section class="list-group">
+            <template id="list-model">
+                <div class="input-group align-items-center item-group my-2">
+                    <input class="form-check-input checkbox" type="checkbox">
+                    <input type="text" class="form-control ms-2 show-item" readonly>
+                    <button class="btn btn-outline-secondary edit-btn">編輯</button>
+                    <button class="btn btn-outline-secondary del-btn">刪除</button>
+                </div>
+            </template>
+        </section>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js" integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.min.js" integrity="sha384-ODmDIVzN+pFdexxHEHFBQH3/9/vQ9uori45z4JjnFsRydbmQbmL5t1tQ0culUzyK" crossorigin="anonymous"></script>
+    <script>
+        //DOM
+        const inputAreaGroup = document.querySelector('.input-area-group')
+        const inputArea = document.querySelector('.input-area')
+        const inputBtn = document.querySelector('.input-btn')
+        const listGroup = document.querySelector('.list-group')
+        const listModel = document.querySelector('#list-model')
+        const todoList = JSON.parse(localStorage.getItem('todoList')) || []
+
+        window.onload = function(){
+            initialize()
+            inputBtn.addEventListener('click', function(){
+                if(todoList.map(x =>x.contentText).includes(inputArea.value)){
+                    alert('輸入了重複的待辦事項，請重新輸入')
+                    return
+                }
+                if (inputArea.value){
+                    todoList.push({isComplete: false, contentText: inputArea.value})
+                    updateTodoList()
+                    initialize()
+                    inputArea.value = ''
+                }
+            })
+            window.addEventListener('keypress', function(event){
+                if(event.key === 'Enter'){
+                    document.querySelector('.input-btn').click()
+                }
+            },false)
+            listGroup.addEventListener('click', function(event){
+                let target = event.target
+                let changeTodo = target.parentElement.children[1]
+                if(target.classList.contains('edit-btn')){
+                    editTodo(target)
+                }
+                else if(target.innerText == '保存'){
+                    completeEdit(target)
+                }
+                else if(target.classList.contains('del-btn')){
+                    delTodo(target)
+                }else if(target.classList.contains('checkbox')){
+                    changeTodo.classList.toggle('strikethrough')
+                    if(changeTodo.classList.contains('strikethrough')){
+                        changeIsComplete(true, target)
+                    }else{
+                        changeIsComplete(false, target)
+                    }
+                }
+            })
+        }
+
+        function addTodo(text){
+            let cloneTodo = listModel.content.cloneNode(true)
+            cloneTodo.querySelector('.show-item').value = text
+            listGroup.appendChild(cloneTodo)
+            
+        }
+
+        function updateTodoList(){
+            localStorage.setItem('todoList', JSON.stringify(todoList))
+        }
+
+        //edit
+        function editTodo(target){
+            let changeTodo = target.parentElement.children[1]
+            changeTodo.setAttribute('style', 'box-shadow: 0 0 0 0.25rem rgb(88 110 253 / 25%);')
+            changeTodo.removeAttribute('readonly')
+            changeTodo.setAttribute('id', changeTodo.value)
+            target.classList.add('bg-success','text-white')
+            target.classList.remove('edit-btn')
+            target.innerText = '保存'
+        }
+
+        function completeEdit(target){
+            let changeTodo = target.parentElement.children[1]
+            let index = getIndex(changeTodo.id)
+            todoList.splice(index, 1, {isComplete: false, contentText: changeTodo.value})
+            
+            changeTodo.removeAttribute('style')
+            changeTodo.removeAttribute('id')
+            changeTodo.setAttribute('readonly','readonly')
+            target.classList.remove('bg-success','text-white')
+            target.classList.add('edit-btn')
+            target.innerText = '編輯'
+            updateTodoList()
+        }
+
+        function delTodo(target){
+            let changeTodo = target.parentElement.children[1]
+            todoList.splice(getIndex(changeTodo.value),1)
+            updateTodoList()
+            initialize()
+        }
+
+        function initialize(){
+            listGroup.innerHTML = ''
+            todoList.forEach((x, index) => {
+                addTodo(x.contentText)
+                let targets = document.querySelectorAll('.show-item')
+                let checkBox = document.querySelectorAll('.checkbox')
+                if(x.isComplete) {
+                    targets[index].classList.toggle('strikethrough')
+                    checkBox[index].setAttribute('checked','checked')
+                }
+            })
+        }
+
+
+        function getIndex(item){
+            return todoList.map(x => x.contentText).indexOf(item)
+        }
+
+        function changeIsComplete(isComplete, target){
+            let changeTodo = target.parentElement.children[1]
+            todoList.splice(getIndex(changeTodo.value),1,{isComplete: isComplete, contentText:changeTodo.value})
+            updateTodoList()
+        }
+    </script>
+</body>
+</html>
