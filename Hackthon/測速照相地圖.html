@@ -29,9 +29,6 @@
     <title>超速不超塑</title>
 
     <style>
-        .container{
-            width: 500px;
-        }
         #map { 
             height: 500px; 
             width: 100%;
@@ -65,10 +62,29 @@
             border: 2px solid #BF7B75;
             
         }
+        .accordion-button:not(.collapsed){
+            color: #000;
+            background-color: #FFF6E6;
+        }
+        .accordion-button:not(.collapsed)::after{
+            background-image: #000;
+        }
     </style>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+        })(window,document,'script','dataLayer','GTM-PFP8B5T');
+    </script>
+    <!-- End Google Tag Manager -->
 </head>
 <body>
-    <div class="container-fluid m-1">
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PFP8B5T"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+    <div class="container m-auto mt-3">
         <div class="row">
 
             <div class="col-md-4">
@@ -276,6 +292,7 @@
         }
 
         function showTable(siteArray){
+            infoDetail.innerHTML = ''
             const headTitle = ['地址','方向','速限']
             const bodyInfo = siteArray.map(site => ({Address: site.Address,direct: site.direct, limit: site.limit}))
             let p = document.createElement('p')
