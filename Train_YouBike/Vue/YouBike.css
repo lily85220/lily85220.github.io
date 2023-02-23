@@ -1,0 +1,141 @@
+#app{
+    width: 95%;
+    margin: 0 auto;
+    padding: 5px 0;
+    height: 100vh;
+}
+/* header */
+.section-header{
+    height: 50px;
+    user-select: none;
+    margin: 5px 0;
+}
+label{
+    margin: 0;
+}
+input, select, .reload-btn, .has-bike, .table-head img{
+    cursor: pointer;
+}
+/* 自訂checkbox樣式*/
+.self-box {
+    position: relative;
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 1px solid #AAA;
+    border-radius: 4px;
+
+}
+.self-box::before,
+.self-box::after {
+    /* 上面的打勾 */
+    content: "";
+    position: absolute;
+    width: 2px;
+    background-color: white;
+    opacity: 0;
+}
+.self-box::before {
+    /* 打勾左邊的線 */
+    height: 8px;
+    top: 8px;
+    left: 4px;
+    -moz-transform: rotate(-45deg);
+    -webkit-transform: rotate(-45deg);
+    -o-transform: rotate(-45deg);
+    -ms-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+}
+.self-box::after {
+    /* 打勾右邊的線 */
+    height: 12px;
+    top: 3px;
+    left: 11px;
+    -moz-transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+    -o-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+input:checked+.self-box {
+    /* 當check時 按鈕顏色改變 */
+    background-color: #239BB0;
+    border: 1px solid #239BB0;
+}
+input:checked+.self-box::before,
+input:checked+.self-box::after {
+    /* 當check時 打勾消失 */
+    opacity: 1;
+}
+/* 自訂checkbox樣式結束 */
+.reload-btn{
+    width: 100px;
+    height: 24px;
+    border-radius: 10px;
+    border: 1px solid #808080;
+    background-color: #FFF;
+}
+.reload-btn:hover{
+    border: 1px solid #239BB0;
+    color: #239BB0;
+}
+.reload-pic{
+    height: 100%;
+    width: 100%;
+}
+.reload-text{
+    white-space: nowrap;
+}
+
+/* body */
+.section-table{
+    overflow-y: auto;
+}
+.table-head{
+    background-color: #239BB0;
+    color: #FFF;
+}
+.table-head th{
+    text-align: center;
+    padding: 5px;
+    border: 1px solid #F2F2F2;
+}
+tbody tr:nth-child(even){
+    background-color: #F2F2F2;
+}
+td{
+    border: 1px solid #F2F2F2;
+    padding: 6px 10px;
+    height: 35px;
+}
+.marker-box{
+    height: 50%;
+}
+.marker-link{
+    display: flex;
+    align-items: center;
+}
+.marker-pic{
+    height: 1rem;
+    cursor: pointer;
+    margin: auto;
+}
+.coordinate-content{
+    white-space: nowrap;
+}
+.numeric-data{
+    text-align: center;
+}
+.marker-box{
+    height: 100%;
+}
+/* footer */
+.section-footer{
+    height: 50px;
+}
+#map{
+    /* width: 95%; */
+    height: 300px;
+    margin: 10px;
+    /* margin: 0 auto; */
+}
