@@ -12,7 +12,12 @@ const app = new Vue({
             isHasBike: false
         },
         sareaArr: [],
-        updateTime:''
+        updateTime:'',
+        sortSrc:{
+            'sarea-sort': '../sort.svg',
+            'sna-sort': '../sort.svg',
+            'ar-sort': '../sort.svg'
+        }
     },
     created(){
         this.getData()
@@ -95,21 +100,42 @@ const app = new Vue({
                 })
             })
         },
+        switchIcon(event){
+            this.data = JSON.parse(JSON.stringify(this.originalData))
+            let target = event.target
+            for(let key in this.sortSrc){
+                if(key !== target.id){
+                    this.sortSrc[key] = '../sort.svg'
+                }else if(key === target.id){
+                    if(this.sortSrc[key] === '../sort.svg'){
+                        this.sortSrc[key] = '../sort-desc.svg'
+                        target.alt = '遞減排序'
+                        this.data.sort(function(a, b) {
+                            switch(target.id){
+                                case 'sarea-sort': return b.sarea.localeCompare(a.sarea)
+                                case 'sna-sort': return b.sna.localeCompare(a.sna)
+                                case 'ar-sort': return b.ar.localeCompare(a.ar)
+                            }
+                        })
+                    }else if(this.sortSrc[key] === '../sort-desc.svg'){
+                        this.sortSrc[key] = '../sort-asc.svg'
+                        target.alt = '遞增排序'
+                        this.data.sort(function(a, b) {
+                            switch(target.id){
+                                case 'sarea-sort': return a.sarea.localeCompare(b.sarea)
+                                case 'sna-sort': return a.sna.localeCompare(b.sna)
+                                case 'ar-sort': return a.ar.localeCompare(b.ar)
+                            }
+                        })
+                    }else{
+                        this.sortSrc[key] = '../sort.svg'
+                    }
+                }
+            }
+        }
     }
 })
 
-function descIcon(dom){
-    dom.setAttribute('src', '../sort-desc.svg')
-    dom.setAttribute('alt', '遞減排序')
-}
-function ascIcon(dom){
-    dom.setAttribute('src', '../sort-asc.svg')
-    dom.setAttribute('alt', '遞增排序')
-}
-function resetIcon(dom){
-    dom.setAttribute('src', '../sort.svg')
-    dom.setAttribute('alt', '排序圖標')
-}
 Array.prototype.distinct = function(){
     return this.reduce((a,b) => {
         if(!a.includes(b.sarea)) a.push(b.sarea)
@@ -117,7 +143,3 @@ Array.prototype.distinct = function(){
     }, [])
 }
 function initMap() {} 
-        
-
-
-// window.initMap = initMap;

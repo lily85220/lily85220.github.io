@@ -54,9 +54,9 @@
                 <thead class="table-head">
                   <tr>
                     <th>項次</th>
-                    <th class="col-1">場站區域 <img class="sort-icon" id="sarea-sort" src="../sort.svg" alt="排序圖標"></th>
-                    <th class="col-2">站名 <img class="sort-icon" id="sna-sort" src="../sort.svg" alt="排序圖標"></th>
-                    <th class="col-3">地點 <img class="sort-icon" id="ar-sort" src="../sort.svg" alt="排序圖標"></th>
+                    <th class="col-1">場站區域 <img @click="switchIcon($event)" class="sort-icon" id="sarea-sort" :src="sortSrc['sarea-sort']" alt="排序圖標"></th>
+                    <th class="col-2">站名 <img @click="switchIcon($event)" class="sort-icon" id="sna-sort" :src="sortSrc['sna-sort']" alt="排序圖標"></th>
+                    <th class="col-3">地點 <img @click="switchIcon($event)" class="sort-icon" id="ar-sort" :src="sortSrc['ar-sort']" alt="排序圖標"></th>
                     <th class="col-2">坐標位置</th>
                     <th>目前車輛數</th>
                     <th>目前空位數</th>                    
