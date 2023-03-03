@@ -327,7 +327,7 @@
                     this.layer.groupId = this.currentGroup
                     this.layer.createTime = dayjs().format('YYYY/MM/DD HH:mm')
                     this.layerList.push(this.layer)
-                    axios.post('./Layers.json', this.layer)
+                    axios.post('./Layers.json', JSON.stringify(this.layer))
                         .then(res => {
                             console.log(res)
                         })
