@@ -1,0 +1,267 @@
+body{
+    font-family: 'Noto Sans TC', 'Noto Sans', serif;
+}
+ul{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+a:hover{
+    text-decoration: none;
+}
+.carousel-container{
+    position: relative;
+}
+.section-site-title, .apply-title{
+    background-color: #EEF7F8;
+    height: 64pt;
+    text-align: center;
+    padding: 10pt 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.site-title-box{
+    margin: auto;
+}
+.site-title{
+    font-size: 14pt;
+    margin: 0;
+}
+.site-title-info{
+    font-size: 9pt;
+    font-weight: 400;
+    margin: 5pt 0 0 0;
+}
+.section-site-body{
+    background-color: #DCE8EA;
+    padding-bottom: 45px;
+}
+/* 徵件須知 - 標題 */
+.notice-title{
+    width: 216pt;
+    margin: auto ;
+    padding: 22px 0 0 0;
+    text-align: center;
+}
+.notice-title-text{
+    width: 200pt;
+    height: 28pt;
+    font-size: 20pt;
+    margin-bottom: 0;
+    margin-right: 0;
+}
+/* 徵件須知 - 清單 */
+.notice-list{
+    margin: 17px 0 0 0;
+    padding: 0;
+}
+.notice-item-box{
+    margin: 0 0 13px 0;
+}
+.notice-item{
+    max-width: 362px;
+    margin: auto;
+    display: flex;
+    padding: 10px 13px;
+    align-items: center;
+    background-color: #fff;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+}
+.notice-item p{
+    margin: 0;
+    padding-right:20px;
+}
+.notice-text{
+    font-size: 18px;
+    margin-right: 28px;
+}
+.notice-hint{
+    color: #727272;
+}
+.notice-link{
+    background-color: #fff;
+    color: #5AB63E;
+    border: 1px solid #5AB63E;
+    border-radius: 5px;
+    font-family: 'Noto Sans';
+    padding: 5px 10px;
+    font-size: 11pt;
+}
+.notice-link:hover{
+    color: #fff;
+    background-color: #5AB63E;
+}
+
+/* 報名資訊 */
+.apply-wrap{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.apply-title-text{
+    font-size: 20pt;
+    margin-bottom: 0;
+}
+/* 報名資訊 - 人物圖片 */
+.pic-box{
+    width: 50%;
+}
+.pic-box img{
+    width: 100%;
+}
+/* 報名資訊 - 同意事項 */
+.confirm-area{
+    background-color: #fff;
+    max-width: 362px;
+    border-radius: 5px;
+    padding: 20px;
+}
+.confirm-item{
+    background-color: #F0F8F9;
+    padding: 15px;
+    font-size: 18px;
+    border-radius: 5px;
+    display: flex;
+    position: relative;
+    margin: 10px 0;
+}
+.confirm-item::before{
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 0;
+    height: 0;
+    border-top-left-radius: 5px;
+    border-top: 19px solid #DD3A3A;
+    border-right: 19px solid #F0F8F9;
+}
+.confirm-fake-checkbox{
+    background-image: url('../Images/png/國發會_CheckBox_off.png');
+    min-height: 22px;
+    min-width: 22px;
+    background-repeat: no-repeat;
+    background-size: contain;
+    margin: 3px 7px 0 0 ;
+}
+.confirm-label:hover .confirm-fake-checkbox{
+    background-image: url('../Images/png/國發會_CheckBox_hover.png');
+}
+.confirm-item input[type='checkbox']:checked+.confirm-fake-checkbox{
+    background-image: url('../Images/png/國發會_CheckBox_on.png');
+}
+.confirm-checkbox{
+    display: none;
+}
+.confirm-label{
+    display: flex;
+    cursor: pointer;
+    user-select: none;
+    margin-bottom: 0;
+}
+/* 報名資訊 - 立即報名 */
+.apply-group{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+.apply-info{
+    font-size: 20px;
+}
+.timeout{
+    background-color: #C1C1C1;
+    cursor: wait !important;
+}
+.ontime{
+    background-color: #5AB63E;
+}
+.apply-btn{
+    border: none;
+    color: #fff;
+    border-radius: 5px;
+    margin-top: 10px;
+    padding: 15px;
+    font-size: 23px;
+    line-height: 23px;
+}
+@media screen and (min-width:768px){
+    .section-site-body{
+        padding-bottom: 70px;
+    }
+    .section-site-title{
+        background-color: #fff;
+    }
+    .section-site-body{
+        background-color: #EEF7F8;
+    }
+    .notice-list{
+        width: 80%;
+        padding: 20px 20px;
+        margin: 22px auto 0;
+        background-color: #DCE8EA;
+        border-radius: 10px;
+    }
+    .notice-item{
+        margin: 0;
+        max-width: 514px;
+        height: 100%;
+    }
+    .notice-item-box{
+        margin-bottom: 0;
+        padding: 10px 10px;
+    }
+    /* 報名資訊 */
+    .apply-wrap{
+        flex-direction: row;
+        width: 80%;
+        background-color: #DCE8EA;
+        margin: auto;
+        padding: 30px;
+        border-radius: 10px;
+    }
+    .pic-box{
+        /* flex-grow: 1; */
+        width: 30%;
+    }
+    .confirm-area{
+        flex-grow: 1;
+        max-width: 766px;
+    }
+    .apply-group{
+        flex-direction: row;
+        justify-content: space-between;
+    }
+    .apply-info{
+        width: 60%;
+    }
+    .section-site-title{
+        height: 100px;
+    }
+    .site-title{
+        font-size: 28px;
+    }
+    .site-title-info{
+        font-size: 18px;
+    }
+}
+@media screen and (min-width:992px){
+    .footer-column{
+        margin-bottom: 0;
+    }
+    .barrier-free-box{
+        width: 60%;
+    }
+    .section-site-title{
+        height: 130px;
+    }
+    .site-title{
+        font-size: 36px;
+    }
+    .site-title-info{
+        font-size: 22px;
+    }
+}

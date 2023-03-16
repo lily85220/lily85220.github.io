@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>青年培力工作站</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100;300;400;500;700&family=Noto+Sans:wght@400;700&display=swap" rel="stylesheet">
+    
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es2015%2CIntersectionObserver" crossorigin="anonymous"></script>
+
+    <!-- 引入 Vue -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
+    <!-- 引入 Bootstrap CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+    <!-- 引入 Bootstrap Vue CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/bootstrap-vue@2.23.1/dist/bootstrap-vue.min.css">
+    <!-- 引入 Bootstrap Vue JavaScript -->
+    <script src="https://unpkg.com/bootstrap-vue@2.23.1/dist/bootstrap-vue.min.js"></script>
+
+    <link rel="stylesheet" href="../Content/Styles/organization.css">
+    <link rel="stylesheet" href="../Content/Styles/footer.css">
+</head>
+<body>
+    <div id="app" v-cloak>
+        <section class="section-header" ref="header">
+            <div class="header-pic-box">
+                <img class="header-pic" src="../Content/Images/png/國發會-14.png" alt="標題">
+            </div>
+            <div class="my-breadcrumb">
+                <ol class="my-breadcrumb-group">
+                    <li class="my-breadcrumb-item">
+                        <img class="my-breadcrumb-pic" src="../Content/Images/png/國發會_第一步_on.png" alt="">
+                    </li>
+                    <li class="my-breadcrumb-item">
+                        <img class="my-breadcrumb-pic" src="../Content/Images/png/國發會_第二步_off.png" alt="">
+                    </li>
+                    <li class="my-breadcrumb-item">
+                        <img class="my-breadcrumb-pic" src="../Content/Images/png/國發會_第三步_off.png" alt="">
+                    </li>
+                </ol>
+            </div>
+        </section>
+        <section class="section-body" :style="{ paddingTop: mainMarginTop + 'px' }">
+            <h2 class="site-title">1/ 組織基本資料</h2>
+            <div class="form-content">
+                <div class="my-form-group">
+                    <b-form-group
+                        label-for="form-project-name"
+                        description="限10個字內"
+                        :invalid-feedback="projectName.feedback"
+                        :state="projectName.state"
+                    >
+                        <label class="form-label">計畫名稱</label>
+                        <b-form-input id="form-project-name" class="form-style" type="text" v-model="form.name" trim></b-form-input>
+                    </b-form-group>
+                </div>
+                <div class="many-form-groups">
+                    <div class="many-form-wrap">
+                        <p class="form-groups-title form-label mb-0">業務推行</p>
+                        <div class="form-group-groups">
+                            <b-form-group
+                                label-for="form-city"
+                                :invalid-feedback="cityOption.feedback"
+                                :state="cityOption.state"
+                            >
+                                <label class="form-label">縣市</label>
+                                <select id="form-city" class="form-style d-block w-100" v-model="form.citySelected">
+                                    <option v-for="city in cityList">{{city}}</option>
+                                </select>
+                            </b-form-group>
+                            <b-form-group
+                                label-for="form-town"
+                                :invalid-feedback="townOption.feedback"
+                                :state="townOption.state"
+                            >
+                                <label class="form-label">鄉鎮市區</label>
+                                <select id="form-country" class="form-style d-block w-100" v-model="form.townSelected">
+                                    <option v-for="town in townList[form.citySelected]">{{town}}</option>
+                                </select>
+                            </b-form-group>
+                        </div>
+                    </div>
+                </div>
+                <div class="my-form-group">
+                    <b-form-group 
+                        v-slot="{ ariaDescribedby }"
+                        :invalid-feedback="sameArea.feedback"
+                        :state="sameArea.state"
+                    >
+                        <label class="form-label">請問貴單位組織設立地址與上述業務推行地區是否同區?</label>
+                        <div class="radio-group">
+                            <label class="radio-label">
+                                <input type="radio" class="radio-input" value="true" name="form-same-area" v-model="form.sameAreaRadio">
+                                <span class="radio-button"></span>
+                                是，與業務推行地區相同
+                            </label>
+                        </div>
+                        <div class="radio-group">
+                            <label class="radio-label">
+                                <input type="radio" class="radio-input" value="false" name="form-same-area" v-model="form.sameAreaRadio">
+                                <span class="radio-button"></span>
+                                否，與業務推行地區不相同
+                            </label>
+                        </div> 
+                        <!-- <b-form-radio 
+                            v-model="form.sameAreaRadio" 
+                            class="radio-style"
+                            :aria-describedby="ariaDescribedby" 
+                            name="form-same-area" 
+                            value="true">是，與業務推行地區相同</b-form-radio>
+                        <b-form-radio 
+                            v-model="form.sameAreaRadio" 
+                            class="radio-style"
+                            :aria-describedby="ariaDescribedby" 
+                            name="form-same-area" 
+                            value="false">否，與業務推行地區不相同</b-form-radio> -->
+                    </b-form-group>
+                </div>
+                <div class="my-form-group">
+                    <b-form-group
+                        label-for="form-city"
+                        :invalid-feedback="type.feedback"
+                        :state="type.state"
+                    >
+                        <label class="form-label">申請組織類別</label>
+                        <select id="form-city" class="form-style d-block w-100" v-model="form.organizationType">
+                            <option value="0" disabled>請選擇</option>
+                            <option value="1">社團法人</option>
+                            <option value="2">公司行號</option>
+                        </select>
+                    </b-form-group>
+                </div>
+                <div class="my-form-group">
+                    <b-form-group
+                        label-for="form-organization-name"
+                        description="僅限社團法人與公司行號(商號)"
+                        :invalid-feedback="organizationName.feedback"
+                        :state="organizationName.state"
+                    >
+                        <label class="form-label">申請組織名稱</label>
+                        <b-form-input id="form-organization-name" class="form-style" type="text" v-model="form.organizationName" trim></b-form-input>
+                    </b-form-group>
+                </div>
+                <div class="my-form-group">
+                    <b-form-group
+                        label-for="form-address"
+                        description="請填寫郵遞區號：100台北市中正區寶慶路3號"
+                        :invalid-feedback="address.feedback"
+                        :state="address.state"
+                    >
+                        <label class="form-label">申請組織地址</label>
+                        <b-form-input id="form-organization-name" class="form-style" type="text" v-model="form.address" trim></b-form-input>
+                    </b-form-group>
+                </div>
+                <div class="my-form-group">
+                    <b-form-group
+                        label-for="form-taxId"
+                        description="8碼數字"
+                        :invalid-feedback="taxId.feedback"
+                        :state="taxId.state"
+                    >
+                        <label class="form-label">統一編號</label>
+                        <b-form-input id="form-organization-name" class="form-style" type="text" v-model="form.taxId" trim></b-form-input>
+                    </b-form-group>
+                </div>
+            </div>
+            <div class="apply-group">
+                <a @click="verify" class="apply-btn">下一頁 →</a>
+                <p v-if="!isVerify" class="apply-info text-danger">請確認資料是否填寫完整</p>
+            </div>
+        </section>
+        <section class="section-site-footer">
+            <div class="row footer-wrap">
+                <div class="col-lg-1"></div>
+                <div class="col-12 col-lg-3 footer-column">
+                    <div class="row footer-group">
+                        <div class="col-5 col-lg-4 footer-item footer-field">主辦單位｜</div>
+                        <div class="col-7 col-lg-8 footer-item">國家發展委員會</div>
+                    </div>
+                    <div class="row footer-group">
+                        <div class="col-5 col-lg-4 footer-item footer-field">執行單位｜</div>
+                        <div class="col-7 col-lg-8 footer-item">地方創生辦公室</div>
+                    </div>
+                </div>
+                <div class="col-12 col-lg-4 col-xl-4 footer-column">
+                    <div class="row footer-group">
+                        <div class="col-5 col-lg-3 footer-item footer-field">聯絡方式｜</div>
+                        <div class="col-7 col-lg-9 footer-item"> rr.ndc@tier.org.tw </div>
+                    </div>
+                    <div class="row footer-group">
+                        <div class="col-5 col-lg-3 footer-item footer-field">聯絡電話｜</div>
+                        <div class="col-7 col-lg-9 footer-item">02-89795646 各區分機如下：</div>
+                    </div>
+                    <div class="row footer-group">
+                        <div class="col-5 col-lg-3 footer-item"></div>
+                        <div class="col-7 col-lg-9 footer-item">
+                            <p>#320(北區)、#360(中區及中央部會)</p>
+                            <p>#345(南區)、#312(東區)</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-lg-3 footer-column barrier-free">
+                    <div class="barrier-free-box">
+                        <img class="barrier-free-pic" src="../Content/Images/AA.jpeg" alt="">
+                    </div>
+                </div>
+                <div class="col-lg-1"></div>
+            </div>
+        </section>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.3.4/axios.min.js"></script>
+    <script type="module" src="../Scripts/organization.js"></script>
+</body>
+</html>

@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>青年培力工作站</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100;300;400;500;700&family=Noto+Sans:wght@400;700&display=swap" rel="stylesheet">
+    
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es2015%2CIntersectionObserver" crossorigin="anonymous"></script>
+
+    <!-- 引入 Vue -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
+    <!-- 引入 Bootstrap CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+    <!-- 引入 Bootstrap Vue CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/bootstrap-vue@2.23.1/dist/bootstrap-vue.min.css">
+    <!-- 引入 Bootstrap Vue JavaScript -->
+    <script src="https://unpkg.com/bootstrap-vue@2.23.1/dist/bootstrap-vue.min.js"></script>
+
+    <link rel="stylesheet" href="../Content/Styles/plan_info.css">
+    <link rel="stylesheet" href="../Content/Styles/footer.css">
+</head>
+<body>
+    <div id="app" v-cloak>
+        <section class="section-header" ref="header">
+            <div class="header-pic-box">
+                <img class="header-pic" src="../Content/Images/png/國發會-14.png" alt="標題">
+            </div>
+            <div class="my-breadcrumb">
+                <ol class="my-breadcrumb-group">
+                    <li class="my-breadcrumb-item">
+                        <img class="my-breadcrumb-pic" src="../Content/Images/png/國發會_第一步_done.png" alt="">
+                    </li>
+                    <li class="my-breadcrumb-item">
+                        <img class="my-breadcrumb-pic" src="../Content/Images/png/國發會_第二步_on.png" alt="">
+                    </li>
+                    <li class="my-breadcrumb-item">
+                        <img class="my-breadcrumb-pic" src="../Content/Images/png/國發會_第三步_off.png" alt="">
+                    </li>
+                </ol>
+            </div>
+        </section>
+        <section class="section-body" :style="{ paddingTop: mainMarginTop + 'px' }">
+            <h2 class="site-title">2/ 計畫基本資料</h2>
+            <div class="form-content">
+                <div class="many-form-groups">
+                    <div class="many-form-wrap">
+                        <p class="form-groups-title form-label">計畫主持人</p>
+                        <div class="form-group-groups">
+                            <b-form-group
+                                class="form-item"
+                                :invalid-feedback="feedback.hostName"
+                                :state="state.hostName"
+                            >
+                                <label class="form-label">姓名</label>
+                                <b-form-input class="form-style" type="text" v-model="form.hostName" trim></b-form-input>
+                            </b-form-group>
+                            <b-form-group
+                                class="form-item"
+                                :invalid-feedback="feedback.hostTitle"
+                                :state="state.hostTitle"
+                            >
+                                <label class="form-label">職稱</label>
+                                <b-form-input class="form-style" type="text" v-model="form.hostTitle" trim></b-form-input>
+                            </b-form-group>
+                            <b-form-group
+                                class="form-item"
+                                :invalid-feedback="feedback.hostEmail"
+                                :state="state.hostEmail"
+                            >
+                                <label class="form-label">Email</label>
+                                <b-form-input class="form-style" type="text" v-model="form.hostEmail" trim></b-form-input>
+                            </b-form-group>
+                            <b-form-group
+                                class="form-item"
+                                :invalid-feedback="feedback.hostPhone"
+                                :state="state.hostPhone"
+                            >
+                                <label class="form-label">手機</label>
+                                <b-form-input class="form-style" type="text" v-model="form.hostPhone" trim></b-form-input>
+                            </b-form-group>
+                            <b-form-group
+                                class="form-item" 
+                                v-slot="{ ariaDescribedby }"
+                                :invalid-feedback="feedback.hostSex"
+                                :state="state.hostSex"
+                            >
+                                <label class="form-label">主持人性別</label>
+                                <div class="radio-group">
+                                    <label class="radio-label">
+                                        <input type="radio" class="radio-input" value="true" name="form-host-sex" v-model="form.hostSex">
+                                        <span class="radio-button"></span>
+                                        男
+                                    </label>
+                                </div>
+                                <div class="radio-group">
+                                    <label class="radio-label">
+                                        <input type="radio" class="radio-input" value="false" name="form-host-sex" v-model="form.hostSex">
+                                        <span class="radio-button"></span>
+                                        女
+                                    </label>
+                                </div>                                
+                            </b-form-group>
+                            <b-form-group
+                                class="form-item" 
+                                v-slot="{ ariaDescribedby }"
+                                :invalid-feedback="feedback.hostIdentity"
+                                :state="state.hostIdentity"
+                            >
+                                <label class="form-label">主持人是否擁有原住民身份</label>
+                                <div class="radio-group">
+                                    <label class="radio-label">
+                                        <input type="radio" class="radio-input" value="true" name="form-host-Identity" v-model="form.hostIdentity">
+                                        <span class="radio-button"></span>
+                                    是
+                                    </label>
+                                </div>
+                                <div class="radio-group">
+                                    <label class="radio-label">
+                                        <input type="radio" class="radio-input" value="false" name="form-host-Identity" v-model="form.hostIdentity">
+                                        <span class="radio-button"></span>
+                                     否
+                                    </label>
+                                </div>                                
+                            </b-form-group>
+                        </div>
+                    </div>
+                </div>
+                <div class="many-form-groups">
+                    <div class="many-form-wrap">
+                        <p class="form-groups-title form-label">聯絡人</p>
+                        <div class="form-group-groups">
+                            <b-form-group
+                                class="form-item"
+                                :invalid-feedback="feedback.contactName"
+                                :state="state.contactName"
+                                description="聯絡人請以一位為限"
+                            >
+                                <label class="form-label">姓名</label>
+                                <b-form-input class="form-style" type="text" v-model="form.contactName" trim></b-form-input>
+                            </b-form-group>
+                            <b-form-group
+                                class="form-item"
+                                :invalid-feedback="feedback.contactEmail"
+                                :state="state.contactEmail"
+                                description="以此E-mail做為主要聯絡方式，務必填寫常用信箱"
+                            >
+                                <label class="form-label">Email</label>
+                                <b-form-input class="form-style" type="text" v-model="form.contactEmail" trim></b-form-input>
+                            </b-form-group>
+                            <b-form-group
+                                class="form-item"
+                                :invalid-feedback="feedback.contactPhone"
+                                :state="state.contactPhone"
+                            >
+                                <label class="form-label">手機</label>
+                                <b-form-input class="form-style" type="text" v-model="form.contactPhone" trim></b-form-input>
+                            </b-form-group>
+                        </div>
+                    </div>
+                </div>
+                <div class="my-form-group">
+                    <b-form-group
+                        class="form-item"
+                        :invalid-feedback="feedback.maleAmount"
+                        :state="state.maleAmount"
+                        description="限填數字，若無請填0，且團隊成員為計畫主持人以外之專任與兼任人員，至少5人"
+                    >
+                        <label class="form-label">團隊成員男性數量</label>
+                        <b-form-input class="form-style" type="text" v-model="form.maleAmount" trim></b-form-input>
+                    </b-form-group>
+                </div>
+                <div class="my-form-group">
+                    <b-form-group
+                        class="form-item"
+                        :invalid-feedback="feedback.femaleAmount"
+                        :state="state.femaleAmount"
+                        description="限填數字，若無請填0，且團隊成員為計畫主持人以外之專任與兼任人員，至少5人"
+                    >
+                        <label class="form-label">團隊成員女性數量</label>
+                        <b-form-input class="form-style" type="text" v-model="form.femaleAmount" trim></b-form-input>
+                    </b-form-group>
+                </div>
+                <div class="my-form-group">
+                    <b-form-group
+                        class="form-item" 
+                        v-slot="{ ariaDescribedby }"
+                        :invalid-feedback="feedback.memberIdentity"
+                        :state="state.memberIdentity"
+                    >
+                        <label class="form-label">團隊成員是否有<a href="./content/06｜身分揭露表 (親簽後，掃描附於計畫書中，非公職人員或關係人免付).pdf" download>公職人員或其關係人</a></label>
+                        <div class="radio-group">
+                            <label class="radio-label">
+                                <input type="radio" class="radio-input" value="true" name="form-member-identity" v-model="form.memberIdentity">
+                                <span class="radio-button"></span>
+                                是
+                            </label>
+                        </div>
+                        <div class="radio-group">
+                            <label class="radio-label">
+                                <input type="radio" class="radio-input" value="false" name="form-member-identity" v-model="form.memberIdentity">
+                                <span class="radio-button"></span>
+                                否
+                            </label>
+                        </div>                                
+                    </b-form-group>
+                </div>
+                <div class="my-form-group">
+                    <b-form-group
+                        class="form-item"
+                        :invalid-feedback="feedback.planSummary"
+                        :state="state.planSummary"
+                        description="約500字"
+                    >
+                        <label class="form-label">計畫摘要</label>
+                        <b-form-textarea
+                            class="form-style"
+                            rows="4"
+                            no-resize
+                            v-model="form.planSummary"
+                        ></b-form-textarea>
+                    </b-form-group>
+                </div>
+                <div class="my-form-group">
+                    <b-form-group
+                        class="form-item"
+                        :invalid-feedback="feedback.subsidy"
+                        :state="state.subsidy"
+                        description="限填數字，3,000,000以下"
+                    >
+                        <label class="form-label">預估申請補助經費</label>
+                        <b-form-input class="form-style" type="text" v-model="formattedSubsidy" trim></b-form-input>
+                    </b-form-group>
+                </div>
+                <div class="my-form-group">
+                    <b-form-group
+                        class="form-item"
+                        :invalid-feedback="feedback.selfpreparation"
+                        :state="state.selfpreparation"
+                        description="限填數字，若無請填0"
+                    >
+                        <label class="form-label">自籌款金額</label>
+                        <b-form-input class="form-style" type="text" v-model="formattedSelfpreparation" trim></b-form-input>
+                    </b-form-group>
+                </div>
+            </div>
+            <div class="my-btn-group">
+                <a @click="goBack" class="back-btn">← 返回</a>
+                <a @click="verify" class="apply-btn">下一頁 →</a>
+                <p v-if="!isVerify" class="apply-info text-danger">請確認資料是否填寫完整</p>
+            </div>
+        </section>
+        <section class="section-site-footer">
+            <div class="row footer-wrap">
+                <div class="col-lg-1"></div>
+                <div class="col-12 col-lg-3 footer-column">
+                    <div class="row footer-group">
+                        <div class="col-5 col-lg-4 footer-item footer-field">主辦單位｜</div>
+                        <div class="col-7 col-lg-8 footer-item">國家發展委員會</div>
+                    </div>
+                    <div class="row footer-group">
+                        <div class="col-5 col-lg-4 footer-item footer-field">執行單位｜</div>
+                        <div class="col-7 col-lg-8 footer-item">地方創生辦公室</div>
+                    </div>
+                </div>
+                <div class="col-12 col-lg-4 col-xl-4 footer-column">
+                    <div class="row footer-group">
+                        <div class="col-5 col-lg-3 footer-item footer-field">聯絡方式｜</div>
+                        <div class="col-7 col-lg-9 footer-item"> rr.ndc@tier.org.tw </div>
+                    </div>
+                    <div class="row footer-group">
+                        <div class="col-5 col-lg-3 footer-item footer-field">聯絡電話｜</div>
+                        <div class="col-7 col-lg-9 footer-item">02-89795646 各區分機如下：</div>
+                    </div>
+                    <div class="row footer-group">
+                        <div class="col-5 col-lg-3 footer-item"></div>
+                        <div class="col-7 col-lg-9 footer-item">
+                            <p>#320(北區)、#360(中區及中央部會)</p>
+                            <p>#345(南區)、#312(東區)</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-lg-3 footer-column barrier-free">
+                    <div class="barrier-free-box">
+                        <img class="barrier-free-pic" src="../Content/Images/AA.jpeg" alt="">
+                    </div>
+                </div>
+                <div class="col-lg-1"></div>
+            </div>
+        </section>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.3.4/axios.min.js"></script>
+    <script type="module" src="../Scripts/plan_info.js"></script>
+</body>
+</html>

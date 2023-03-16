@@ -1,0 +1,317 @@
+image{
+    vertical-align: bottom;
+}
+#app{
+    position: relative;
+}
+.section-header{
+    width: 100%;
+    position: fixed;
+}
+.header-pic-box{
+    width: 100%;
+}
+.header-pic{
+    width: 100%;
+}
+.my-breadcrumb{
+    padding: 10px 0;
+    background-color: #EEF7F8;
+}
+.my-breadcrumb-group{
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    padding: 0;
+    width: 95%;
+    margin: 0 auto;
+}
+.my-breadcrumb-pic{
+    width: 100%;
+}
+/* 組織資料 */
+.section-body{
+    background-color: #DCE8EA;
+    padding-bottom: 35px;
+}
+.site-title{
+    text-align: center;
+    margin: 0;
+    padding: 20px;
+    font-size: 20px;
+    font-weight: 700;
+}
+.form-content{
+    width: 90%;
+    margin: auto;
+    background-color: #fff;
+    border-radius: 15px;
+    padding: 10px 0;
+}
+.form-groups-title{
+    margin: 10px 0;
+    padding: 0 20px;
+}
+.my-form-group{
+    padding: 0 10px;
+    margin: 10px 0;
+}
+.form-item{
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #EEF7F8;
+    border-radius: 5px;
+}
+.upload-info{
+    display: flex;
+    flex-direction: column;
+}
+.upload-item{
+    font-size: 20px;
+    font-weight: 700;
+}
+.form-label{
+    margin-bottom: 0;
+}
+input[type='file']{
+    display: none;
+}
+.upload-btn{
+    background-image: url('../Images/png/國發會_上傳_off.png');
+    height: 35px;
+    width: 35px;
+    background-repeat: no-repeat;
+    background-size: contain;
+    cursor: pointer;
+}
+.upload-btn:hover{
+    background-image: url('../Images/png/國發會_上傳_hover.png');
+}
+.uploadComplete-btn{
+    background-image: url('../Images/png/國發會_上傳_done.png');
+    height: 35px;
+    width: 35px;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+.upload-data{
+    background-color: #EFEFEF;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 95%;
+    padding: 10px;
+    border-radius: 5px;
+    margin:3px auto;
+}
+.upload-time{
+    color: #727272;
+}
+.fa-xmark{
+    font-size: 25px;
+    cursor: pointer;
+}
+.form-style{
+    border: 1px solid #707070;
+    border-radius: 5px;
+    height: 36px;
+}
+.form-style:focus-visible{
+    outline: #0000;
+}
+.form-style:focus{
+    border: 1px solid #5AB63E;
+    box-shadow: 0 0 0 0.2rem #5AB63E30;
+}
+/* 下一頁 */
+.my-btn-group{
+    display: flex;
+    margin-top: 35px;
+    justify-content: center;
+    position: relative;
+}
+.apply-btn, .back-btn{
+    text-decoration: none;
+    padding: 18px 30px;
+    border-radius: 5px;
+    font-size: 23px;
+    display: inline-block;
+    cursor: pointer;
+    user-select: none;
+}
+.back-btn{
+    color: #5AB63E;
+    border: 1px solid #5AB63E;
+    background-color: #fff;
+    margin-right: 10px;
+}
+.apply-btn{
+    color: #fff;
+    background-color: #5AB63E;
+    margin-left: 10px;
+}
+.apply-btn:hover{
+    text-decoration: none;
+    color: #fff;
+}
+.back-btn:hover{
+    text-decoration: none;
+    color: #5AB63E;
+}
+.apply-info{
+    position: absolute;
+    bottom: -20px;
+    margin-bottom: 0;
+    left: 50%;
+}
+/* modal button */
+.check-apply-btn{
+    padding: 8px 40px;
+    margin: 0;
+}
+/* 資料檢查modal */
+.modal-body{
+    padding: 0 0 20px 0;
+}
+.my-modal-header{
+    background-color: #8CB9C3;
+    border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
+}
+.my-modal-title{
+    padding: 10px 18px;
+    color: #FFF;
+    font-size: 20px;
+}
+.my-modal-body{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 20px 0 20px;
+}
+.warning-box{
+    width: 20%;
+}
+.warning-pic{
+    width: 100%;
+}
+.warning-text-group{
+    width: 75%;
+    min-height: 120px;
+    list-style: none;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: #F0F8F9;
+    padding: 0 10px;
+    border-radius: 5px;
+}
+.warning-text{
+    font-size: 18px;
+}
+/* 資料確認 */
+.confirm-text-group{
+    list-style: none;
+    padding: 0;
+    margin: auto;
+    width: 100%;
+}
+.confirm-item{
+    background-color: #F0F8F9;
+    padding: 10px;
+    width: 100%;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+.confirm-fake-checkbox{
+    background-image: url('../Images/png/國發會_CheckBox_off.png');
+    min-height: 22px;
+    min-width: 22px;
+    background-repeat: no-repeat;
+    background-size: contain;
+    margin: 0 7px 0 0 ;
+}
+.confirm-label:hover .confirm-fake-checkbox{
+    background-image: url('../Images/png/國發會_CheckBox_hover.png');
+}
+.confirm-item input[type='checkbox']:checked+.confirm-fake-checkbox{
+    background-image: url('../Images/png/國發會_CheckBox_on.png');
+}
+.confirm-checkbox{
+    display: none;
+}
+.confirm-label{
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    user-select: none;
+    margin-bottom: 0;
+}
+/* 不能按按鈕 */
+.timeout{
+    background-color: #C1C1C1;
+    cursor: wait !important;
+}
+@media screen and (min-width:768px) {
+    .my-breadcrumb{
+        padding: 30px 0;
+    }
+    .my-breadcrumb-group{
+        width: 80%;
+        margin: auto;
+    }
+    .my-breadcrumb-pic{
+        width: 100%;
+    }
+    .site-title{
+        font-size: 42px;
+    }
+    
+    .form-content{
+        padding: 20px 40px;
+        max-width: 750px;
+    }
+    .my-form-group, .form-groups-title{
+        padding: 0 40px;
+    }
+    .many-form-wrap{
+        padding: 0;
+    }
+    .many-form-groups{
+        background-color: #FFF;
+    }
+    .form-group-groups{
+        background-color: #EEF7F8;
+        padding: 10px 40px;
+    }
+    /* 自訂 radio button 樣式 */
+    .radio-label {
+        font-size: 20px;
+    }
+    /* 資料檢查modal */
+    .my-modal-body{
+        padding: 20px 40px 0 40px;
+    }
+    .my-modal-title{
+        font-size: 24px;
+    }
+    .warning-text{
+        font-size: 20px;
+    }
+    /* 資料確認modal */
+    .confirm-fake-checkbox{
+        min-height: 26px;
+        min-width: 26px;
+    }
+    .confirm-item{
+        font-size: 20px;
+    }
+}
+@media screen and (min-width:992px){
+    .warning-text{
+        font-size: 24px;
+    }
+}

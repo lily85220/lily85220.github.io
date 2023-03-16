@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>青年培力工作站</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100;300;400;500;700&family=Noto+Sans:wght@400;700&display=swap" rel="stylesheet">
+    
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es2015%2CIntersectionObserver" crossorigin="anonymous"></script>
+
+    <!-- 引入 Vue -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
+    <!-- 引入 Bootstrap CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+    <!-- 引入 Bootstrap Vue CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/bootstrap-vue@2.23.1/dist/bootstrap-vue.min.css">
+    <!-- 引入 Bootstrap Vue JavaScript -->
+    <script src="https://unpkg.com/bootstrap-vue@2.23.1/dist/bootstrap-vue.min.js"></script>
+
+    <link rel="stylesheet" href="../Content/Styles/complete.css">
+    <link rel="stylesheet" href="../Content/Styles/footer.css">
+</head>
+<body>
+    <div id="app" v-cloak>
+        <section class="section-header">
+            <div class="header-pic-box">
+                <img class="header-pic" src="../Content/Images/png/國發會-14.png" alt="標題">
+            </div>
+        </section>
+        <section class="section-body">
+            <div class="success-box d-flex flex-column bg-white rounded justify-content-center align-items-center mx-auto">
+                <h2 class="site-title">報名成功</h2>
+                <div>
+                    <img src="../Content/Images/png/國發會_icon_step_done.png" alt="">
+                </div>
+                <span class="congratulation-text">恭喜您完成資料上傳！</span>
+            </div>
+            <div class="apply-group">
+                <a href="../Views/home.html" class="apply-btn">返回首頁</a>
+            </div>
+        </section>
+        <section class="section-site-footer">
+            <div class="row footer-wrap">
+                <div class="col-lg-1"></div>
+                <div class="col-12 col-lg-3 footer-column">
+                    <div class="row footer-group">
+                        <div class="col-5 col-lg-4 footer-item footer-field">主辦單位｜</div>
+                        <div class="col-7 col-lg-8 footer-item">國家發展委員會</div>
+                    </div>
+                    <div class="row footer-group">
+                        <div class="col-5 col-lg-4 footer-item footer-field">執行單位｜</div>
+                        <div class="col-7 col-lg-8 footer-item">地方創生辦公室</div>
+                    </div>
+                </div>
+                <div class="col-12 col-lg-4 col-xl-4 footer-column">
+                    <div class="row footer-group">
+                        <div class="col-5 col-lg-3 footer-item footer-field">聯絡方式｜</div>
+                        <div class="col-7 col-lg-9 footer-item"> rr.ndc@tier.org.tw </div>
+                    </div>
+                    <div class="row footer-group">
+                        <div class="col-5 col-lg-3 footer-item footer-field">聯絡電話｜</div>
+                        <div class="col-7 col-lg-9 footer-item">02-89795646 各區分機如下：</div>
+                    </div>
+                    <div class="row footer-group">
+                        <div class="col-5 col-lg-3 footer-item"></div>
+                        <div class="col-7 col-lg-9 footer-item">
+                            <p>#320(北區)、#360(中區及中央部會)</p>
+                            <p>#345(南區)、#312(東區)</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-lg-3 footer-column barrier-free">
+                    <div class="barrier-free-box">
+                        <img class="barrier-free-pic" src="../Content/Images/AA.jpeg" alt="">
+                    </div>
+                </div>
+                <div class="col-lg-1"></div>
+            </div>
+        </section>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.3.4/axios.min.js"></script>
+</body>
+</html>

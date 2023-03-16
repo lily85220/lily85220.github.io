@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>青年培力工作站</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100;300;400;500;700&family=Noto+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <!-- 引入 Vue -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
+    <!-- 引入 Bootstrap CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+    <!-- 引入 Bootstrap Vue CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/bootstrap-vue@2.23.1/dist/bootstrap-vue.min.css">
+    <!-- 引入 Bootstrap Vue JavaScript -->
+    <script src="https://unpkg.com/bootstrap-vue@2.23.1/dist/bootstrap-vue.min.js"></script>
+    <link rel="stylesheet" href="../Content/Styles/home.css">
+    <link rel="stylesheet" href="../Content/Styles/footer.css">
+</head>
+<body>
+    <div id="app" v-cloak>
+        <div class="carousel-container">
+            <b-carousel
+                id="carousel-1"
+                v-model="slide"
+                :interval="4000"
+                controls
+                indicators
+                background="#ababab"
+                style="text-shadow: 1px 1px 2px #333;"
+                @sliding-start="onSlideStart"
+                @sliding-end="onSlideEnd"
+                >
+                <!-- Text slides with image -->
+                <b-carousel-slide img-src="../Content/Images/banner/main.png"
+                img-width="1024"
+                img-height="480"></b-carousel-slide>
+    
+                <!-- Slides with image only -->
+                <b-carousel-slide img-src="../Content/Images/banner/main.png"
+                img-width="1024"
+                img-height="480"></b-carousel-slide>
+            </b-carousel>
+        </div>
+        <section class="section-site-title">
+            <div class="site-title-box">
+                <h1 class="site-title">地方創生青年培力工作站 徵件報名系統</h1>
+                <p class="site-title-info">邀請各界有志者與我們集思廣益共創地方創生、促進島內移動！</p>
+            </div>
+        </section>
+        <section class="section-site-body">
+            <div class="notice-title">
+                <h2 class="notice-title-text">徵件須知與計畫書格式</h2>
+            </div>
+            <div class="notice-wrap">
+                <ul class="notice-list row">
+                    <li class="notice-item-box col-12 col-md-6">
+                        <div class="notice-item">
+                            <p class="notice-text">公文-修正地方創身青年培力工作站申請須知</p>
+                            <a class="notice-link" href="http://www.tku.edu.tw/webspec/doc/enable.pdf" target="_blank">LINK</a>
+                        </div>
+                    </li>
+                    <li class="notice-item-box col-12 col-md-6">
+                        <div class="notice-item">
+                            <p class="notice-text">修正說明-「地方創生青年培力工作站」</p>
+                            <a class="notice-link" href="http://www.tku.edu.tw/webspec/doc/enable.pdf" target="_blank">LINK</a>
+                        </div>
+                    </li>
+                    <li class="notice-item-box col-12 col-md-6">
+                        <div class="notice-item">
+                            <p class="notice-text">地方創生青年培力工作站申請須知</p>
+                            <a class="notice-link" href="http://www.tku.edu.tw/webspec/doc/enable.pdf" target="_blank">LINK</a>
+                        </div>
+                    </li>
+                    <li class="notice-item-box col-12 col-md-6">
+                        <div class="notice-item">
+                            <p class="notice-text">提案計畫書格式</p>
+                            <a class="notice-link" href="http://www.tku.edu.tw/webspec/doc/enable.pdf" target="_blank">LINK</a>
+                        </div>
+                    </li>
+                    <li class="notice-item-box col-12 col-md-6">
+                        <div class="notice-item">
+                            <div>
+                                <p class="notice-text">執行承諾書</p>
+                                <p class="notice-hint">( 用印後，掃描附於計畫書中 )</p>
+                            </div>
+                            <a class="notice-link" href="http://www.tku.edu.tw/webspec/doc/enable.pdf" target="_blank">LINK</a>
+                        </div>
+                    </li>
+                    <li class="notice-item-box col-12 col-md-6">
+                        <div class="notice-item">
+                            <div>
+                                <p class="notice-text">個人資料蒐集同意書</p>
+                                <p class="notice-hint">( 親簽後，掃描附於計畫書中 )</p>
+                            </div>
+                            <a class="notice-link" href="http://www.tku.edu.tw/webspec/doc/enable.pdf" target="_blank">LINK</a>
+                        </div>
+                    </li>
+                    <li class="notice-item-box col-12 col-md-6">
+                        <div class="notice-item">
+                            <div>
+                                <p class="notice-text">身分揭露表</p>
+                                <p class="notice-hint">(親簽後掃描附於計畫書中，非公職人員或關係人免付)</p>
+                            </div>
+                            <a class="notice-link" href="http://www.tku.edu.tw/webspec/doc/enable.pdf" target="_blank">LINK</a>
+                        </div>
+                    </li>
+                    <li class="notice-item-box col-12 col-md-6">
+                        <div class="notice-item">
+                            <p class="notice-text">青年培力工作站簡報</p>
+                            <a class="notice-link" href="http://www.tku.edu.tw/webspec/doc/enable.pdf" target="_blank">LINK</a>
+                        </div>
+                    </li>
+                    <li class="notice-item-box col-12 col-md-6">
+                        <div class="notice-item">
+                            <p class="notice-text">常見問題</p>
+                            <a class="notice-link" href="http://www.tku.edu.tw/webspec/doc/enable.pdf" target="_blank">LINK</a>
+                        </div>
+                    </li>
+                    <li class="notice-item-box col-12 col-md-6">
+                        <div class="notice-item">
+                            <div>
+                                <p class="notice-text">徵件流程與時程</p>
+                                <p class="notice-hint">( 將隨徵件過程變更，不另行通知 )</p>
+                            </div>
+                            <a class="notice-link" href="http://www.tku.edu.tw/webspec/doc/enable.pdf" target="_blank">LINK</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="apply-title">
+                <h2 class="apply-title-text">
+                    報名資訊
+                </h2>
+            </div>
+            <div class="apply-wrap">
+                <div class="pic-box">
+                    <img src="../Content/Images/png/國發會_插畫_人.png" alt="報名插畫">
+                </div>
+                <div class="confirm-area">
+                    <div v-if="showCheckbox" class="confirm-group">
+                        <ul>
+                            <li class="confirm-item">
+                                <label class="confirm-label">
+                                    <input type="checkbox" class="confirm-checkbox" v-model="checked" value="1">
+                                    <div class="confirm-fake-checkbox"></div>
+                                    <span>
+                                        我確認本案含計畫主持人參與成員至少6位
+                                    </span>
+                                </label>
+                            </li>
+                            <li class="confirm-item">
+                                <label class="confirm-label">
+                                    <input type="checkbox" class="confirm-checkbox" v-model="checked" value="2">
+                                    <div class="confirm-fake-checkbox"></div>
+                                    <span>
+                                        我確認本案計畫主持人與3位成員應為20-45歲青年
+                                    </span>
+                                </label>
+                            </li>
+                            <li class="confirm-item">
+                                <label class="confirm-label">
+                                    <input type="checkbox" class="confirm-checkbox" v-model="checked" value="3">
+                                    <div class="confirm-fake-checkbox"></div>
+                                    <span>
+                                        我確認本案至少有一位專職人員
+                                    </span>
+                                </label>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="apply-group">
+                        <p class="apply-info">系統開放時間為每日上午九時至下午五時前，請把握時間上傳。</p>
+                        <button class="apply-btn" :class="isActive" @click="goApply">立即報名 →</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="section-site-footer">
+            <div class="row footer-wrap">
+                <div class="col-lg-1"></div>
+                <div class="col-12 col-lg-3 footer-column">
+                    <div class="row footer-group">
+                        <div class="col-5 col-lg-4 footer-item footer-field">主辦單位｜</div>
+                        <div class="col-7 col-lg-8 footer-item">國家發展委員會</div>
+                    </div>
+                    <div class="row footer-group">
+                        <div class="col-5 col-lg-4 footer-item footer-field">執行單位｜</div>
+                        <div class="col-7 col-lg-8 footer-item">地方創生辦公室</div>
+                    </div>
+                </div>
+                <div class="col-12 col-lg-4 col-xl-4 footer-column">
+                    <div class="row footer-group">
+                        <div class="col-5 col-lg-3 footer-item footer-field">聯絡方式｜</div>
+                        <div class="col-7 col-lg-9 footer-item"> rr.ndc@tier.org.tw </div>
+                    </div>
+                    <div class="row footer-group">
+                        <div class="col-5 col-lg-3 footer-item footer-field">聯絡電話｜</div>
+                        <div class="col-7 col-lg-9 footer-item">02-89795646 各區分機如下：</div>
+                    </div>
+                    <div class="row footer-group">
+                        <div class="col-5 col-lg-3 footer-item"></div>
+                        <div class="col-7 col-lg-9 footer-item">
+                            <p>#320(北區)、#360(中區及中央部會)</p>
+                            <p>#345(南區)、#312(東區)</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-lg-3 footer-column barrier-free">
+                    <div class="barrier-free-box">
+                        <img class="barrier-free-pic" src="../Content/Images/AA.jpeg" alt="">
+                    </div>
+                </div>
+                <div class="col-lg-1"></div>
+            </div>
+        </section>
+    </div>
+    <script type="module" src="../Scripts/home.js"></script>
+</body>
+</html>

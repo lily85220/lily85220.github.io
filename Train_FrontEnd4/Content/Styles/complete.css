@@ -1,0 +1,63 @@
+image{
+    vertical-align: bottom;
+}
+#app{
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+.header-pic-box{
+    width: 100%;
+}
+.header-pic{
+    width: 100%;
+}
+.site-title{
+    font-weight: 700;
+}
+.section-body{
+    background-color: #DCE8EA;
+    padding-bottom: 35px;
+    padding-top: 50px;
+    flex-grow: 1;
+}
+.success-box{
+    width: 70%;
+    padding: 20px;
+}
+.congratulation-text{
+    color: #9F9F9F;
+}
+/* 回首頁 */
+.apply-group{
+    margin-top: 35px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.apply-btn{
+    text-decoration: none;
+    color: #fff;
+    background-color: #5AB63E;
+    padding: 18px 30px;
+    border-radius: 5px;
+    font-size: 23px;
+    display: inline-block;
+    cursor: pointer;
+    user-select: none;
+}
+.apply-btn:hover{
+    text-decoration: none;
+    color: #fff;
+}
+@media screen and (min-width:768px) {
+   
+    /* 下一頁 */
+    .apply-btn{
+        font-size: 31px;
+    }
+    .success-box{
+        width: 50%;
+        padding: 50px;
+    }
+}

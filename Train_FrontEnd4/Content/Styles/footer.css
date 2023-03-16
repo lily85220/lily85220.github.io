@@ -1,0 +1,41 @@
+[v-cloak]{
+    display: none;
+}
+/* footer */
+.section-site-footer{
+    background-color: #8CB9C3;
+}
+.footer-wrap{
+    margin: 0;
+    padding: 37px 0;
+    color: #fff;
+    font-size: 16px;
+    align-items: center;
+}
+.footer-group{
+    margin: 0;
+}
+.footer-wrap p{
+    margin-bottom: 0;
+}
+.footer-item, .footer-column{
+    padding: 0;
+}
+.footer-column{
+    margin-bottom: 20px;
+}
+.barrier-free{
+    display: flex;
+    align-items: center;
+}
+.footer-field{
+    text-align: end;
+}
+.barrier-free-box{
+    max-width: 182px;
+    margin: auto;
+}
+.barrier-free-pic{
+    width: 100%;
+    vertical-align: middle;
+}

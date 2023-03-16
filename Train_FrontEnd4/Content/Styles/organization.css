@@ -1,0 +1,184 @@
+image{
+    vertical-align: bottom;
+}
+#app{
+    position: relative;
+}
+.section-header{
+    width: 100%;
+    position: fixed;
+    z-index: 3;
+}
+.header-pic-box{
+    width: 100%;
+}
+.header-pic{
+    width: 100%;
+}
+.my-breadcrumb{
+    padding: 10px 0;
+    background-color: #EEF7F8;
+}
+.my-breadcrumb-group{
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    padding: 0;
+    width: 95%;
+    margin: 0 auto;
+}
+.my-breadcrumb-pic{
+    width: 100%;
+}
+/* 組織資料 */
+.section-body{
+    background-color: #DCE8EA;
+    padding-bottom: 35px;
+}
+.site-title{
+    text-align: center;
+    margin: 0;
+    padding: 20px;
+    font-size: 20px;
+    font-weight: 700;
+}
+.form-content{
+    width: 90%;
+    margin: auto;
+    background-color: #fff;
+    border-radius: 15px;
+    padding: 10px 0;
+}
+.my-form-group, .many-form-wrap{
+    padding: 0 20px;
+}
+.many-form-groups{
+    background-color: #EEF7F8;
+    padding-bottom: 10px;
+}
+.form-groups-title{
+    margin: 10px 0;
+}
+.form-label{
+    font-size: 20px;
+    font-weight: 700;
+}
+.form-style{
+    border: 1px solid #707070;
+    border-radius: 5px;
+    height: 36px;
+}
+.form-style:focus-visible{
+    outline: #0000;
+}
+.form-style:focus{
+    border: 1px solid #5AB63E;
+    box-shadow: 0 0 0 0.2rem #5AB63E30;
+}
+/* 自訂 radio button 樣式 */
+.radio-input {
+    display: none; /* 把原本的input藏起來 */
+}
+.radio-group{
+    margin: 5px 0;
+}
+.radio-label {
+    font-size: 1rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    margin-bottom: 0;
+}
+.radio-button {
+/* 自定義樣式的span */
+    height: 26px;
+    width: 26px;
+    border: 1px solid #707070;
+    border-radius: 50%;
+    display: inline-block;
+    position: relative;
+    margin-right: 10px;
+}
+.radio-button::after { /* 中間點點 */
+    content: "";
+    display: block;
+    height: 16px;
+    width: 16px;
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #5AB63E;
+    opacity: 0;
+    transition: opacity 0.2s;
+}
+.radio-input:checked+.radio-button::after {
+    /* 選中radio時 才顯示中間點點 */
+    opacity: 1;
+}
+.radio-input:checked+.radio-button{
+    border: 2px solid #5AB63E;
+}
+/* 下一頁 */
+.apply-group{
+    margin-top: 35px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.apply-btn{
+    text-decoration: none;
+    color: #fff;
+    background-color: #5AB63E;
+    padding: 18px 30px;
+    border-radius: 5px;
+    font-size: 23px;
+    display: inline-block;
+    cursor: pointer;
+    user-select: none;
+}
+.apply-btn:hover{
+    text-decoration: none;
+    color: #fff;
+}
+.radio-style{
+    font-size: 20px;
+    font-weight: 500;
+}
+@media screen and (min-width:768px) {
+    .my-breadcrumb{
+        padding: 30px 0;
+    }
+    .my-breadcrumb-group{
+        width: 80%;
+        margin: auto;
+    }
+    .my-breadcrumb-pic{
+        width: 100%;
+    }
+    .site-title{
+        font-size: 42px;
+    }
+    /* 組織資料 */
+    .form-label{
+        font-size: 24px;
+    }
+    .form-content{
+        padding: 20px 40px;
+        max-width: 750px;
+    }
+    .my-form-group, .form-groups-title{
+        padding: 0 40px;
+    }
+    .many-form-wrap{
+        padding: 0;
+    }
+    .many-form-groups{
+        background-color: #FFF;
+    }
+    .form-group-groups{
+        background-color: #EEF7F8;
+        padding: 10px 40px;
+    }
+}

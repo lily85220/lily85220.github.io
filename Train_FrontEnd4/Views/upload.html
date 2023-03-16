@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>青年培力工作站</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100;300;400;500;700&family=Noto+Sans:wght@400;700&display=swap" rel="stylesheet">
+    
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es2015%2CIntersectionObserver" crossorigin="anonymous"></script>
+
+    <!-- day.js -->
+    <script src="https://cdn.jsdelivr.net/npm/dayjs@1/dayjs.min.js"></script>
+    <!-- 引入 Vue -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
+    <!-- 引入 Bootstrap CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+    <!-- 引入 Bootstrap Vue CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/bootstrap-vue@2.23.1/dist/bootstrap-vue.min.css">
+    <!-- 引入 Bootstrap Vue JavaScript -->
+    <script src="https://unpkg.com/bootstrap-vue@2.23.1/dist/bootstrap-vue.min.js"></script>
+    <script src="https://kit.fontawesome.com/9dc7e45d14.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="../Content/Styles/upload.css">
+    <link rel="stylesheet" href="../Content/Styles/footer.css">
+</head>
+<body>
+    <div id="app" v-cloak>
+        <section class="section-header" ref="header">
+            <div class="header-pic-box">
+                <img class="header-pic" src="../Content/Images/png/國發會-14.png" alt="標題">
+            </div>
+            <div class="my-breadcrumb">
+                <ol class="my-breadcrumb-group">
+                    <li class="my-breadcrumb-item">
+                        <img class="my-breadcrumb-pic" src="../Content/Images/png/國發會_第一步_done.png" alt="">
+                    </li>
+                    <li class="my-breadcrumb-item">
+                        <img class="my-breadcrumb-pic" src="../Content/Images/png/國發會_第二步_done.png" alt="">
+                    </li>
+                    <li class="my-breadcrumb-item">
+                        <img class="my-breadcrumb-pic" src="../Content/Images/png/國發會_第三步_on.png" alt="">
+                    </li>
+                </ol>
+            </div>
+        </section>
+        <section class="section-body" :style="{ paddingTop: mainMarginTop + 'px' }">
+            <h2 class="site-title">3/ 計畫上傳</h2>
+            <div class="form-content">
+                <h3 class="form-groups-title">附件上傳</h3>
+                
+                <div class="my-form-group" v-for="(data, index) in uploadData" v-if="data.isNeed">
+                    <div class="form-item">
+                        <div class="upload-info">
+                            <span class="upload-item">{{data.title}}</span>
+                            <a :class="{'d-block':data.showExample}" class="d-none" :href="data.exampleUrl" download>相關表單下載</a>
+                        </div>
+                        <label class="form-label" v-if="data.showExample">
+                            <b-form-file @change="setData(index,$event)" v-model="data.file" accept=".pdf" class="mt-3" plain></b-form-file>
+                            <div class="upload-btn"></div>
+                        </label>
+                        <div class="uploadComplete-btn" v-else="data.showExample"></div>
+                    </div>
+                    <div :class="{'d-none':data.showExample}" class="upload-data">
+                        <div>
+                            <a :href="data.url" target="_blank">{{data.name}}</a>
+                            <span class="upload-time">{{data.date}}</span>
+                        </div>
+                        <i @click="deletefile(index, data.id)" class="fa-solid fa-xmark"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="my-btn-group">
+                <a @click="goBack" class="back-btn">← 返回</a>
+                <a @click="verify" class="apply-btn">確認送出</a>
+            </div>
+            <b-modal 
+                v-model="dataCheckModal"
+                hide-footer
+                hide-header
+                size="lg"
+            >
+                <div class="my-modal-header">
+                    <p class="my-modal-title">資料檢查</p>
+                </div>
+                <div class="my-modal-body">
+                    <div class="warning-box">
+                        <img class="warning-pic" src="../Content/Images/png/國發會_warning.png" alt="">
+                    </div>
+                    <ul class="warning-text-group">
+                        <li class="warning-text" v-for="msg in unUploadMsg">{{msg}}</li>
+                    </ul>
+                </div>
+                <div class="my-btn-group">
+                    <button @click="closeCheckModal" class="apply-btn check-apply-btn border-0">確定</button>
+
+                </div>
+            </b-modal>
+            <b-modal 
+                v-model="dataConfirmModal"
+                hide-footer
+                hide-header
+                scrollable 
+                size="lg"
+            >
+                <div class="my-modal-header">
+                    <p class="my-modal-title">資料確認</p>
+                </div>
+                <div class="my-modal-body">
+                    <ul class="confirm-text-group">
+                        <li class="confirm-item" v-for="item in checkItem" v-show="item.isNeed">
+                            <label class="confirm-label">
+                                <input type="checkbox" class="confirm-checkbox" v-model="checked" :value="item.value">
+                                <div class="confirm-fake-checkbox"></div>
+                                <span v-html="item.html"></span>
+                            </label>
+                        </li>
+                    </ul>
+                </div>
+                <div class="my-btn-group">
+                    <button @click="closeCheckModal" class="back-btn check-apply-btn mr-1">取消</button>
+                    <button @click="complete" class="apply-btn check-apply-btn border-0 ml-1" :class="{timeout:NotAllAgree}">確定</button>
+
+                </div>
+            </b-modal>
+        </section>
+        <section class="section-site-footer">
+            <div class="row footer-wrap">
+                <div class="col-lg-1"></div>
+                <div class="col-12 col-lg-3 footer-column">
+                    <div class="row footer-group">
+                        <div class="col-5 col-lg-4 footer-item footer-field">主辦單位｜</div>
+                        <div class="col-7 col-lg-8 footer-item">國家發展委員會</div>
+                    </div>
+                    <div class="row footer-group">
+                        <div class="col-5 col-lg-4 footer-item footer-field">執行單位｜</div>
+                        <div class="col-7 col-lg-8 footer-item">地方創生辦公室</div>
+                    </div>
+                </div>
+                <div class="col-12 col-lg-4 col-xl-4 footer-column">
+                    <div class="row footer-group">
+                        <div class="col-5 col-lg-3 footer-item footer-field">聯絡方式｜</div>
+                        <div class="col-7 col-lg-9 footer-item"> rr.ndc@tier.org.tw </div>
+                    </div>
+                    <div class="row footer-group">
+                        <div class="col-5 col-lg-3 footer-item footer-field">聯絡電話｜</div>
+                        <div class="col-7 col-lg-9 footer-item">02-89795646 各區分機如下：</div>
+                    </div>
+                    <div class="row footer-group">
+                        <div class="col-5 col-lg-3 footer-item"></div>
+                        <div class="col-7 col-lg-9 footer-item">
+                            <p>#320(北區)、#360(中區及中央部會)</p>
+                            <p>#345(南區)、#312(東區)</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-lg-3 footer-column barrier-free">
+                    <div class="barrier-free-box">
+                        <img class="barrier-free-pic" src="../Content/Images/AA.jpeg" alt="">
+                    </div>
+                </div>
+                <div class="col-lg-1"></div>
+            </div>
+        </section>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.3.4/axios.min.js"></script>
+    <script type="module" src="../Scripts/upload.js"></script>
+</body>
+</html>
