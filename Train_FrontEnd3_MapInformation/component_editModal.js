@@ -16,10 +16,18 @@ export default{
         },
         cancelEdit(){
             this.$emit('cancel-edit')
+        },
+        handleHide(event) {
+            let result = true
+            // 如果觸發關閉的事件是 "backdrop" 或 "headerclose"，則將 show 屬性設置為 false
+            if (event.trigger == 'backdrop' || event.trigger == 'headerclose') {
+                result = false
+            }
+            this.$emit('update-modal-show', result)
         }
     },
     template:`
-    <b-modal v-model="sonModalShow" id="my-modal" :title="createOrUpdate">
+    <b-modal v-model="sonModalShow" id="my-modal" :title="createOrUpdate" @hide="handleHide">
         <b-form-group
             label="圖層名稱"
             label-for="layer-name"

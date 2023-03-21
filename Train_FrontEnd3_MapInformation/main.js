@@ -153,29 +153,34 @@ const app = new Vue({
             this.layer.groupId = this.currentGroup
             this.layer.createTime = dayjs().format('YYYY/MM/DD HH:mm')
             this.layerList.push(this.layer)
-            axios.post('./Layers.json', JSON.stringify(this.layerList))
-                .then(res => {
-                    console.log(res)
-                })
-                .catch(err => {
-                    console.log(err)
-                })
+            // axios.post('./Layers.json', JSON.stringify(this.layerList))
+            //     .then(res => {
+            //         console.log(res)
+            //     })
+            //     .catch(err => {
+            //         console.log(err)
+            //     })
         },
         edit(){
             let index = this.layerList.findIndex(x => x.id === this.layer.id)
             this.layerList.splice(index, 1 , this.layer)
-            axios.patch(`./Layers.json/${this.layer.id}`, this.layer)
-                .then(res => {
-                    console.log(res)
-                })
-                .catch(err => {
-                    console.log(err)
-                })
+            // axios.patch(`./Layers.json/${this.layer.id}`, this.layer)
+            //     .then(res => {
+            //         console.log(res)
+            //     })
+            //     .catch(err => {
+            //         console.log(err)
+            //     })
         },
         deleteLayer(){
             this.layerList = this.layerList.filter(x => this.checked.indexOf(x.id) === -1 )
             this.checked = []
             this.items = this.layerList.filter(x => x.groupId == this.currentGroup)
+        },
+        updateModalShow(isShow){
+            if(!isShow) {
+                this.modalShow = isShow
+            }
         }
     }
 })

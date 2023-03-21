@@ -78,7 +78,9 @@ function getData(){
             mday: x.mday})).sort((a, b) => b.sbi - a.sbi)
         data = JSON.parse(JSON.stringify(originalData))
         filterData()
-        sareaArr = data.distinct()
+        sareaArr = data.distinct().sort((a,b) => {
+            return a.localeCompare(b)
+        })
         renderHeader(sareaArr)
     })
 }

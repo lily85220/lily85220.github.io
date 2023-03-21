@@ -46,7 +46,9 @@ const app = new Vue({
                     mday: x.mday})).sort((a, b) => b.sbi - a.sbi)
                 this.data = JSON.parse(JSON.stringify(this.originalData))
                 this.updateTime = dayjs().format('YYYY-MM-DD HH:mm:ss')
-                this.sareaArr = this.data.distinct()
+                this.sareaArr = this.data.distinct().sort((a,b) => {
+                    return a.localeCompare(b)
+                })
                 this.initMap()
                 this.filterData()
                 //設定popup

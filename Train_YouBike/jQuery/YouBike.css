@@ -13,6 +13,9 @@
 label{
     margin: 0;
 }
+#area-filter{
+    height: 29px;
+}
 input, select, .reload-btn, .has-bike, .table-head img{
     cursor: pointer;
 }

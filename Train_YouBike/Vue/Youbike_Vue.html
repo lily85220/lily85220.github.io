@@ -14,12 +14,6 @@
     <!-- fontawesome -->
     <script src="https://kit.fontawesome.com/9dc7e45d14.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="./YouBike.css">
-    <style>
-        body{
-            font-family: arial,"Microsoft JhengHei","微軟正黑體",sans-serif !important;
-            font-size: 16px;
-        }
-    </style>
 </head>
 <body>
     <div id="app" class="d-flex flex-column justify-content-between">
@@ -30,9 +24,9 @@
                     <input v-model="filter.keyword" type="text" id="station-filter">
                 </div>
                 <div class="mx-5">
-                    <label for="area-filter">場站區域</label>
+                    <label for="area-filter">場站區域：</label>
                     <select v-model="filter.area" id="area-filter">
-                        <option value="不拘">不拘</option>
+                        <option value="0">不拘</option>
                         <option v-for="sarea in sareaArr">{{sarea}}</option>
                     </select>
                 </div>
@@ -54,9 +48,9 @@
                 <thead class="table-head">
                   <tr>
                     <th>項次</th>
-                    <th class="col-1">場站區域 <img @click="switchIcon($event)" class="sort-icon" id="sarea-sort" :src="sortSrc['sarea-sort']" alt="排序圖標"></th>
-                    <th class="col-2">站名 <img @click="switchIcon($event)" class="sort-icon" id="sna-sort" :src="sortSrc['sna-sort']" alt="排序圖標"></th>
-                    <th class="col-3">地點 <img @click="switchIcon($event)" class="sort-icon" id="ar-sort" :src="sortSrc['ar-sort']" alt="排序圖標"></th>
+                    <th class="col-1">場站區域 <img @click="switchIcon" class="sort-icon" id="sarea-sort" :src="sortSrc['sarea-sort']" alt="排序圖標"></th>
+                    <th class="col-2">站名 <img @click="switchIcon" class="sort-icon" id="sna-sort" :src="sortSrc['sna-sort']" alt="排序圖標"></th>
+                    <th class="col-3">地點 <img @click="switchIcon" class="sort-icon" id="ar-sort" :src="sortSrc['ar-sort']" alt="排序圖標"></th>
                     <th class="col-2">坐標位置</th>
                     <th>目前車輛數</th>
                     <th>目前空位數</th>                    
