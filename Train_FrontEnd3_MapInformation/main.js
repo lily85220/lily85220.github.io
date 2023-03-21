@@ -131,7 +131,7 @@ const app = new Vue({
         },
         cancelEdit(){
             this.modalShow = false
-            this.layer = {id: 0, name:'', groupId:0, category:'', createTime:''}
+            this.clearLayer()
         },
         confirmEdit(){
             this.modalShow = false
@@ -145,7 +145,7 @@ const app = new Vue({
                 //edit
                this.edit()
             }
-            this.layer = {id: 0, name:'', groupId:0, category:'', createTime:''}
+            this.clearLayer()
             this.items = this.layerList.filter(x => x.groupId == this.currentGroup)
         },
         create(){
@@ -180,7 +180,14 @@ const app = new Vue({
         updateModalShow(isShow){
             if(!isShow) {
                 this.modalShow = isShow
+                this.clearLayer()
             }
+        },
+        // 清空編輯或新增的layer資料
+        clearLayer(){
+            setTimeout(() => {
+                this.layer = {id: 0, name:'', groupId: 0, category:'', createTime:''}
+            }, 200)
         }
     }
 })

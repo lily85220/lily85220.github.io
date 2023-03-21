@@ -22,6 +22,7 @@ export default{
             // 如果觸發關閉的事件是 "backdrop" 或 "headerclose"，則將 show 屬性設置為 false
             if (event.trigger == 'backdrop' || event.trigger == 'headerclose') {
                 result = false
+                
             }
             this.$emit('update-modal-show', result)
         }
