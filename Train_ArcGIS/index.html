@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <link rel="icon" type="image/svg+xml" href="/assets/black_cat-efa4dc50.svg" />
+        <link rel="stylesheet" href="https://js.arcgis.com/4.26/@arcgis/core/assets/esri/themes/light/main.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>ArcGIS</title>
+      <script type="module" crossorigin src="/assets/index-cb639cc1.js"></script>
+      <link rel="stylesheet" href="/assets/index-ec7d25bd.css">
+    </head>
+    <body>
+        <div id="viewDiv">
+            <div id="mapInfoDiv">
+                <div id="scaliDiv"></div>
+                <div id="xyDiv"></div>
+                <div id="extentDiv"></div>
+            </div>
+            <span id="layerToggle" class="esri-widget">
+                <label>
+                    <input type="checkbox" id="countyLayer" /> 鄉鎮市區界
+                </label>
+                <label>
+                    <input type="checkbox" id="gasStationLayer" /> 加油站
+                </label>
+                <label>
+                    <input type="checkbox" id="hotelLayer" /> 飯店旅館
+                </label>
+                <label>
+                    <input type="checkbox" id="industryLayer" /> 工業區範圍
+                </label>
+                <label>
+                    <input type="checkbox" id="earthquakeLayer" /> 近一個月地震
+                </label>
+            </span>
+            <div id="transform">
+                <p>
+                    <span>從 
+                        <select id="fromEPSG">
+                            <option value="0" selected disabled>請選擇</option>
+                            <option value="3828">twd67 (121)</option>
+                            <option value="3829">twd67 (119)</option>
+                            <option value="3826">twd97 (121)</option>
+                            <option value="3825">twd97 (119)</option>
+                            <option value="3857">EPSG:3857</option>
+                        </select>
+                    </span>
+                </p>
+                <ul>
+                    <li>X : <input type="text" placeholder="請輸入X坐標" id="coordinateX"></li>
+                    <li>Y : <input type="text" placeholder="請輸入Y坐標" id="coordinateY"></li>
+                </ul>
+                <p>
+                    <span>轉換成 WGS84</span>
+                    <button id="transformBtn">轉換</button>
+                </p>
+                <p>
+                    <input type="text" readonly id="resultCoordinate">
+                </p>
+            </div>
+            <div class="esri-widget" id="optionsDiv">
+                <h2>縣市</h2>
+                <select class="esri-widget" id="countySelect">
+                    <option value="0" selected disabled>請選擇</option>
+                </select>
+                
+                <br />
+                <br />
+                <button class="esri-widget" id="doBtn">Do Query</button>
+            </div>
+            <div id="toggleIdentifyDiv">
+                <label>
+                    <input type="checkbox" id="toggleIdentify" /> 是否開啟 Identify 功能
+                </label>
+            </div>
+            <div class="esri-widget" id="sketchDiv">
+                <button
+                    class="esri-icon-map-pin geometry-button draw-btn"
+                    id="point-geometry-button"
+                    value="point"
+                    title="Filter by point"
+                ></button>
+                <button
+                    class="esri-icon-polyline geometry-button draw-btn"
+                    id="line-geometry-button"
+                    value="polyline"
+                    title="Filter by line"
+                ></button>
+                <button
+                    class="esri-icon-polygon geometry-button draw-btn"
+                    id="polygon-geometry-button"
+                    value="polygon"
+                    title="Filter by polygon"
+                ></button>
+                <span>
+                    <button
+                        class="esri-icon-edit geometry-button update-btn"
+                        id="polygon-geometry-button"
+                        value="edit"
+                        title="Edit"
+                    ></button>
+                    <button
+                        class="esri-icon-trash geometry-button update-btn"
+                        id="polygon-geometry-button"
+                        value="delete"
+                        title="Delete"
+                    ></button>
+                </span>
+            </div>
+        </div>
+        
+    </body>
+</html>
