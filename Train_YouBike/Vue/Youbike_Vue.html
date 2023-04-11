@@ -27,7 +27,7 @@
                     <label for="area-filter">場站區域：</label>
                     <select v-model="filter.area" id="area-filter">
                         <option value="0">不拘</option>
-                        <option v-for="sarea in sareaArr">{{sarea}}</option>
+                        <option v-for="sarea in sareaArr" :value="sarea.id">{{sarea.area}}</option>
                     </select>
                 </div>
                 <div>

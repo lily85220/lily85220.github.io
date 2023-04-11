@@ -37,34 +37,53 @@ const app = new Vue({
                 this.checked = []
             }
         },
+        layerList:{
+            handler: function(){
+                this.datas = this.datas.map(x => ({
+                    ...x, 
+                    childList: x.childList.filter(y => y.parentId === x.id)
+                                        .map(item => ({
+                                            ...item, 
+                                            layerList: this.layerList.filter(layer => layer.groupId === item.id)
+                                        }))
+                }))
+            }
+        }
     },
     computed: {
         state() {
+            // 判斷圖層名稱是否有值
             return this.layer.name.length > 0
         },
         invalidFeedback() {
             return '請輸入圖層名稱'
         },
         selectState() {
+            // 判斷圖層群組是否有值
             return this.layer.category.length > 0
         },
         selectInvalidFeedback() {
             return '請選擇圖層群組'
         },
         isValid(){
-            return !this.state && !this.selectState
+            // 判斷圖層群組與圖層名稱都有值才可以新增
+            return !this.state || !this.selectState
         },
+        // 判斷圖層列表是否全選
         isChooseAll: {
             get(){
                 if(this.items.length === 0) return false
                 return this.checked.length === this.items.length
             },
             set(newVal){
+                // 如果點 全選，先把 checked 陣列清空，然後所有圖層的 checkbox 的 checked 都是 false
                 this.checked = []
                 if(newVal){
+                    // 把這一頁所有圖層加到 checked 陣列，然後所有圖層的 checkbox 的 checked 就會是 true
                     this.items.forEach(x => {
-                    this.checked.push(x.id)
-                })}
+                        this.checked.push(x.id)
+                    })
+                }
             }
         },
         disabled(){
@@ -112,11 +131,12 @@ const app = new Vue({
         },
         showLayerList(list, event){
             this.items = list
+            // 關掉左邊欄其他圖層的 active CSS
             if(Object.keys(this.activeChild).length > 0){
                 this.activeChild.target.classList.remove('active')
             }
             this.activeChild = event
-            this.currentGroup = event.target.getAttribute('group-id')
+            this.currentGroup = parseInt(event.target.getAttribute('group-id'))
             event.target.classList.add('active')
         },
         createLayer(){
@@ -146,7 +166,7 @@ const app = new Vue({
                this.edit()
             }
             this.clearLayer()
-            this.items = this.layerList.filter(x => x.groupId == this.currentGroup)
+            this.items = this.layerList.filter(x => x.groupId === this.currentGroup)
         },
         create(){
             this.layer.id = Math.max(...this.layerList.map(x => x.id)) + 1

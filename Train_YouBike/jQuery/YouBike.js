@@ -5,17 +5,14 @@ let body = document.querySelector('tbody')
 let areaFilter = document.querySelector('#area-filter')
 let subIndex = 'YouBike2.0_'.length
 let sareaArr = []
-let area = '不拘'
+let filterArea = 0
 let keyword = ''
 let isHasBike = false
 
-$('#app').click(function(){
-    
-})
 window.onload = function(){
     getData()
     $('#area-filter').change(function(){
-        area = $('#area-filter option:selected').text()
+        filterArea = $('#area-filter option:selected').attr('value')
         filterData()
     })
     $('#station-filter').keyup(function(){
@@ -80,7 +77,7 @@ function getData(){
         filterData()
         sareaArr = data.distinct().sort((a,b) => {
             return a.localeCompare(b)
-        })
+        }).map((area, index) => ({id: index + 1, area: area}))
         renderHeader(sareaArr)
     })
 }
@@ -110,7 +107,8 @@ function renderTBody(data){
 function renderHeader(sareaArr){
     sareaArr.forEach(x => {
         let option = document.createElement('option')
-        option.innerText = x
+        option.innerText = x.area
+        option.setAttribute('value', x.id)
         areaFilter.appendChild(option)
     })
 }
@@ -121,7 +119,7 @@ function renderFooter(data){
 }
 function filterData(){
     let result = data
-    if(area !== '不拘') result = result.filter(x => x.sarea === area)
+    if(filterArea != '0') result = result.filter(x => x.sarea === sareaArr.find(x => x.id == filterArea).area)
     if(keyword !== '') result = result.filter(x => (x.sna.includes(keyword) || x.ar.includes(keyword)))
     if(isHasBike) result = result.filter(x => x.sbi > 0)
     renderTBody(result)

@@ -35,7 +35,7 @@
                 <button class="action-btn disabled-btn" @click="createLayer" :disabled="createDisabled">新增圖層</button>
             </section>
             <section class="section-layer-list">
-                <p v-if="hasNoData" class="has-no-data">圖層內無群組</p>
+                <p v-if="hasNoData" class="has-no-data">群組內無圖層</p>
                 <b-table
                     v-else="hasNoData"
                     class="map-information" 

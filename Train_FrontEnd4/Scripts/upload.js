@@ -154,10 +154,13 @@ const app = new Vue({
             }
             if(sessionStorage['organizationInfo']){
                 let organizationInfo = JSON.parse(sessionStorage['organizationInfo'])
-                // 判斷信用證明文件、無欠稅證明文件需不需要出現
+                // 是社團法人的話，判斷信用證明文件、無欠稅證明文件需不需要出現
                 if(organizationInfo.organizationType === "1") {
                     this.uploadData.find(x => x.id === 'creditDocument').isNeed = false
                     this.uploadData.find(x => x.id === 'taxless').isNeed = false
+                    
+                }else{
+                    // 資料確認的 aggregateCorporation 不用出現
                     this.checkItem.find(x => x.type === 'aggregateCorporation').isNeed = false
                 }
             }

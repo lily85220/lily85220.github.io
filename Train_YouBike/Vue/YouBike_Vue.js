@@ -7,7 +7,7 @@ const app = new Vue({
         originalData: [],
         subIndex: 'YouBike2.0_'.length,
         filter:{
-            area:'不拘',
+            area: 0,
             keyword:'',
             isHasBike: false
         },
@@ -48,7 +48,7 @@ const app = new Vue({
                 this.updateTime = dayjs().format('YYYY-MM-DD HH:mm:ss')
                 this.sareaArr = this.data.distinct().sort((a,b) => {
                     return a.localeCompare(b)
-                })
+                }).map((area,index) => ({id: index++, area: area}))
                 this.initMap()
                 this.filterData()
                 //設定popup
@@ -57,7 +57,7 @@ const app = new Vue({
         },
         filterData(){
             this.data = JSON.parse(JSON.stringify(this.originalData))
-            if(this.filter.area !== '不拘') this.data = this.data.filter(x => x.sarea === this.filter.area)
+            if(this.filter.area != 0) this.data = this.data.filter(x => x.sarea === this.filter.area)
             if(this.filter.keyword !== '') this.data = this.data.filter(x => (x.sna.includes(this.filter.keyword) || x.ar.includes(this.filter.keyword)))
             if(this.filter.isHasBike) this.data = this.data.filter(x => x.sbi > 0)
             this.setCenter()
