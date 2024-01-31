@@ -186,7 +186,7 @@
         let areaGroupNewData
         let regionName
         window.onload = function(){
-            fetch('https://raw.githubusercontent.com/lily85220/FileStorage/main/%E6%B8%AC%E9%80%9F%E7%85%A7%E7%9B%B8%E6%A9%9F')
+            fetch('https://raw.githubusercontent.com/lily85220/FileStorage/main/%E6%B8%AC%E9%80%9F%E7%85%A7%E7%9B%B8%E6%A9%9F')//https://od.moi.gov.tw/api/v1/rest/datastore/A01010000C-000674-011
             .then(res => res.json())
             .then(res => {
                 res.result.records.filter((item, index) => index > 0).forEach(item => {
