@@ -180,9 +180,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js" integrity="sha512-BNaRQnYJYiPSqHHDb58B0yaPfCu+Wgds8Gp/gU33kqBtgNS4tSPHuGibyoeqMV/TJlSKda6FXzoEyYGjTe+vXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script>
         window.onload = function() {
-            document.getElementById("screenshot").addEventListener("click", function() {
-                console.log('in')
+            window.addEventListener('message', function(event){
                 let canvasObj = document.getElementById( 'body' )       
+                console.log(event.data)
                 html2canvas(canvasObj, {
                     scale: 1,
                     useCORS: true,
@@ -195,6 +195,16 @@
                     link.download = "screenshot.png";
                     link.click();
                 })
+
+            })
+            document.getElementById("screenshot").addEventListener("click", function() {
+                // 打開新窗口
+                const newWindow = window.open("https://lily85220.github.io/hw03_%E8%9D%A6%E7%9A%AE/%E8%9D%A6%E7%9A%AE.html");
+
+                // 發送消息到新窗口
+                newWindow.onload = function () {
+                    newWindow.postMessage("Hello, New Window!", "https://lily85220.github.io/");
+                };
             })
             
         }

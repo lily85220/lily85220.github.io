@@ -122,6 +122,13 @@
             top: 355px;
         }
     </style>
+    <script>
+        // 回傳消息給父窗口
+        window.opener.postMessage(
+            { action: "responseData", result: "Hello from child!" },
+            "https://lily85220.github.io/" // 父窗口的目標域名
+        );
+    </script>
 </head>
 <body>
     <div class="all">
