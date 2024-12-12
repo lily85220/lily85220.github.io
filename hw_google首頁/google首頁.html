@@ -20,14 +20,15 @@
             background-color: rgb(35, 35, 35);
         }
         .header{
-            width: 200px;
+            width: 500px;
             display: flex;
             line-height:35px;
             font-size: 12px;
             font-family: 'Noto Sans TC';
             font-weight: 400;
             margin-top: 6px;
-            margin-left: 980px;
+            margin-right: 0;
+            margin-left: auto;
         }
         .header a{
             margin: 8px;
@@ -176,9 +177,32 @@
         }
 
     </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js" integrity="sha512-BNaRQnYJYiPSqHHDb58B0yaPfCu+Wgds8Gp/gU33kqBtgNS4tSPHuGibyoeqMV/TJlSKda6FXzoEyYGjTe+vXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+        window.onload = function() {
+            document.getElementById("screenshot").addEventListener("click", function() {
+                console.log('in')
+                let canvasObj = document.getElementById( 'body' )       
+                html2canvas(canvasObj, {
+                    scale: 1,
+                    useCORS: true,
+                    allowTaint: true,
+                }).then(canvas => {
+                    // 將截圖結果轉為圖片
+                    let imgData = canvas.toDataURL("image/png");
+                    let link = document.createElement("a");
+                    link.href = imgData;
+                    link.download = "screenshot.png";
+                    link.click();
+                })
+            })
+            
+        }
+    </script>
 </head>
-<body>
+<body id="body">
     <div class="header">
+        <button id="screenshot">截圖</button>
         <a href="" class="word">Gmail</a>
         <a href="" class="word">圖片</a>
         <a href=""  class="dot_father">
